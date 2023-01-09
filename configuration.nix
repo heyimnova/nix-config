@@ -108,7 +108,6 @@
 		gedit
 		epiphany
 		geary
-		gnome-characters
 		totem
 		tali
 		hitori
@@ -171,6 +170,16 @@
 			texworks
 			spicetify-cli
 			git-crypt
+			unstable.bitwarden
+			fragments
+			gimp
+			mousai
+			warp
+			unstable.fluent-reader
+			unstable.signal-desktop
+			unstable.session-desktop
+			unstable.element-desktop
+			unstable.freetube
 		];
 		shell = pkgs.fish;
 	};
