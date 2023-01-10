@@ -75,6 +75,10 @@
 		"nvidia_modeset"
 		"nvidia_uvm"
 		"nvidia_drm"
+		"v4l2loopback"
+	];
+	boot.extraModulePackages = with config.boot.kernelPackages; [
+		v4l2loopback.out
 	];
 
 	# Network config
@@ -203,6 +207,8 @@
 		rustc
 		qt5ct
 		unstable.quickemu
+		unstable.droidcam
+		linuxPackages.v4l2loopback
 	];
 
 	# Enable services
