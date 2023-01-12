@@ -43,6 +43,12 @@
       options = [ "subvol=@home" ];
     };
 
+  fileSystems."/var/lib/flatpak" =
+    { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
+      fsType = "btrfs";
+      options = [ "subvol=@flatpak" ];
+    };
+
   fileSystems."/var/lib/libvirt" =
     { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
       fsType = "btrfs";
@@ -57,11 +63,6 @@
   fileSystems."/mnt/storage" =
     { device = "/dev/disk/by-uuid/7ca778bc-0c44-4db3-b907-aaea9b6d9e38";
       fsType = "ext4";
-    };
-
-  fileSystems."/mnt/shared" =
-    { device = "/dev/disk/by-uuid/14169F7D169F5F14";
-      fsType = "ntfs3";
     };
 
   fileSystems."/var/lib/quickemu" =

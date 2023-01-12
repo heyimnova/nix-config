@@ -55,17 +55,12 @@
 		"/nix".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
 		"/var".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
 		"/var/log".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
+		"/var/lib/flatpak".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
 		"/var/lib/libvirt".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
 		"/var/lib/quickemu".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
 
 		"/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
 		"/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
-		
-		"/mnt/shared" = {
-			device = "/dev/disk/by-uuid/14169F7D169F5F14";
-			fsType = "ntfs3";
-			options = [ "rw" "uid=1000" ];
-		};
 	};
 
 	# Kernel config
