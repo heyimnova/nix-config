@@ -15,7 +15,6 @@
 		options = "--delete-older-than 7d";
 	};
 	system.stateVersion = "22.11";
-	# system.copySystemConfiguration = true;
 
 	# Hardware config
 	swapDevices = [ { device = "/var/swap/swapfile"; }];
@@ -203,7 +202,7 @@
 		qt5ct
 		unstable.quickemu
 		unstable.droidcam
-		linuxPackages.v4l2loopback
+		flutter
 	];
 
 	# Enable services
