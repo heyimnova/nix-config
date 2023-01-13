@@ -119,7 +119,7 @@
 	]);
 
 	# Qt config
-	qt5 = {
+	qt = {
 		enable = true;
 		platformTheme = "gnome";
 		style = "adwaita";
@@ -156,29 +156,29 @@
 			gnomeExtensions.caffeine
 			gnomeExtensions.appindicator
 			gnomeExtensions.clipboard-indicator
-			unstable.gnomeExtensions.status-area-horizontal-spacing
+			gnomeExtensions.status-area-horizontal-spacing
 			bat
 			ripgrep
 			exa
 			starship
 			neofetch
-			unstable.polychromatic
+			polychromatic
 			birdtray
 			vscodium
 			nixos-option
 			texworks
 			spicetify-cli
 			git-crypt
-			unstable.bitwarden
+			bitwarden
 			fragments
 			gimp
 			mousai
 			warp
-			unstable.fluent-reader
-			unstable.signal-desktop
-			unstable.session-desktop
-			unstable.element-desktop
-			unstable.freetube
+			fluent-reader
+			signal-desktop
+			session-desktop
+			element-desktop
+			freetube
 		];
 		shell = pkgs.fish;
 	};
@@ -201,8 +201,9 @@
 		cargo
 		rustc
 		qt5ct
-		unstable.quickemu
-		unstable.droidcam
+		quickemu
+		droidcam
+		flutter
 	];
 
 	# Enable services
