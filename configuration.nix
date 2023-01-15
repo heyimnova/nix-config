@@ -179,6 +179,8 @@
 			session-desktop
 			element-desktop
 			freetube
+			thunderbird
+			protonmail-bridge
 		];
 		shell = pkgs.fish;
 	};
@@ -192,14 +194,13 @@
 		wget
 		curl
 		git
+		unzip
 		blackbox-terminal
 		gnome.gnome-tweaks
 		clapper
 		mullvad-vpn
 		gamemode
 		virt-manager
-		cargo
-		rustc
 		qt5ct
 		quickemu
 		droidcam

@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     
-    nur.url = "github:nix-community/NUR";    
+    nur.url = "github:nix-community/NUR";
     
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -12,7 +12,7 @@
     };
   };
 
-  outputs = inputs: 
+  outputs = inputs:
   {
     nixosConfigurations = {
       nova-desktop = inputs.nixpkgs.lib.nixosSystem {
@@ -22,7 +22,7 @@
             ({
               nixpkgs = {
                 overlays = [
-                  inputs.nur.overlay              
+                  inputs.nur.overlay
                 ];
                 config.allowUnfree = true;
               };
