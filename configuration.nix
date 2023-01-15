@@ -1,30 +1,28 @@
 { config, pkgs, lib, modulesPath, inputs, ... }:
 
 {
-	# Nix config
 	imports = [
 		./hardware-configuration.nix
 	];
+	
+	# Nix config
 	documentation.nixos.enable = false;
-	nix.settings.experimental-features = [ "nix-command" "flakes" ];
-	system.autoUpgrade.enable = true;
-	nix.settings.auto-optimise-store = true;
 	nix.gc = {
 		automatic = true;
 		dates = "daily";
 		options = "--delete-older-than 7d";
 	};
+	nix.settings.auto-optimise-store = true;
+	nix.settings.experimental-features = [ "flakes" "nix-command" ];
 	system.stateVersion = "22.11";
-	# system.copySystemConfiguration = true;
-
+	
 	# Hardware config
-	swapDevices = [ { device = "/var/swap/swapfile"; }];
-	hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+	hardware.opengl.enable = true;
 	hardware.opengl.driSupport = true;
-
+	hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+	swapDevices = [ { device = "/var/swap/swapfile"; }];
+	
 	# Bootloader config
-	boot.loader.systemd-boot.enable = true;
-	boot.loader.efi.canTouchEfiVariables = true;
 	boot.kernelParams = [
 		"splash"
 		"boot.shell_on_fail"
@@ -33,16 +31,15 @@
 		"udev.log_priority=3"
 		"nvidia.drm.modeset=1"
 	];
-
+	boot.loader.efi.canTouchEfiVariables = true;
+	boot.loader.systemd-boot.enable = true;
+	
 	# Filesystem config
-	system.fsPackages = [ pkgs.bindfs ];
-	boot.supportedFilesystems = [ "ntfs" ];
-
 	fileSystems = let
 		mkRoSymBind = path: {
 			device = path;
 			fsType = "fuse.bindfs";
-			options = [ "ro" "resolve-symlinks" "x-gvfs-hide" ];
+			options = [ "resolve-symlinks" "ro" "x-gvfs-hide" ];
 		};
 		aggregatedFonts = pkgs.buildEnv {
 			name = "system-fonts";
@@ -50,89 +47,87 @@
 			pathsToLink = [ "/share/fonts" ];
 		};
 	in {
-		"/".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
-		"/home".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
-		"/nix".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
-		"/var".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
-		"/var/log".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
-		"/var/lib/flatpak".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
-		"/var/lib/libvirt".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
-		"/var/lib/quickemu".options = [ "compress=zstd" "noatime" "space_cache=v2" "discard=async" ];
+		"/".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
+		"/home".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
+		"/nix".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
+		"/var".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
+		"/var/lib/flatpak".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
+		"/var/lib/libvirt".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
+		"/var/lib/quickemu".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
+		"/var/log".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
 
 		"/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
 		"/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
 	};
-
+	system.fsPackages = [ pkgs.bindfs ];
+	
 	# Kernel config
-	boot.kernelPackages = pkgs.linuxPackages_zen;
+	boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
 	boot.initrd.kernelModules = [
 		"nvidia"
+		"nvidia_drm"
 		"nvidia_modeset"
 		"nvidia_uvm"
-		"nvidia_drm"
 		"v4l2loopback"
 	];
-	boot.extraModulePackages = with config.boot.kernelPackages; [
-		v4l2loopback.out
-	];
-
+	boot.kernelPackages = pkgs.linuxPackages_zen;
+	
 	# Network config
 	networking.hostName = "nova-desktop";
 	networking.networkmanager.enable = true;
-
+	
 	# i18n config
-	time.timeZone = "Europe/London";
+	environment.shells = [ pkgs.fish ];
 	i18n.defaultLocale = "en_US.UTF-8";
-	environment.shells = with pkgs; [ fish ];
-
+	time.timeZone = "Europe/London";
+	
 	# Xorg config
 	services.xserver.enable = true;
+	services.xserver.excludePackages = [ pkgs.xterm ];
 	services.xserver.videoDrivers = [ "nvidia" ];
-	hardware.opengl.enable = true;
-	services.xserver.excludePackages = with pkgs; [ xterm ];
-
+	
 	# Gnome config
-	services.xserver.displayManager.gdm.enable = true;
-	services.xserver.desktopManager.gnome.enable = true;
 	environment.gnome.excludePackages = (with pkgs; [
+		baobab
+		gnome-connections
+		gnome-console
 		gnome-photos
 		gnome-tour
-		baobab
-		gnome-console
-		gnome-connections
 	]) ++ (with pkgs.gnome; [
+		atomix
 		cheese
-		gnome-music
-		gnome-terminal
-		gedit
 		epiphany
 		geary
-		totem
-		tali
-		hitori
-		atomix
-		yelp
-		yelp-xsl
-		gnome-contacts
+		gedit
 		gnome-calculator
 		gnome-clocks
+		gnome-contacts
+		gnome-music
+		gnome-terminal
+		hitori
+		tali
+		totem
+		yelp
+		yelp-xsl
 	]);
-
+	services.xserver.displayManager.gdm.enable = true;
+	services.xserver.desktopManager.gnome.enable = true;
+	
 	# Qt config
 	qt = {
 		enable = true;
 		platformTheme = "gnome";
 		style = "adwaita";
 	};
-
+	
 	# Font config
 	fonts.fonts = with pkgs; [
+		nerdfonts
 		noto-fonts
 		noto-fonts-cjk
 		noto-fonts-emoji
-		nerdfonts
 	];
-
+	
 	# Pipewire config
 	hardware.pulseaudio.enable = false;
 	security.rtkit.enable = true;
@@ -143,44 +138,44 @@
 		pulse.enable = true;
 		jack.enable = true;
 	};
-
+	
 	# Users config
 	users.users.nova = {
-		isNormalUser = true;
 		description = "Nova";
-		extraGroups = [ "wheel" "libvirtd" "openrazer" ];
+		extraGroups = [ "libvirtd" "openrazer" "wheel" ];
+		isNormalUser = true;
 		packages = with pkgs; [
-			gnomeExtensions.gsconnect
+			bat
+			birdtray
+			bitwarden
+			element-desktop
+			exa
+			fluent-reader
+			fragments
+			freetube
+			gimp
+			git-crypt
 			gnomeExtensions.alphabetical-app-grid
+			gnomeExtensions.appindicator
 			gnomeExtensions.blur-my-shell
 			gnomeExtensions.caffeine
-			gnomeExtensions.appindicator
 			gnomeExtensions.clipboard-indicator
+			gnomeExtensions.gsconnect
 			gnomeExtensions.status-area-horizontal-spacing
-			bat
-			ripgrep
-			exa
-			starship
-			neofetch
-			polychromatic
-			birdtray
-			vscodium
-			nixos-option
-			texworks
-			spicetify-cli
-			git-crypt
-			bitwarden
-			fragments
-			gimp
 			mousai
-			warp
-			fluent-reader
-			signal-desktop
-			session-desktop
-			element-desktop
-			freetube
-			thunderbird
+			neofetch
+			nixos-option
+			polychromatic
 			protonmail-bridge
+			ripgrep
+			session-desktop
+			signal-desktop
+			spicetify-cli
+			starship
+			texworks
+			thunderbird
+			vscodium
+			warp
 		];
 		shell = pkgs.fish;
 	};
@@ -188,34 +183,34 @@
 	# System packages
 	environment.systemPackages = with pkgs; [
 		adw-gtk3
-		colloid-icon-theme
-		nur.repos.ambroisie.vimix-cursors
-		helix
-		wget
-		curl
-		git
-		unzip
 		blackbox-terminal
-		gnome.gnome-tweaks
 		clapper
-		mullvad-vpn
-		gamemode
-		virt-manager
-		qt5ct
-		quickemu
+		colloid-icon-theme
+		curl
 		droidcam
 		flutter
+		gamemode
+		git
+		gnome.gnome-tweaks
+		helix
+		mullvad-vpn
+		nur.repos.ambroisie.vimix-cursors
+		qt5ct
+		quickemu
+		unzip
+		virt-manager
+		wget
 	];
-
+	
 	# Enable services
-	services.printing.enable = true;
-	services.printing.drivers = [ pkgs.hplip ];
+	hardware.openrazer.enable = true;
+	programs.dconf.enable = true;
+	programs.fish.enable = true;
+	programs.gnupg.agent.enable = true;
 	services.flatpak.enable = true;
 	services.mullvad-vpn.enable = true;
-	programs.fish.enable = true;
-	hardware.openrazer.enable = true;
+	services.printing.enable = true;
+	services.printing.drivers = [ pkgs.hplip ];
 	virtualisation.libvirtd.enable = true;
-	programs.dconf.enable = true;
-	programs.gnupg.agent.enable = true;
 }
 
