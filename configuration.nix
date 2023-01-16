@@ -21,7 +21,7 @@
 	hardware.opengl.driSupport = true;
 	hardware.opengl.driSupport32Bit = true;
 	hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-	swapDevices = [ { device = "/var/swap/swapfile"; }];
+	swapDevices = [{ device = "/var/swap/swapfile"; }];
 	
 	# Bootloader config
 	boot.kernelParams = [
@@ -149,6 +149,7 @@
 			bat
 			birdtray
 			bitwarden
+			brave
 			element-desktop
 			exa
 			fluent-reader
@@ -162,21 +163,23 @@
 			gnomeExtensions.caffeine
 			gnomeExtensions.clipboard-indicator
 			gnomeExtensions.gsconnect
+			gnomeExtensions.grand-theft-focus
 			gnomeExtensions.status-area-horizontal-spacing
 			(lutris.override {
 				extraLibraries = pkgs: [
 					libgpg-error
+					jansson
 				];
 			})
+			heroic
 			mousai
 			neofetch
-			nixos-option
+			onlyoffice-bin
 			polychromatic
-			protonmail-bridge
+			prismlauncher
 			ripgrep
 			session-desktop
 			signal-desktop
-			spicetify-cli
 			starship
 			texworks
 			thunderbird
@@ -200,10 +203,10 @@
 		gnome.gnome-tweaks
 		helix
 		mullvad-vpn
-		nur.repos.ambroisie.vimix-cursors
 		qt5ct
 		quickemu
 		unzip
+		nur.repos.ambroisie.vimix-cursors
 		virt-manager
 		wget
 	];
