@@ -168,10 +168,13 @@
 					libgpg-error
 				];
 			})
+			heroic
 			mousai
 			neofetch
 			nixos-option
+			onlyoffice-bin
 			polychromatic
+			prismlauncher
 			protonmail-bridge
 			ripgrep
 			session-desktop
