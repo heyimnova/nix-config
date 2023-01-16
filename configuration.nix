@@ -10,7 +10,7 @@
 	nix.gc = {
 		automatic = true;
 		dates = "daily";
-		options = "--delete-older-than 7d";
+		options = "--delete-older-than 3d";
 	};
 	nix.settings.auto-optimise-store = true;
 	nix.settings.experimental-features = [ "flakes" "nix-command" ];
@@ -19,6 +19,7 @@
 	# Hardware config
 	hardware.opengl.enable = true;
 	hardware.opengl.driSupport = true;
+	hardware.opengl.driSupport32Bit = true;
 	hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 	swapDevices = [ { device = "/var/swap/swapfile"; }];
 	
@@ -162,6 +163,11 @@
 			gnomeExtensions.clipboard-indicator
 			gnomeExtensions.gsconnect
 			gnomeExtensions.status-area-horizontal-spacing
+			(lutris.override {
+				extraLibraries = pkgs: [
+					libgpg-error
+				];
+			})
 			mousai
 			neofetch
 			nixos-option
