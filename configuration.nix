@@ -163,7 +163,11 @@
 			gnomeExtensions.clipboard-indicator
 			gnomeExtensions.gsconnect
 			gnomeExtensions.status-area-horizontal-spacing
-			lutris
+			(lutris.override {
+				extraLibraries = pkgs: [
+					libgpg-error
+				];
+			})
 			mousai
 			neofetch
 			nixos-option
