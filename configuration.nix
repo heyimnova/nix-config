@@ -149,6 +149,7 @@
 			bat
 			birdtray
 			bitwarden
+			brave
 			element-desktop
 			exa
 			fluent-reader
@@ -176,7 +177,6 @@
 			onlyoffice-bin
 			polychromatic
 			prismlauncher
-			protonmail-bridge
 			ripgrep
 			session-desktop
 			signal-desktop
@@ -202,6 +202,7 @@
 		git
 		gnome.gnome-tweaks
 		helix
+		mullvad-vpn
 		qt5ct
 		quickemu
 		unzip
@@ -216,6 +217,7 @@
 	programs.fish.enable = true;
 	programs.gnupg.agent.enable = true;
 	services.flatpak.enable = true;
+	services.mullvad-vpn.enable = true;
 	services.printing.enable = true;
 	services.printing.drivers = [ pkgs.hplip ];
 	virtualisation.libvirtd.enable = true;
