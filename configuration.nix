@@ -94,6 +94,7 @@
 		gnome-console
 		gnome-photos
 		gnome-tour
+		orca
 	]) ++ (with pkgs.gnome; [
 		atomix
 		cheese
@@ -113,13 +114,7 @@
 	]);
 	services.xserver.displayManager.gdm.enable = true;
 	services.xserver.desktopManager.gnome.enable = true;
-	
-	# Qt config
-	qt = {
-		enable = true;
-		platformTheme = "gnome";
-		style = "adwaita";
-	};
+	services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 	
 	# Font config
 	fonts.fonts = with pkgs; [
@@ -145,7 +140,7 @@
 		description = "Nova";
 		extraGroups = [ "libvirtd" "openrazer" "wheel" ];
 		isNormalUser = true;
-		packages = with pkgs; [
+		packages = (with pkgs; [
 			bat
 			birdtray
 			bitwarden
@@ -157,14 +152,6 @@
 			freetube
 			gimp
 			git-crypt
-			gnomeExtensions.alphabetical-app-grid
-			gnomeExtensions.appindicator
-			gnomeExtensions.blur-my-shell
-			gnomeExtensions.caffeine
-			gnomeExtensions.clipboard-indicator
-			gnomeExtensions.gsconnect
-			gnomeExtensions.grand-theft-focus
-			gnomeExtensions.status-area-horizontal-spacing
 			(lutris.override {
 				extraLibraries = pkgs: [
 					libgpg-error
@@ -185,7 +172,16 @@
 			thunderbird
 			vscodium
 			warp
-		];
+		]) ++ (with pkgs.gnomeExtensions; [
+			alphabetical-app-grid
+			appindicator
+			blur-my-shell
+			caffeine
+			clipboard-indicator
+			gsconnect
+			grand-theft-focus
+			status-area-horizontal-spacing
+		]);
 		shell = pkgs.fish;
 	};
 	
@@ -203,7 +199,6 @@
 		gnome.gnome-tweaks
 		helix
 		mullvad-vpn
-		qt5ct
 		quickemu
 		unzip
 		nur.repos.ambroisie.vimix-cursors
