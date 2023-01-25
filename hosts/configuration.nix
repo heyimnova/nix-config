@@ -26,6 +26,7 @@
 
 	fonts.fonts = with pkgs; [
     corefonts
+    liberation_ttf
 		(nerdfonts.override {
       fonts = [
         "Monofur"
@@ -48,6 +49,7 @@
       clapper
       colloid-icon-theme
       curl
+      firefox
       git
       gnome.gnome-tweaks
       helix
