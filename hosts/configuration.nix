@@ -4,23 +4,13 @@
   users.users.nova = {
     isNormalUser = true;
     description = "Nova";
-    extraGroups = [ "libvirtd" "openrazer" "wheel" ];
+    extraGroups = [ "libvirtd" "networkmanager" "openrazer" "wheel" ];
     shell = pkgs.fish;
   };
 
   time.timeZone = "Europe/London";
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_TIME = "en_GB.UTF-8";
-      LC_MONETARY = "en_GB.UTF-8";
-    };
-  };
 
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
+  console.font = "Lat2-Terminus16";
 
   security.rtkit.enable = true;
 
@@ -120,7 +110,14 @@
     };
   };
 
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot.enable = true;
+  };
+
   documentation.nixos.enable = false;
+
+  networking.networkmanager.enable = true;
 
   nix = {
     gc = {
