@@ -6,6 +6,9 @@
 			bat
 			birdtray
 			bitwarden
+			(discord.override {
+				withOpenASAR = true;
+			})
 			element-desktop
 			exa
 			fluent-reader
@@ -18,9 +21,12 @@
 			ripgrep
 			session-desktop
 			signal-desktop
+			spotify
 			starship
+			teams-for-linux
 			texworks
 			thunderbird
+			tor-browser-bundle-bin
 			vscodium
 			warp
 		]) ++ (with pkgs.gnomeExtensions; [
