@@ -1,36 +1,25 @@
 {
   description = "My NixOS config";
-  
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    
-    nur.url = "github:nix-community/NUR";
-    
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur.url = "github:nix-community/NUR";
   };
-  
-  outputs = inputs:
+
+  outputs = inputs @ { self, nixpkgs, home-manager, nur, ... }:
   {
-    nixosConfigurations = {
-      nova-desktop = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ({
-            nixpkgs = {
-              overlays = [
-                inputs.nur.overlay
-              ];
-              config.allowUnfree = true;
-            };
-          })
-          ./configuration.nix
-        ];
-      };
-    };
+    nixosConfigurations = (
+      import ./hosts {
+        inherit (nixpkgs) lib;
+        inherit inputs nixpkgs home-manager nur;
+      }
+    );
   };
 }
 
