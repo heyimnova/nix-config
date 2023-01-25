@@ -13,6 +13,7 @@
 		heroic
 		polychromatic
 		prismlauncher
+		uwufetch
   ];
 }
 

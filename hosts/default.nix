@@ -57,7 +57,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.nova = {
-          import = [(import ./home.nix)] ++ [(import ./nova-laptop/home.nix)];
+          imports = [(import ./home.nix)];
         };
       }
     ];
