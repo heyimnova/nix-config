@@ -4,7 +4,6 @@
 	home = {
 		packages = (with pkgs; [
 			bat
-			birdtray
 			bitwarden
 			(discord.override {
 				withOpenASAR = true;
