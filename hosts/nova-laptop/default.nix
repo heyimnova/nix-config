@@ -5,8 +5,6 @@
     ./hardware-configuration.nix
   ];
 
-  swapDevices = [{ device = "/var/swap/swapfile"; }];
-
   boot = {
     loader.efi.efiSysMountPoint = "/boot/efi";
     initrd = {
