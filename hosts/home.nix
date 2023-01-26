@@ -4,7 +4,6 @@
 	home = {
 		packages = (with pkgs; [
 			bat
-			birdtray
 			bitwarden
 			(discord.override {
 				withOpenASAR = true;
@@ -16,7 +15,7 @@
 			freetube
 			git-crypt
 			mousai
-			neofetch
+			nitch
 			onlyoffice-bin
 			ripgrep
 			session-desktop

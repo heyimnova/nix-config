@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+		birdtray
 		brave
 		gimp
    	(lutris.override {
@@ -13,7 +14,6 @@
 		heroic
 		polychromatic
 		prismlauncher
-		uwufetch
   ];
 }
 
