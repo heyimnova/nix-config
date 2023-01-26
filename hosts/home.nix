@@ -15,7 +15,7 @@
 			freetube
 			git-crypt
 			mousai
-			neofetch
+			nitch
 			onlyoffice-bin
 			ripgrep
 			session-desktop
