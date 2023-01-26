@@ -14,7 +14,6 @@
 		heroic
 		polychromatic
 		prismlauncher
-		uwufetch
   ];
 }
 
