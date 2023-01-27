@@ -63,7 +63,6 @@
 		  epiphany
 		  geary
 		  gedit
-		  gnome-calculator
 		  gnome-clocks
 		  gnome-contacts
 		  gnome-music
