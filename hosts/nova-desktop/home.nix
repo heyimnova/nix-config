@@ -14,6 +14,7 @@
 		heroic
 		polychromatic
 		prismlauncher
+		protonup-ng
   ];
 }
 

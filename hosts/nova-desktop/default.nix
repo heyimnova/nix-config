@@ -98,5 +98,7 @@
     quickemu
     virt-manager
   ];
+
+  programs.steam.enable = true;
 }
 
