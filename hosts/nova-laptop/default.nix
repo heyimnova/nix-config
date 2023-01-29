@@ -15,6 +15,15 @@
         device = "/dev/disk/by-uuid/ade306e0-fc8c-4019-952b-1551dcc0a4c4";
         keyFile = "/crypto_keyfile.bin";
       };
+      systemd.enable = true;
+    };
+    kernelParams = [
+      "quiet"
+      "splash"
+    ];
+    plymouth = {
+      enable = true;
+      theme = "bgrt";
     };
   };
 
