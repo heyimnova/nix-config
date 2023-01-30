@@ -10,13 +10,19 @@
 			})
 			element-desktop
 			exa
+			ffmpeg
+			file
 			fluent-reader
 			fragments
 			freetube
 			git-crypt
 			mousai
 			nitch
+			nodejs
+			nodePackages.npm
 			onlyoffice-bin
+			patchelf
+			poetry
 			ripgrep
 			session-desktop
 			signal-desktop
@@ -44,6 +50,10 @@
 
 	programs = {
 		home-manager.enable = true;
+		nix-index = {
+			enable = true;
+			enableFishIntegration = true;
+		};
 	};
 }
 
