@@ -93,9 +93,7 @@
 
   environment.systemPackages = with pkgs; [
     droidcam
-    flutter
     gamemode
-    quickemu
     virt-manager
   ];
 
