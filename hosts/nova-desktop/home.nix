@@ -16,6 +16,9 @@
 		polychromatic
 		prismlauncher
 		protonup-ng
+		quickemu
+		(callPackage ../../packages/quickgui {})
+		gnome.zenity
   ];
 }
 
