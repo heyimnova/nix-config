@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+	imports = [
+		../secrets/modules/git
+	];
+
 	home = {
 		packages = (with pkgs; [
 			bat
@@ -21,13 +25,13 @@
 			nodejs
 			nodePackages.npm
 			onlyoffice-bin
-			patchelf
 			poetry
 			ripgrep
 			session-desktop
 			signal-desktop
 			spotify
 			starship
+			tealdeer
 			teams-for-linux
 			texworks
 			thunderbird
