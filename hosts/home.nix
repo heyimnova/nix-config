@@ -9,6 +9,7 @@
 		packages = (with pkgs; [
 			bat
 			bitwarden
+			bottles
 			(discord.override {
 				withOpenASAR = true;
 			})
@@ -26,6 +27,7 @@
 			nodePackages.npm
 			onlyoffice-bin
 			poetry
+			protonmail-bridge
 			ripgrep
 			session-desktop
 			signal-desktop
@@ -38,6 +40,7 @@
 			tor-browser-bundle-bin
 			vscodium
 			warp
+			xdg-ninja
 		]) ++ (with pkgs.gnomeExtensions; [
 			alphabetical-app-grid
 			appindicator
