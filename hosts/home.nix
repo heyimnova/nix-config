@@ -38,6 +38,7 @@
 			tor-browser-bundle-bin
 			vscodium
 			warp
+			xdg-ninja
 		]) ++ (with pkgs.gnomeExtensions; [
 			alphabetical-app-grid
 			appindicator
