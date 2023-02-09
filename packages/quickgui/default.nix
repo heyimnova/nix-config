@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
   version = "1.2.8";
 
   src = fetchurl {
-    url = "https://github.com/quickemu-project/quickgui/releases/download/v1.2.8/quickgui_1.2.8-1_lunar1.0_amd64.deb";
+    url = "https://github.com/quickemu-project/quickgui/releases/download/v${version}/quickgui_${version}-1_lunar1.0_amd64.deb";
     sha256 = "sha256-crnV7OWH5UbkMM/TxTIOlXmvqBgjFmQG7RxameMOjH0=";
   };
 
@@ -31,8 +31,8 @@ stdenv.mkDerivation rec {
     
     mv usr $out
 
-    substituteInPlace $out/share/applications/${pname}.desktop \
-      --replace "Exec=/usr/bin/quickgui" "Exec=${pname}"
+    substituteInPlace $out/share/applications/quickgui.desktop \
+      --replace "/usr" $out
 
     runHook postInstall
   '';
@@ -40,7 +40,10 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "A Flutter frontend for quickemu";
     homepage = "https://github.com/quickemu-project/quickgui";
+    downloadPage = "https://github.com/quickemu-project/quickgui/releases/tag/v${version}";
+    changelog = "https://github.com/quickemu-project/quickgui/compare/v1.2.7...v1.2.8";
     maintainers = [ maintainers.heyimnova ];
     platforms = platforms.linux;
+    sourceProvenance = [ sourceTypes.binaryNativeCode ];
   };
 }
