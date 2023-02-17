@@ -28,7 +28,7 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-    
+
     mv usr $out
 
     substituteInPlace $out/share/applications/quickgui.desktop \
@@ -43,6 +43,7 @@ stdenv.mkDerivation rec {
     downloadPage = "https://github.com/quickemu-project/quickgui/releases/tag/v${version}";
     changelog = "https://github.com/quickemu-project/quickgui/compare/v1.2.7...v1.2.8";
     maintainers = [ maintainers.heyimnova ];
+    mainProgram = "quickgui";
     platforms = platforms.linux;
     sourceProvenance = [ sourceTypes.binaryNativeCode ];
   };
