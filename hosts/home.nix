@@ -26,6 +26,7 @@
 			nodePackages.npm
 			onlyoffice-bin
 			poetry
+			protonmail-bridge
 			ripgrep
 			session-desktop
 			signal-desktop
