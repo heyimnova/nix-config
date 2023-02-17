@@ -2,19 +2,21 @@
   description = "My NixOS config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-22.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    stable.url = "github:nixos/nixpkgs/release-22.11";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    nixpkgs.follows = "unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "unstable";
+      inputs.utils.follows = "utils";
     };
 
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, utils, home-manager, nur, ... }:
+  outputs = inputs @ { self, nixpkgs, stable, utils, home-manager, nur, ... }:
     utils.lib.mkFlake {
       inherit self inputs;
 
@@ -35,25 +37,25 @@
         }
       ];
 
-      hosts.nova-desktop = {
-        channelName = "nixpkgs-unstable";
+      hosts.nova-desktop.modules = [
+        ./hosts/nova-desktop
+        home-manager.nixosModules.home-manager {
+          home-manager.users.nova.imports = [
+            ./hosts/nova-desktop/home.nix
+          ];
+        }
+      ];
+
+      hosts.nova-laptop = {
+        channelName = "stable";
         modules = [
-          ./hosts/nova-desktop
+          ./hosts/nova-laptop
           home-manager.nixosModules.home-manager {
             home-manager.users.nova.imports = [
-              ./hosts/nova-desktop/home.nix
+              ./hosts/nova-laptop/home.nix
             ];
           }
         ];
       };
-
-      hosts.nova-laptop.modules = [
-        ./hosts/nova-laptop
-        home-manager.nixosModules.home-manager {
-          home-manager.users.nova.imports = [
-            ./hosts/nova-laptop/home.nix
-          ];
-        }
-      ];
     };
 }
