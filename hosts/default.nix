@@ -64,6 +64,7 @@
 		  gnome-clocks
 		  gnome-contacts
 		  gnome-music
+      gnome-software
 		  gnome-terminal
 		  hitori
 		  tali
@@ -96,7 +97,6 @@
       pulse.enable = true;
       jack.enable = true;
     };
-    flatpak.enable = true;
     mullvad-vpn.enable = true;
     udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
     xserver = {

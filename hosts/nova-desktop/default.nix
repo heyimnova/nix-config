@@ -53,7 +53,6 @@
 		"/home".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
 		"/nix".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
 		"/var".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
-		"/var/lib/flatpak".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
 		"/var/lib/libvirt".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
 		"/var/lib/quickemu".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
 		"/var/log".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
