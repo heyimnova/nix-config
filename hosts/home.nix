@@ -9,6 +9,7 @@
 		packages = (with pkgs; [
 			bat
 			bitwarden
+			bottles
 			(discord.override {
 				withOpenASAR = true;
 			})
