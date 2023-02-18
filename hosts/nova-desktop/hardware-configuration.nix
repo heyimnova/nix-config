@@ -43,12 +43,6 @@
       options = [ "subvol=@home" ];
     };
 
-  fileSystems."/var/lib/flatpak" =
-    { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
-      fsType = "btrfs";
-      options = [ "subvol=@flatpak" ];
-    };
-
   fileSystems."/var/lib/libvirt" =
     { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
       fsType = "btrfs";
