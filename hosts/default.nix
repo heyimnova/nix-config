@@ -77,7 +77,7 @@
   services = {
     printing = {
       enable = true;
-      drivers = [ pkgs.hplip ];
+      drivers = [ pkgs.canon-cups-ufr2 ];
     };
     avahi = {
       enable = true;
