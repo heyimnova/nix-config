@@ -17,6 +17,14 @@
   };
 
   outputs = inputs @ { self, nixpkgs, stable, utils, home-manager, nur, ... }:
+  let
+    unstableOverlay = self: super: {
+      unstable = import inputs.unstable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+    };
+  in
     utils.lib.mkFlake {
       inherit self inputs;
 
@@ -24,6 +32,7 @@
 
       sharedOverlays = [
         nur.overlay
+        unstableOverlay
       ];
 
       hostDefaults.modules = [
