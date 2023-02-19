@@ -48,15 +48,14 @@ stdenv.mkDerivation rec {
       --add-flags $out/share/${pname}/resources/app.asar
   '';
 
-  meta = with lib; {
+  meta = {
     description = "An open source user-first chat platform";
     homepage = "https://revolt.chat/";
-    downloadPage = "https://revolt.chat/download";
     changelog = "https://github.com/revoltchat/desktop/compare/v1.0.5...v1.0.6";
-    license = licenses.agpl3Only;
-    maintainers = with maintainers; [ heyimnova ];
-    mainProgram = "revolt-desktop";
+    license = lib.licenses.agpl3Only;
+    maintainers = [ lib.maintainers.heyimnova ];
     platforms = [ "x86_64-linux" ];
-    sourceProvenance = [ sourceTypes.binaryNativeCode ];
+    sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
+    mainProgram = "revolt-desktop";
   };
 }

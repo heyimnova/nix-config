@@ -30,21 +30,19 @@ stdenv.mkDerivation rec {
     runHook preInstall
 
     mv usr $out
-
     substituteInPlace $out/share/applications/quickgui.desktop \
       --replace "/usr" $out
 
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "A Flutter frontend for quickemu";
     homepage = "https://github.com/quickemu-project/quickgui";
-    downloadPage = "https://github.com/quickemu-project/quickgui/releases/tag/v${version}";
-    changelog = "https://github.com/quickemu-project/quickgui/compare/v1.2.7...v1.2.8";
-    maintainers = [ maintainers.heyimnova ];
+    changelog = "https://github.com/quickemu-project/quickgui/releases/tag/v${version}";
+    maintainers = [ lib.maintainers.heyimnova ];
+    platforms = lib.platforms.linux;
+    sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
     mainProgram = "quickgui";
-    platforms = platforms.linux;
-    sourceProvenance = [ sourceTypes.binaryNativeCode ];
   };
 }
