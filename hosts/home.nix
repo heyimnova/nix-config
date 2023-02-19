@@ -8,18 +8,18 @@
 	home = {
 		packages = (with pkgs; [
 			bat
-			bitwarden
-			bottles
-			(discord.override {
+			unstable.bitwarden
+			unstable.bottles
+			(unstable.discord.override {
 				withOpenASAR = true;
 			})
-			element-desktop
+			unstable.element-desktop
 			exa
 			ffmpeg
 			file
-			fluent-reader
+			unstable.fluent-reader
 			fragments
-			freetube
+			unstable.freetube
 			git-crypt
 			mousai
 			nitch
@@ -30,12 +30,12 @@
 			protonmail-bridge
 			(callPackage ../packages/revolt {})
 			ripgrep
-			session-desktop
-			signal-desktop
+			unstable.session-desktop
+			unstable.signal-desktop
 			spotify
 			starship
 			tealdeer
-			teams-for-linux
+			unstable.teams-for-linux
 			texworks
 			thunderbird
 			tor-browser-bundle-bin
@@ -46,10 +46,11 @@
 			alphabetical-app-grid
 			appindicator
 			blur-my-shell
-			caffeine
 			clipboard-indicator
 			gsconnect
 			grand-theft-focus
+		]) ++ (with pkgs.unstable.gnomeExtensions; [
+			caffeine
 			status-area-horizontal-spacing
 		]);
 
