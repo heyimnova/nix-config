@@ -15,7 +15,7 @@
 		heroic
 		polychromatic
 		prismlauncher
-		protonup-ng
+		master.protonup-qt
 		quickemu
 		(callPackage ../../packages/quickgui {})
 		gnome.zenity
