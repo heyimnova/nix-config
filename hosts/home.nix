@@ -28,7 +28,7 @@
 			onlyoffice-bin
 			poetry
 			protonmail-bridge
-			(callPackage ../packages/revolt {})
+			(callPackage ../packages/revolt-desktop {})
 			ripgrep
 			unstable.session-desktop
 			unstable.signal-desktop
