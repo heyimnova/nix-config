@@ -6,6 +6,7 @@
 		brave
 		cubiomes-viewer
 		gimp
+		grapejuice
    	(lutris.override {
 		  extraLibraries = pkgs: [
 		  	libgpg-error
@@ -17,7 +18,7 @@
 		prismlauncher
 		protonup-qt
 		quickemu
-		master.quickgui
+		quickgui
 		gnome.zenity
   ];
 }
