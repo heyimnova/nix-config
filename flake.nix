@@ -19,13 +19,13 @@
 
   outputs = inputs @ { self, nixpkgs, stable, utils, home-manager, nur, ... }:
   let
-    unstableOverlay = self: super: {
+    unstable-overlay = self: super: {
       unstable = import inputs.unstable {
         system = "x86_64-linux";
         config.allowUnfree = true;
       };
     };
-    masterOverlay = self: super: {
+    master-overlay = self: super: {
       master = import inputs.master {
         system = "x86_64-linux";
         config.allowUnfree = true;
@@ -39,8 +39,8 @@
 
       sharedOverlays = [
         nur.overlay
-        unstableOverlay
-        masterOverlay
+        unstable-overlay
+        master-overlay
       ];
 
       hostDefaults.modules = [
