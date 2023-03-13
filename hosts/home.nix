@@ -10,6 +10,7 @@
 			bat
 			unstable.bitwarden
 			unstable.bottles
+			brave
 			(unstable.discord.override {
 				withOpenASAR = true;
 			})
@@ -21,6 +22,7 @@
 			fragments
 			unstable.freetube
 			git-crypt
+			helvum
 			mousai
 			nitch
 			nodejs

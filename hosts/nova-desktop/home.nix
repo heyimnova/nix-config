@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
 		birdtray
-		brave
 		cubiomes-viewer
 		gimp
 		grapejuice
