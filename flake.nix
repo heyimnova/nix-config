@@ -4,14 +4,12 @@
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/release-22.11";
-    master.url = "github:nixos/nixpkgs/master";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nixpkgs.follows = "unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "unstable";
-      inputs.utils.follows = "utils";
     };
 
     nur.url = "github:nix-community/NUR";
@@ -25,12 +23,6 @@
         config.allowUnfree = true;
       };
     };
-    master-overlay = self: super: {
-      master = import inputs.master {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
-    };
   in
     utils.lib.mkFlake {
       inherit self inputs;
@@ -40,7 +32,6 @@
       sharedOverlays = [
         nur.overlay
         unstable-overlay
-        master-overlay
       ];
 
       hostDefaults.modules = [
