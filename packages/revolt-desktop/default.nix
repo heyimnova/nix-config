@@ -31,7 +31,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/bin $out/share/{applications,${pname}}
+    mkdir -p $out/bin $out/share/{applications,revolt-desktop}
 
     cp -a ${appimageContents}/{locales,resources} $out/share/${pname}
     cp -a ${appimageContents}/revolt-desktop.desktop $out/share/applications/${pname}.desktop
