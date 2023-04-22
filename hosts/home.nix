@@ -9,8 +9,10 @@
 		packages = (with pkgs; [
 			bat
 			unstable.bitwarden
+			bleachbit
 			unstable.bottles
 			brave
+			clamav
 			(unstable.discord.override {
 				withOpenASAR = true;
 			})
@@ -27,10 +29,10 @@
 			nitch
 			nodejs
 			nodePackages.npm
-			onlyoffice-bin
+			unstable.onlyoffice-bin
 			poetry
 			protonmail-bridge
-			(callPackage ../packages/revolt-desktop {})
+			unstable.revolt-desktop
 			ripgrep
 			unstable.session-desktop
 			unstable.signal-desktop
