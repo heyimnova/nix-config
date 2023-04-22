@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
 		birdtray
+		(callPackage ../../packages/clamtk {})
 		cubiomes-viewer
 		gimp
 		grapejuice
@@ -13,6 +14,7 @@
 		  ];
 	  })
 		heroic
+		#(callPackage ../../packages/mysterium-vpn-desktop {})
 		polychromatic
 		prismlauncher
 		protonup-qt

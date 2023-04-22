@@ -88,6 +88,7 @@
         userServices = true;
       };
     };
+    cron.enable = true;
     pipewire = {
       enable = true;
       alsa = {
