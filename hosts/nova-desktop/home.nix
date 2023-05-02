@@ -18,6 +18,9 @@
 		polychromatic
 		prismlauncher
 		protonup-qt
+		(python3.withPackages(ps: with ps; [
+			(callPackage ../../packages/python-modules/flet {})
+		]))
 		quickemu
 		quickgui
 		gnome.zenity
