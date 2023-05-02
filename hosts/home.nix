@@ -35,6 +35,7 @@
 			unstable.revolt-desktop
 			ripgrep
 			unstable.session-desktop
+			unstable.shell-genie
 			unstable.signal-desktop
 			spotify
 			starship
