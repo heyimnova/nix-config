@@ -8,61 +8,55 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
+    { device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+    };
+
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
+    { device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
-  fileSystems."/var" =
-    { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
-      fsType = "btrfs";
-      options = [ "subvol=@var" ];
-    };
-
-  fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
-      fsType = "btrfs";
-      options = [ "subvol=@var_log" ];
-    };
-
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
+    { device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
+  fileSystems."/var/log" =
+    { device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+      options = [ "subvol=@var_log" ];
+    };
+
   fileSystems."/var/lib/libvirt" =
-    { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
+    { device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
       options = [ "subvol=@libvirt" ];
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2DBF-1189";
-      fsType = "vfat";
+  fileSystems."/var/lib/quickemu" =
+    { device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+      options = [ "subvol=@quickemu" ];
     };
 
   fileSystems."/mnt/storage" =
     { device = "/dev/disk/by-uuid/7ca778bc-0c44-4db3-b907-aaea9b6d9e38";
       fsType = "ext4";
-    };
-
-  fileSystems."/var/lib/quickemu" =
-    { device = "/dev/disk/by-uuid/b4526991-4978-4067-8e81-60c130f13772";
-      fsType = "btrfs";
-      options = [ "subvol=@quickemu" ];
     };
 
   swapDevices = [ ];

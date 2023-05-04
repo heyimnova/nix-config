@@ -16,7 +16,7 @@
 		heroic
 		#(callPackage ../../packages/mysterium-vpn-desktop {})
 		polychromatic
-		prismlauncher
+		#prismlauncher
 		protonup-qt
 		(python3.withPackages(ps: with ps; [
 			(callPackage ../../packages/python-modules/flet {})
