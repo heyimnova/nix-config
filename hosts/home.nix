@@ -24,6 +24,7 @@
 			fragments
 			unstable.freetube
 			git-crypt
+			gitnuro
 			helvum
 			mousai
 			nitch
