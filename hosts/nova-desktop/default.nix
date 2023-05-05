@@ -18,6 +18,9 @@
   swapDevices = [{ device = "/var/swap/swapfile"; }];
 
   boot = {
+    kernel.sysctl = {
+      "vm.max_map_count" = 2147483642;
+    };
     kernelParams = [
       "splash"
       "boot.shell_on_fail"
