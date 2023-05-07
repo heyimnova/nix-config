@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
 		birdtray
-		(callPackage ../../packages/clamtk {})
+		(callPackage ../../pkgs/clamtk {})
 		cubiomes-viewer
 		gimp
 		grapejuice
@@ -14,12 +14,11 @@
 		  ];
 	  })
 		heroic
-		#(callPackage ../../packages/mysterium-vpn-desktop {})
 		polychromatic
 		prismlauncher
 		protonup-qt
 		(python3.withPackages(ps: with ps; [
-			(callPackage ../../packages/python-modules/flet {})
+			(callPackage ../../pkgs/python-modules/flet {})
 		]))
 		quickemu
 		quickgui
