@@ -13,17 +13,20 @@
 			unstable.bottles
 			brave
 			clamav
+			cpu-x
 			(unstable.discord.override {
 				withOpenASAR = true;
 			})
 			unstable.element-desktop
 			exa
+			fd
 			ffmpeg
 			file
 			unstable.fluent-reader
 			fragments
 			unstable.freetube
 			git-crypt
+			git-filter-repo
 			gitnuro
 			helvum
 			mousai
