@@ -108,11 +108,6 @@
     };
   };
 
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    systemd-boot.enable = true;
-  };
-
   documentation.nixos.enable = false;
 
   networking.networkmanager.enable = true;

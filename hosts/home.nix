@@ -17,6 +17,7 @@
 			(unstable.discord.override {
 				withOpenASAR = true;
 			})
+			efibootmgr
 			unstable.element-desktop
 			exa
 			fd
