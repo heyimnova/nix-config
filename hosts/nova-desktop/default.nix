@@ -18,6 +18,11 @@
   swapDevices = [{ device = "/var/swap/swapfile"; }];
 
   boot = {
+    bootspec.enable = true;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
     kernel.sysctl = {
       "vm.max_map_count" = 2147483642;
     };

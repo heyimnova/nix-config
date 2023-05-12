@@ -6,7 +6,13 @@
   ];
 
   boot = {
-    loader.efi.efiSysMountPoint = "/boot/efi";
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      systemd-boot.enable = true;
+    };
     initrd = {
       secrets = {
         "/crypto_keyfile.bin" = null;
