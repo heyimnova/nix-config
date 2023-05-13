@@ -43,6 +43,7 @@
       "v4l2loopback"
     ];
     kernelPackages = pkgs.linuxPackages_zen;
+    supportedFilesystems = [ "ntfs" ];
   };
 
 	fileSystems = let

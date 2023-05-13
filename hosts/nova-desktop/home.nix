@@ -25,6 +25,7 @@
 		quickemu
 		quickgui
 		sbctl
+		woeusb
 		gnome.zenity
 	];
 }
