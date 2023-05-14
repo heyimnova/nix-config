@@ -38,9 +38,9 @@
       clapper
       colloid-icon-theme
       curl
-      firefox
       gnome.gnome-tweaks
       helix
+      mullvad-browser
       mullvad-vpn
       unzip
       nur.repos.ambroisie.vimix-cursors

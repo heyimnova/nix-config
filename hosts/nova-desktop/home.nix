@@ -8,14 +8,14 @@
 		cubiomes-viewer
 		gimp
 		grapejuice
+		heroic
+		imaginer
 		(lutris.override {
 			extraLibraries = pkgs: [
 				libgpg-error
 				jansson
 			];
 		})
-		heroic
-		imaginer
 		polychromatic
 		prismlauncher
 		protonup-qt
