@@ -38,9 +38,9 @@
       clapper
       colloid-icon-theme
       curl
-      firefox
       gnome.gnome-tweaks
       helix
+      mullvad-browser
       mullvad-vpn
       unzip
       nur.repos.ambroisie.vimix-cursors
@@ -106,11 +106,6 @@
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
     };
-  };
-
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    systemd-boot.enable = true;
   };
 
   documentation.nixos.enable = false;

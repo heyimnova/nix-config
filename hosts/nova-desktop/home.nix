@@ -1,19 +1,21 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
+	home.packages = with pkgs; [
+		#bavarder
 		birdtray
 		(callPackage ../../pkgs/clamtk {})
 		cubiomes-viewer
 		gimp
 		grapejuice
-   	(lutris.override {
-		  extraLibraries = pkgs: [
-		  	libgpg-error
-			  jansson
-		  ];
-	  })
 		heroic
+		imaginer
+		(lutris.override {
+			extraLibraries = pkgs: [
+				libgpg-error
+				jansson
+			];
+		})
 		polychromatic
 		prismlauncher
 		protonup-qt
@@ -22,6 +24,8 @@
 		]))
 		quickemu
 		quickgui
+		sbctl
+		woeusb
 		gnome.zenity
-  ];
+	];
 }
