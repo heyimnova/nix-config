@@ -39,6 +39,7 @@
       colloid-icon-theme
       curl
       gnome.gnome-tweaks
+      gnomeExtensions.gsconnect
       helix
       mullvad-browser
       mullvad-vpn

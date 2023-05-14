@@ -57,7 +57,6 @@
 			appindicator
 			blur-my-shell
 			clipboard-indicator
-			gsconnect
 			grand-theft-focus
 		]) ++ (with pkgs.unstable.gnomeExtensions; [
 			caffeine
