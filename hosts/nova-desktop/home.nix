@@ -20,7 +20,7 @@
 		prismlauncher
 		protonup-qt
 		(python3.withPackages(ps: with ps; [
-			(callPackage ../../pkgs/python-modules/flet {})
+			flet
 		]))
 		quickemu
 		quickgui
