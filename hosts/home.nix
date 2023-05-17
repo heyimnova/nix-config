@@ -14,18 +14,18 @@
 			brave
 			clamav
 			cpu-x
-			(unstable.discord.override {
+			(discord.override {
 				withOpenASAR = true;
 			})
 			efibootmgr
-			unstable.element-desktop
+			element-desktop
 			exa
 			fd
 			ffmpeg
 			file
 			unstable.fluent-reader
 			fragments
-			unstable.freetube
+			freetube
 			git-crypt
 			git-filter-repo
 			gitnuro
@@ -41,7 +41,7 @@
 			ripgrep
 			unstable.session-desktop
 			unstable.shell-genie
-			unstable.signal-desktop
+			signal-desktop
 			spotify
 			starship
 			tealdeer
