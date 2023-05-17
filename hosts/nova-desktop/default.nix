@@ -11,7 +11,10 @@
       driSupport = true;
       driSupport32Bit = true;
     };
-    nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+    nvidia = {
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
     openrazer.enable = true;
   };
 
