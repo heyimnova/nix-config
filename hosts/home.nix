@@ -8,7 +8,7 @@
 	home = {
 		packages = (with pkgs; [
 			bat
-			unstable.bitwarden
+			(callPackage ../pkgs/bitwarden {})
 			bleachbit
 			unstable.bottles
 			brave
