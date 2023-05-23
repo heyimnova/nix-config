@@ -2,7 +2,6 @@
 
 {
 	home.packages = with pkgs; [
-		#bavarder
 		birdtray
 		(callPackage ../../pkgs/clamtk {})
 		cubiomes-viewer

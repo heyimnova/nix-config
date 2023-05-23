@@ -8,9 +8,8 @@
 	home = {
 		packages = (with pkgs; [
 			bat
-			(callPackage ../pkgs/bitwarden {})
+			bitwarden
 			bleachbit
-			unstable.bottles
 			brave
 			clamav
 			cpu-x
