@@ -10,7 +10,6 @@
 			bat
 			(callPackage ../pkgs/bitwarden {})
 			bleachbit
-			unstable.bottles
 			brave
 			clamav
 			cpu-x
