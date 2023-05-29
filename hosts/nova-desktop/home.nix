@@ -2,7 +2,6 @@
 
 {
 	home.packages = with pkgs; [
-		#bavarder
 		birdtray
 		(callPackage ../../pkgs/clamtk {})
 		cubiomes-viewer
@@ -20,7 +19,7 @@
 		prismlauncher
 		protonup-qt
 		(python3.withPackages(ps: with ps; [
-			(callPackage ../../pkgs/python-modules/flet {})
+			flet
 		]))
 		quickemu
 		quickgui
