@@ -8,7 +8,7 @@
 	home = {
 		packages = (with pkgs; [
 			bat
-			(callPackage ../pkgs/bitwarden {})
+			bitwarden
 			bleachbit
 			brave
 			clamav
