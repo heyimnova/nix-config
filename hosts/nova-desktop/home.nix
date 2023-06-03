@@ -24,6 +24,7 @@
 		quickemu
 		quickgui
 		sbctl
+		sqlitebrowser
 		woeusb
 		gnome.zenity
 	];

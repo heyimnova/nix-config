@@ -8,9 +8,11 @@
 
 	home = {
 		packages = (with pkgs; [
+			amberol
 			bat
 			bitwarden
 			bleachbit
+			bottles
 			brave
 			clamav
 			cpu-x
