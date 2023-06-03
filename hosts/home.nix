@@ -24,7 +24,6 @@
 			ffmpeg
 			file
 			unstable.fluent-reader
-			fragments
 			freetube
 			git-crypt
 			git-filter-repo
@@ -36,6 +35,7 @@
 			unstable.onlyoffice-bin
 			poetry
 			protonmail-bridge
+			qbittorrent
 			unstable.revolt-desktop
 			ripgrep
 			unstable.session-desktop
