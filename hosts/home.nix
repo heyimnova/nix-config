@@ -31,7 +31,6 @@
 			gitnuro
 			helvum
 			mousai
-			nitch
 			nodejs
 			nodePackages.npm
 			unstable.onlyoffice-bin
@@ -43,7 +42,6 @@
 			unstable.shell-genie
 			signal-desktop
 			spotify
-			starship
 			tealdeer
 			unstable.teams-for-linux
 			texworks
