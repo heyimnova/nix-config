@@ -9,6 +9,7 @@
 		grapejuice
 		heroic
 		imaginer
+		librewolf
 		(lutris.override {
 			extraLibraries = pkgs: [
 				libgpg-error
@@ -24,6 +25,7 @@
 		quickemu
 		quickgui
 		sbctl
+		sqlitebrowser
 		woeusb
 		gnome.zenity
 	];

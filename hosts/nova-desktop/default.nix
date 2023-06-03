@@ -99,7 +99,7 @@
 
   console.keyMap = "us";
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.enable = false;
 
   environment.systemPackages = with pkgs; [
     droidcam

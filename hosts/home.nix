@@ -8,9 +8,11 @@
 
 	home = {
 		packages = (with pkgs; [
+			amberol
 			bat
 			bitwarden
 			bleachbit
+			bottles
 			brave
 			clamav
 			cpu-x
@@ -24,7 +26,6 @@
 			ffmpeg
 			file
 			unstable.fluent-reader
-			fragments
 			freetube
 			git-crypt
 			git-filter-repo
@@ -36,6 +37,7 @@
 			unstable.onlyoffice-bin
 			poetry
 			protonmail-bridge
+			qbittorrent
 			unstable.revolt-desktop
 			ripgrep
 			unstable.session-desktop

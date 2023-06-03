@@ -90,6 +90,7 @@
       };
     };
     cron.enable = true;
+    flatpak.enable = true;
     pipewire = {
       enable = true;
       alsa = {
