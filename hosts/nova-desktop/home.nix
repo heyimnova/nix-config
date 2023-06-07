@@ -9,6 +9,7 @@
 		grapejuice
 		heroic
 		imaginer
+		librewolf
 		(lutris.override {
 			extraLibraries = pkgs: [
 				libgpg-error
