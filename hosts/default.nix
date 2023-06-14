@@ -135,4 +135,8 @@
     fish.enable = true;
     gnupg.agent.enable = true;
   };
+
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
 }
