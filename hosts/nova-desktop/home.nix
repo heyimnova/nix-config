@@ -6,6 +6,7 @@
 		(callPackage ../../pkgs/clamtk {})
 		cubiomes-viewer
 		gimp
+		gnome-obfuscate
 		grapejuice
 		heroic
 		imaginer
