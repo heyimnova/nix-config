@@ -8,27 +8,10 @@
 
 	home = {
 		packages = with pkgs; [
-			bat
-			bottles
-			clamav
 			efibootmgr
-			exa
-			fd
-			ffmpeg
-			file
 			git-crypt
-			git-filter-repo
-			gitnuro
-			nodejs
-			nodePackages.npm
-			onlyoffice-bin
-			poetry
-			qbittorrent
-			ripgrep
 			shell-genie
 			tealdeer
-			texworks
-			vscodium
 			xdg-ninja
 		];
 	};
