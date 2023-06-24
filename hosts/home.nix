@@ -2,20 +2,16 @@
 
 {
 	imports = [
-		../secrets/modules/git
-		../secrets/modules/fish
+		../secrets/programs/git/home.nix
+		../secrets/programs/fish/home.nix
 	];
 
 	home = {
-		packages = (with pkgs; [
-			amberol
+		packages = with pkgs; [
 			bat
-			bitwarden
 			bleachbit
 			bottles
-			brave
 			clamav
-			cpu-x
 			(discord.override {
 				withOpenASAR = true;
 			})
@@ -25,42 +21,24 @@
 			fd
 			ffmpeg
 			file
-			fluent-reader
-			freetube
 			git-crypt
 			git-filter-repo
 			gitnuro
-			helvum
-			mousai
 			nodejs
 			nodePackages.npm
 			onlyoffice-bin
 			poetry
-			protonmail-bridge
 			qbittorrent
 			revolt-desktop
 			ripgrep
 			session-desktop
 			shell-genie
 			signal-desktop
-			spotify
 			tealdeer
-			teams-for-linux
 			texworks
-			thunderbird
-			tor-browser-bundle-bin
 			vscodium
-			warp
 			xdg-ninja
-		]) ++ (with pkgs.gnomeExtensions; [
-			alphabetical-app-grid
-			appindicator
-			blur-my-shell
-			caffeine
-			clipboard-indicator
-			grand-theft-focus
-			status-area-horizontal-spacing
-		]);
+		];
 	};
 
 	programs = {

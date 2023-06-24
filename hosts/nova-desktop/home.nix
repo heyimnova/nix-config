@@ -1,16 +1,21 @@
 { pkgs, ... }:
 
 {
+	imports = [
+		../home.nix
+		../../modules/apps/desktop/home.nix
+		../../modules/apps/entertainment/home.nix
+		../../modules/desktops/gnome/home.nix
+	];
+
 	home = {
 		packages = with pkgs; [
 			birdtray
 			(callPackage ../../pkgs/clamtk {})
 			cubiomes-viewer
 			gimp
-			gnome-obfuscate
 			grapejuice
 			heroic
-			imaginer
 			librewolf
 			(lutris.override {
 				extraLibraries = pkgs: [
