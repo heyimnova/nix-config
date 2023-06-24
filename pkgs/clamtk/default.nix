@@ -63,7 +63,7 @@ stdenv.mkDerivation rec {
 
   meta = {
     description = "A frontend for ClamAV";
-    longDescription = "ClamTk is a frontend for ClamAV (Clam Antivirus). It is intended to be an easy to use, light-weight, on-demand scanner for Linux systems. 
+    longDescription = "ClamTk is a frontend for ClamAV (Clam Antivirus). It is intended to be an easy to use, light-weight, on-demand scanner for Linux systems.
     Please note that the ClamTk scheduler will not work on NixOS due to how it uses cron.";
     homepage = "https://gitlab.com/dave_m/clamtk/-/wikis/home";
     changelog = "https://github.com/dave-theunsub/clamtk/blob/v${version}/CHANGES";

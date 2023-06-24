@@ -13,7 +13,7 @@
   environment.systemPackages = [ pkgs.droidcam ];
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = "nova-desktop";
-	system.stateVersion = "22.11";
+  system.stateVersion = "22.11";
 
   boot = {
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];

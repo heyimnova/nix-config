@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
 {
-    imports = [
-        ../home.nix
-    ];
+  imports = [
+    ../home.nix
+  ];
 
-    home.stateVersion = "23.05";
+  home.stateVersion = "23.05";
 }
