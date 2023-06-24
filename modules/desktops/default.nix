@@ -14,9 +14,9 @@
             ];
         })
         noto-fonts
-		noto-fonts-cjk
-		noto-fonts-emoji
-	];
+    noto-fonts-cjk
+    noto-fonts-emoji
+  ];
 
     services = {
         pipewire = {
@@ -33,7 +33,7 @@
             enable = true;
             drivers = [ pkgs.canon-cups-ufr2 ];
         };
-        
+
         xserver = {
             enable = true;
             excludePackages = [ pkgs.xterm ];

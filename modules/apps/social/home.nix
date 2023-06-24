@@ -2,9 +2,9 @@
 
 {
   home.packages = with pkgs; [
-		(discord.override {
-			withOpenASAR = true;
-		})
+    (discord.override {
+      withOpenASAR = true;
+    })
     element-desktop
     revolt-desktop
     session-desktop

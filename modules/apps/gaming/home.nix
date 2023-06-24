@@ -6,10 +6,10 @@
     grapejuice
     heroic
     (lutris.override {
-			extraLibraries = pkgs: [
-				libgpg-error
-				jansson
-			];
+      extraLibraries = pkgs: [
+        libgpg-error
+        jansson
+      ];
     })
     prismlauncher
     protonup-qt
