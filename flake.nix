@@ -45,10 +45,7 @@
         home-manager-unstable.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.nova.imports = [
-            ./hosts/nova-desktop/home.nix
-            ./hosts/home.nix
-          ];
+          home-manager.users.nova.imports = [ ./hosts/nova-desktop/home.nix ];
         }
       ];
 
@@ -59,10 +56,7 @@
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.nova.imports = [
-              ./hosts/nova-laptop/home.nix
-              ./hosts/home.nix
-            ];
+            home-manager.users.nova.imports = [ ./hosts/nova-laptop/home.nix ];
           }
         ];
       };
@@ -74,10 +68,7 @@
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.nova.imports = [
-              ./hosts/idea/home.nix
-              ./hosts/home.nix
-            ];
+            home-manager.users.nova.imports = [ ./hosts/idea/home.nix ];
           }
         ];
       };
