@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/desktops/gnome
   ];
 
   hardware = {
@@ -94,10 +95,14 @@
     };
   };
 
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-    layout = "us";
-    xkbVariant = "";
+  services = {
+    mullvad-vpn.enable = true;
+
+    xserver = {
+      videoDrivers = [ "nvidia" ];
+      layout = "us";
+      xkbVariant = "";
+    };
   };
 
   console.keyMap = "us";
@@ -107,6 +112,7 @@
   environment.systemPackages = with pkgs; [
     droidcam
     gamemode
+    mullvad-vpn
     virt-manager
   ];
 

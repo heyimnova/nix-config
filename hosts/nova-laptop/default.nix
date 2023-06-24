@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/desktops/gnome
   ];
+
+  environment.systemPackages = [ pkgs.mullvad-vpn ];
 
   boot = {
     loader = {
@@ -71,9 +74,13 @@
 
   networking.hostName = "nova-laptop";
 
-  services.xserver = {
-    layout = "gb";
-    xkbVariant = "";
+  services = {
+    mullvad-vpn.enable = true;
+
+    xserver = {
+      layout = "gb";
+      xkbVariant = "";
+    };
   };
 
   console.keyMap = "uk";

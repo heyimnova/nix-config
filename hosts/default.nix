@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   users.users.nova = {
@@ -12,74 +12,23 @@
 
   console.font = "Lat2-Terminus16";
 
-  security.rtkit.enable = true;
-
-	fonts.fonts = with pkgs; [
-    liberation_ttf
-		(nerdfonts.override {
-      fonts = [
-        "Monofur"
-      ];
-    })
-		noto-fonts
-		noto-fonts-cjk
-		noto-fonts-emoji
-	];
-
   environment = {
     variables = {
-      TERMINAL = "blackbox";
-      EDITOR = "hx";
-      VISUAL = "hx";
+      EDITOR = "${pkgs.helix}/bin/hx";
+      VISUAL = "${pkgs.helix}/bin/hx";
     };
     systemPackages = with pkgs; [
-      adw-gtk3
-      blackbox-terminal
-      clapper
-      colloid-icon-theme
       curl
-      gnome.gnome-tweaks
-      gnomeExtensions.gsconnect
       helix
-      mullvad-browser
-      mullvad-vpn
       unzip
-      nur.repos.ambroisie.vimix-cursors
       wget
     ];
     shells = [ pkgs.fish ];
-
-	  gnome.excludePackages = (with pkgs; [
-		  baobab
-		  gnome-connections
-		  gnome-console
-		  gnome-photos
-		  gnome-tour
-		  orca
-	  ]) ++ (with pkgs.gnome; [
-		  atomix
-		  cheese
-		  epiphany
-		  geary
-		  gedit
-		  gnome-clocks
-		  gnome-contacts
-		  gnome-music
-      gnome-software
-		  gnome-terminal
-		  hitori
-		  tali
-		  totem
-		  yelp
-		  yelp-xsl
-	  ]);
   };
 
   services = {
-    printing = {
-      enable = true;
-      drivers = [ pkgs.canon-cups-ufr2 ];
-    };
+    cron.enable = true;
+
     avahi = {
       enable = true;
       nssmdns = true;
@@ -89,30 +38,9 @@
         userServices = true;
       };
     };
-    cron.enable = true;
-    flatpak.enable = true;
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      pulse.enable = true;
-      jack.enable = true;
-    };
-    mullvad-vpn.enable = true;
-    udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
-    xserver = {
-      enable = true;
-      excludePackages = [ pkgs.xterm ];
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
   };
 
   documentation.nixos.enable = false;
-
-  networking.networkmanager.enable = true;
 
   nix = {
     gc = {
@@ -126,10 +54,7 @@
     };
   };
 
-  hardware.pulseaudio.enable = false;
-
   programs = {
-    dconf.enable = true;
     fish.enable = true;
     gnupg.agent.enable = true;
   };
