@@ -72,7 +72,10 @@
 		"/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
 	};
 
-	system.fsPackages = [ pkgs.bindfs ];
+	system = {
+    fsPackages = [ pkgs.bindfs ];
+    stateVersion = "22.11";
+  };
 
   networking.hostName = "nova-desktop";
 
