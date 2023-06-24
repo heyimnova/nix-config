@@ -49,7 +49,10 @@
 		"/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
 	};
 
-  system.fsPackages = [ pkgs.bindfs ];
+  system = {
+    fsPackages = [ pkgs.bindfs ];
+    stateVersion = "23.05";
+  };
 
   i18n = {
     defaultLocale = "en_GB.UTF-8";

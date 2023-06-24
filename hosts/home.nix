@@ -25,7 +25,7 @@
 			fd
 			ffmpeg
 			file
-			unstable.fluent-reader
+			fluent-reader
 			freetube
 			git-crypt
 			git-filter-repo
@@ -34,18 +34,18 @@
 			mousai
 			nodejs
 			nodePackages.npm
-			unstable.onlyoffice-bin
+			onlyoffice-bin
 			poetry
 			protonmail-bridge
 			qbittorrent
-			unstable.revolt-desktop
+			revolt-desktop
 			ripgrep
-			unstable.session-desktop
-			unstable.shell-genie
+			session-desktop
+			shell-genie
 			signal-desktop
 			spotify
 			tealdeer
-			unstable.teams-for-linux
+			teams-for-linux
 			texworks
 			thunderbird
 			tor-browser-bundle-bin
@@ -56,14 +56,11 @@
 			alphabetical-app-grid
 			appindicator
 			blur-my-shell
+			caffeine
 			clipboard-indicator
 			grand-theft-focus
-		]) ++ (with pkgs.unstable.gnomeExtensions; [
-			caffeine
 			status-area-horizontal-spacing
 		]);
-
-		stateVersion = "22.11";
 	};
 
 	programs = {
