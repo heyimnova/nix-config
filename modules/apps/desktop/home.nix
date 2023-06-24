@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     bitwarden
+    bleachbit
     brave
     cpu-x
     helvum

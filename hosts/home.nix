@@ -9,14 +9,9 @@
 	home = {
 		packages = with pkgs; [
 			bat
-			bleachbit
 			bottles
 			clamav
-			(discord.override {
-				withOpenASAR = true;
-			})
 			efibootmgr
-			element-desktop
 			exa
 			fd
 			ffmpeg
@@ -29,11 +24,8 @@
 			onlyoffice-bin
 			poetry
 			qbittorrent
-			revolt-desktop
 			ripgrep
-			session-desktop
 			shell-genie
-			signal-desktop
 			tealdeer
 			texworks
 			vscodium

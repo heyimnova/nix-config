@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/desktops/gnome
+    ../../modules/apps/gaming
   ];
 
   hardware = {
@@ -115,6 +116,4 @@
     mullvad-vpn
     virt-manager
   ];
-
-  programs.steam.enable = true;
 }
