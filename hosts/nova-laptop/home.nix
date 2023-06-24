@@ -11,10 +11,7 @@
   ];
 
   home = {
-    packages = with pkgs; [
-      watchmate
-    ];
-
+    packages = [ pkgs.watchmate ];
     stateVersion = "23.05";
   };
 }

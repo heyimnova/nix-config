@@ -2,5 +2,5 @@
 
 {
   environment.systemPackages = [ pkgs.virt-manager ];
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.enable = false;
 }

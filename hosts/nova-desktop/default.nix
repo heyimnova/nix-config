@@ -9,39 +9,18 @@
     ../../modules/desktops/gnome
   ];
 
-  hardware = {
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
-    nvidia = {
-      modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-    openrazer.enable = true;
-  };
-
-  swapDevices = [{ device = "/var/swap/swapfile"; }];
+  console.keyMap = "us";
+  environment.systemPackages = [ pkgs.droidcam ];
+  i18n.defaultLocale = "en_US.UTF-8";
+  networking.hostName = "nova-desktop";
+	system.stateVersion = "22.11";
 
   boot = {
-    bootspec.enable = true;
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
-    kernel.sysctl = {
-      "vm.max_map_count" = 2147483642;
-    };
-    kernelParams = [
-      "splash"
-      "boot.shell_on_fail"
-      "loglevel=3"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-      "nvidia.drm.modeset=1"
-    ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
+    kernel.sysctl."vm.max_map_count" = 2147483642;
+    kernelPackages = pkgs.linuxPackages_zen;
+    supportedFilesystems = [ "ntfs" ];
+
     initrd.kernelModules = [
       "nvidia"
       "nvidia_drm"
@@ -49,53 +28,40 @@
       "nvidia_uvm"
       "v4l2loopback"
     ];
-    kernelPackages = pkgs.linuxPackages_zen;
-    supportedFilesystems = [ "ntfs" ];
-  };
 
-	fileSystems = let
-		mkRoSymBind = path: {
-			device = path;
-			fsType = "fuse.bindfs";
-			options = [ "resolve-symlinks" "ro" "x-gvfs-hide" ];
-		};
-		aggregatedFonts = pkgs.buildEnv {
-			name = "system-fonts";
-			paths = config.fonts.fonts;
-			pathsToLink = [ "/share/fonts" ];
-		};
-	in {
-		"/".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
-		"/nix".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
-		"/home".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
-		"/var/log".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
-		"/var/lib/libvirt".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
-		"/var/lib/quickemu".options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" ];
+    kernelParams = [
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "nvidia.drm.modeset=1"
+      "rd.udev.log_level=3"
+      "splash"
+      "udev.log_priority=3"
+    ];
 
-		"/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
-		"/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
-	};
-
-	system = {
-    fsPackages = [ pkgs.bindfs ];
-    stateVersion = "22.11";
-  };
-
-  networking.hostName = "nova-desktop";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  services = {
-    mullvad-vpn.enable = true;
-
-    xserver = {
-      videoDrivers = [ "nvidia" ];
-      layout = "us";
-      xkbVariant = "";
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
     };
   };
 
-  console.keyMap = "us";
+  hardware = {
+    openrazer.enable = true;
 
-  environment.systemPackages = [ pkgs.droidcam ];
+    opengl = {
+      driSupport = true;
+      driSupport32Bit = true;
+      enable = true;
+    };
+
+    nvidia = {
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+  };
+
+  services.xserver = {
+    layout = "us";
+    videoDrivers = [ "nvidia" ];
+    xkbVariant = "";
+  };
 }

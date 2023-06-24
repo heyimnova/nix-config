@@ -18,8 +18,10 @@
 
 	programs = {
 		home-manager.enable = true;
+
 		fish = {
 			enable = true;
+
 			interactiveShellInit = ''
 				${pkgs.starship}/bin/starship init fish | source
 
@@ -38,12 +40,14 @@
 				set -x NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
 				set -x WINEPREFIX "$XDG_DATA_HOME"/wine
 			'';
+
 			shellAliases = {
-				fish_greeting = "${pkgs.nitch}/bin/nitch";
 				cn = "clear;${pkgs.nitch}/bin/nitch";
+				fish_greeting = "${pkgs.nitch}/bin/nitch";
 				la = "${pkgs.exa}/bin/exa -la";
 			};
 		};
+
 		nix-index = {
 			enable = true;
 			enableFishIntegration = true;
