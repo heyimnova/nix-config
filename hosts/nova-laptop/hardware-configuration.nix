@@ -15,9 +15,18 @@
     kernelModules = [ "kvm-amd" ];
 
     initrd = {
-      availableKernelModules = [ "xhci_pci" "ahci" "ehci_pci" "usb_storage" "sd_mod" "sr_mod" "rtsx_usb_sdmmc" ];
       kernelModules = [ ];
       luks.devices."cryptroot".device = "/dev/disk/by-label/CRYPTROOT";
+
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "ehci_pci"
+        "usb_storage"
+        "sd_mod"
+        "sr_mod"
+        "rtsx_usb_sdmmc"
+      ];
     };
   };
 
@@ -25,7 +34,14 @@
     "/" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" "subvol=@" ];
+
+      options = [
+        "compress=zstd"
+        "discard=async"
+        "noatime"
+        "space_cache=v2"
+        "subvol=@"
+      ];
     };
 
     "/boot" = {
@@ -36,19 +52,40 @@
     "/home" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" "subvol=@home" ];
+
+      options = [
+        "compress=zstd"
+        "discard=async"
+        "noatime"
+        "space_cache=v2"
+        "subvol=@home"
+      ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" "subvol=@nix" ];
+
+      options = [
+        "compress=zstd"
+        "discard=async"
+        "noatime"
+        "space_cache=v2"
+        "subvol=@nix"
+      ];
     };
 
     "/var/log" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
-      options = [ "compress=zstd" "discard=async" "noatime" "space_cache=v2" "subvol=@var_log" ];
+
+      options = [
+        "compress=zstd"
+        "discard=async"
+        "noatime"
+        "space_cache=v2"
+        "subvol=@var_log"
+      ];
     };
   };
 }
