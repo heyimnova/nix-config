@@ -7,6 +7,7 @@
     ../../modules/apps/gaming
     ../../modules/apps/virtualisation
     ../../modules/desktops/gnome
+    ../../secrets/users/nova-desktop/nova
   ];
 
   console.keyMap = "us";
@@ -55,4 +56,11 @@
     videoDrivers = [ "nvidia" ];
     xkbVariant = "";
   };
+
+  users.users.nova.extraGroups = [
+    "libvirtd"
+    "networkmanager"
+    "openrazer"
+    "wheel"
+  ];
 }

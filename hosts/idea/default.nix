@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../secrets/users/idea/nova
   ];
 
   console.keyMap = "uk";
@@ -10,7 +11,7 @@
   networking.hostName = "idea";
   services.openssh.enable = true;
   system.stateVersion = "23.05";
-  virtualisation.docker.enable = true;
+  users.users.nova.extraGroups = [ "wheel" ];
 
   boot = {
     kernel.sysctl."net.core.rmem_max"=2500000;

@@ -71,10 +71,15 @@
     DefaultTimeoutStopSec=10s
   '';
 
-  users.users.nova = {
-    description = "Nova";
-    extraGroups = [ "libvirtd" "networkmanager" "openrazer" "wheel" ];
-    isNormalUser = true;
-    shell = pkgs.fish;
+  users = {
+    defaultUserShell = pkgs.fish;
+    mutableUsers = false;
+    users.root.hashedPassword = "*";
+
+    users.nova = {
+      description = "Nova";
+      isNormalUser = true;
+      useDefaultShell = true;
+    };
   };
 }
