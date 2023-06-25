@@ -15,9 +15,22 @@
     kernelModules = [ "kvm-intel" ];
 
     initrd = {
-      availableKernelModules = [ "ahci" "xhci_pci" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
-      kernelModules = [ ];
-      luks.devices."cryptroot".device = "/dev/disk/by-label/CRYPTROOT";
+      kernelModules = [ "usb_storage" ];
+
+      availableKernelModules = [
+        "ahci"
+        "xhci_pci"
+        "usb_storage"
+        "sd_mod"
+        "sr_mod"
+        "rtsx_pci_sdmmc"
+      ];
+
+      luks.devices."cryptroot" = {
+        device = "/dev/disk/by-label/CRYPTROOT";
+        keyFileSize = 4096;
+        keyFile = "/dev/disk/by-id/usb-General_UDisk-0:0";
+      };
     };
   };
 

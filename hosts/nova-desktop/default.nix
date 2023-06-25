@@ -16,18 +16,9 @@
   system.stateVersion = "22.11";
 
   boot = {
-    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
     kernel.sysctl."vm.max_map_count" = 2147483642;
     kernelPackages = pkgs.linuxPackages_zen;
     supportedFilesystems = [ "ntfs" ];
-
-    initrd.kernelModules = [
-      "nvidia"
-      "nvidia_drm"
-      "nvidia_modeset"
-      "nvidia_uvm"
-      "v4l2loopback"
-    ];
 
     kernelParams = [
       "boot.shell_on_fail"
