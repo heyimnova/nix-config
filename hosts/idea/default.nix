@@ -21,6 +21,11 @@
     };
   };
 
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
+
   services.logind.extraConfig = ''
     # disable the lid switch
     HandleLidSwitch=ignore
