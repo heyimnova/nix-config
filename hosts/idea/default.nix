@@ -16,4 +16,11 @@
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
   };
+
+  services.logind.extraConfig = ''
+    # disable the lid switch
+    HandleLidSwitch=ignore
+    HandleLidSwitchExternalPower=ignore
+    HandleLidSwitchDocked=ignore
+  '';
 }
