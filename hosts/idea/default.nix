@@ -8,6 +8,7 @@
   console.keyMap = "uk";
   i18n.defaultLocale = "en_GB.UTF-8";
   networking.hostName = "idea";
+  services.openssh.enable = true;
   system.stateVersion = "23.05";
   virtualisation.docker.enable = true;
 
