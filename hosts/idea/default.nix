@@ -12,9 +12,13 @@
   system.stateVersion = "23.05";
   virtualisation.docker.enable = true;
 
-  boot.loader = {
-      efi.canTouchEfiVariables = true;
-      systemd-boot.enable = true;
+  boot = {
+    kernel.sysctl."net.core.rmem_max"=2500000;
+
+    loader = {
+        efi.canTouchEfiVariables = true;
+        systemd-boot.enable = true;
+    };
   };
 
   services.logind.extraConfig = ''
