@@ -3,13 +3,13 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../secrets/users/idea/nova
+    ../../secrets/users/aspire/nova
     ../../containers/caddy
   ];
 
-  console.keyMap = "uk";
-  i18n.defaultLocale = "en_GB.UTF-8";
-  networking.hostName = "idea";
+  console.keyMap = "us";
+  i18n.defaultLocale = "en_US.UTF-8";
+  networking.hostName = "aspire";
   services.openssh.enable = true;
   system.stateVersion = "23.05";
   users.users.nova.extraGroups = [ "wheel" ];

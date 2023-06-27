@@ -37,12 +37,55 @@
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/ROOT";
-      fsType = "xfs";
+      fsType = "btrfs";
+
+      options = [
+        "compress=zstd"
+        "noatime"
+        "space_cache=v2"
+        "subvol=@"
+      ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
+      fsType = "f2fs";
+    };
+
+    "/home" = {
+      device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+
+      options = [
+        "compress=zstd"
+        "noatime"
+        "space_cache=v2"
+        "subvol=@home"
+      ];
+    };
+
+    "/nix" = {
+      device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+
+      options = [
+        "compress=zstd"
+        "noatime"
+        "space_cache=v2"
+        "subvol=@nix"
+      ];
+    };
+
+    "/var/log" = {
+      device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+
+      options = [
+        "compress=zstd"
+        "noatime"
+        "space_cache=v2"
+        "subvol=@var_log"
+      ];
     };
   };
 }
