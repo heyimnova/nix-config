@@ -19,13 +19,13 @@
       luks.devices."cryptroot".device = "/dev/disk/by-label/CRYPTROOT";
 
       availableKernelModules = [
-        "xhci_pci"
         "ahci"
         "ehci_pci"
-        "usb_storage"
+        "rtsx_usb_sdmmc"
         "sd_mod"
         "sr_mod"
-        "rtsx_usb_sdmmc"
+        "usb_storage"
+        "xhci_pci"
       ];
     };
   };

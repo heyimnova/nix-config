@@ -16,12 +16,14 @@
 
     initrd = {
       availableKernelModules = [
-        "nvme"
-        "xhci_pci"
         "ahci"
-        "usb_storage"
+        "nvme"
+        "sd_mod"
         "usbhid"
-        "sd_mod" ];
+        "usb_storage"
+        "xhci_pci"
+      ];
+
       kernelModules = [
         "nvidia"
         "nvidia_drm"

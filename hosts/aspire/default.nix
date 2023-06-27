@@ -17,9 +17,9 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_hardened;
 
-    loader = {
-        efi.canTouchEfiVariables = true;
-        systemd-boot.enable = true;
+    loader.grub = {
+      device = "/dev/sda";
+      enable = true;
     };
   };
 
