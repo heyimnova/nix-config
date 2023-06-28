@@ -3,6 +3,7 @@
 {
   console.font = "Lat2-Terminus16";
   documentation.nixos.enable = false;
+  programs.fish.enable = true;
   time.timeZone = "Europe/London";
 
   boot = {
@@ -86,11 +87,6 @@
       auto-optimise-store = true;
       experimental-features = [ "flakes" "nix-command" ];
     };
-  };
-
-  programs = {
-    fish.enable = true;
-    gnupg.agent.enable = true;
   };
 
   services = {
