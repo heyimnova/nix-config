@@ -1,8 +1,11 @@
 { pkgs, ... }:
 
 {
+  services.gpg-agent.pinentryFlavor = "gnome3";
+
   home.packages = (with pkgs; [
     amberol
+    curtail
     gnome-obfuscate
     mousai
     warp
@@ -13,6 +16,9 @@
     caffeine
     clipboard-indicator
     grand-theft-focus
+    logo-menu
+    openweather
     status-area-horizontal-spacing
+    vitals
   ]);
 }
