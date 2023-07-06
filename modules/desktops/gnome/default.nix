@@ -5,6 +5,7 @@
         ../.
     ];
 
+    networking.networkmanager.enable = true;
     programs.dconf.enable = true;
 
     environment = {
