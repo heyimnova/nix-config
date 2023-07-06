@@ -19,9 +19,9 @@
       cubiomes-viewer
       librewolf
       polychromatic
-      (python3.withPackages(ps: with ps; [
-        flet
-      ]))
+      #(python3.withPackages(ps: with ps; [
+      #  flet
+      #]))
       sbctl
       sqlitebrowser
       woeusb

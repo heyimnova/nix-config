@@ -59,6 +59,8 @@
       curl
       exa
       helix
+      pciutils
+      tmux
       unzip
       wget
     ];

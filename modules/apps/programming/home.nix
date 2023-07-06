@@ -6,8 +6,7 @@
     git-filter-repo
     gitnuro
     nodejs
-    nodePackages.npm
-    poetry
+    #poetry
     vscodium
   ];
 }

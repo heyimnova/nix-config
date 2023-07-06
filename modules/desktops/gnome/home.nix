@@ -17,7 +17,7 @@
     clipboard-indicator
     grand-theft-focus
     logo-menu
-    openweather
+    #openweather
     status-area-horizontal-spacing
     vitals
   ]);
