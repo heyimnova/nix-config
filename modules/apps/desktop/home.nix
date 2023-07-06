@@ -9,6 +9,7 @@
     cpu-x
     gimp
     helvum
+    inkscape
     onlyoffice-bin
     protonmail-bridge
     qbittorrent

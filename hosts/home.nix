@@ -12,7 +12,6 @@
       git-crypt
       shell-genie
       tealdeer
-      tmux
       xdg-ninja
     ];
   };
