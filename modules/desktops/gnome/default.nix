@@ -37,13 +37,10 @@
         ]);
 
         systemPackages = with pkgs; [
-            adw-gtk3
             blackbox-terminal
             clapper
-            colloid-icon-theme
             gnome.gnome-tweaks
             gnomeExtensions.gsconnect
-            nur.repos.ambroisie.vimix-cursors
         ];
     };
 
