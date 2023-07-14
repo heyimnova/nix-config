@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
     ../../secrets/users/aspire/nova
-    ../../containers/caddy
   ];
 
   console.keyMap = "us";
@@ -13,6 +12,7 @@
   services.openssh.enable = true;
   system.stateVersion = "23.05";
   users.users.nova.extraGroups = [ "wheel" ];
+  virtualisation.docker.enable = true;
 
   boot = {
     kernelPackages = pkgs.linuxPackages_hardened;
