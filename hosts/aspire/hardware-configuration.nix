@@ -77,6 +77,19 @@
       ];
     };
 
+    "/var/lib/docker" = {
+      device = "/dev/disk/by-label/ROOT";
+      fsType = "btrfs";
+
+      options = [
+        "compress=zstd"
+        "discard=async"
+        "noatime"
+        "space_cache=v2"
+        "subvol=@docker"
+      ];
+    };
+
     "/var/log" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
