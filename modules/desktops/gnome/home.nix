@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ../home.nix
+  ];
+
   services.gpg-agent.pinentryFlavor = "gnome3";
 
   dconf.settings = {
@@ -89,22 +93,12 @@
 
   gtk = {
     enable = true;
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
 
     cursorTheme = {
       name = "Vimix-white-cursors";
       package = pkgs.nur.repos.ambroisie.vimix-cursors;
-    };
-
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
     };
 
     iconTheme = {

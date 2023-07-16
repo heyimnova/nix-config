@@ -1,10 +1,14 @@
 { pkgs, ... }:
 
 {
-    environment.systemPackages = [ pkgs.mullvad-browser ];
     hardware.pulseaudio.enable = false;
     networking.networkmanager.enable = true;
     security.rtkit.enable = true;
+
+    environment.systemPackages = with pkgs; [
+        mullvad-browser
+        podman-compose
+    ];
 
     fonts.fonts = with pkgs; [
         liberation_ttf
@@ -14,9 +18,9 @@
             ];
         })
         noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-  ];
+        noto-fonts-cjk
+        noto-fonts-emoji
+    ];
 
     services = {
         pipewire = {
@@ -38,5 +42,11 @@
             enable = true;
             excludePackages = [ pkgs.xterm ];
         };
+    };
+
+    virtualisation.podman = {
+        defaultNetwork.settings.dns_enabled = true;
+        dockerCompat = true;
+        enable = true;
     };
 }
