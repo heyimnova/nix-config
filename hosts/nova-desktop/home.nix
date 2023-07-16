@@ -17,11 +17,12 @@
       clamav
       (callPackage ../../pkgs/clamtk {})
       cubiomes-viewer
+      distrobox
       librewolf
       polychromatic
-      #(python3.withPackages(ps: with ps; [
-      #  flet
-      #]))
+      (python3.withPackages(ps: with ps; [
+        flet
+      ]))
       sbctl
       sqlitebrowser
       woeusb

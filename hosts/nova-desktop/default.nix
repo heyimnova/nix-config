@@ -11,7 +11,6 @@
   ];
 
   console.keyMap = "us";
-  environment.systemPackages = [ pkgs.droidcam ];
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = "nova-desktop";
   system.stateVersion = "22.11";
@@ -35,6 +34,11 @@
       pkiBundle = "/etc/secureboot";
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    droidcam
+    podman-compose
+  ];
 
   hardware = {
     openrazer.enable = true;
@@ -63,4 +67,10 @@
     "openrazer"
     "wheel"
   ];
+
+  virtualisation.podman = {
+    defaultNetwork.settings.dns_enabled = true;
+    dockerCompat = true;
+    enable = true;
+  };
 }
