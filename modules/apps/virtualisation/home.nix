@@ -1,3 +1,4 @@
+# User level virtualisation app config
 { pkgs, ... }:
 
 {

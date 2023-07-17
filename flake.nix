@@ -1,5 +1,5 @@
 {
-  description = "My NixOS configs";
+  description = "My NixOS system configurations as a flake";
 
   inputs = {
     nur.url = "github:nix-community/NUR";
@@ -12,6 +12,7 @@
       inputs.nixpkgs.follows = "stable";
     };
 
+    # Required for home-manager on nixos-unstable systems
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "unstable";

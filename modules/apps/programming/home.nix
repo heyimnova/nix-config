@@ -1,3 +1,4 @@
+# User level programming app config
 { pkgs, ... }:
 
 {

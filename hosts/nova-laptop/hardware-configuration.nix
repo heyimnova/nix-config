@@ -1,3 +1,4 @@
+# Hardware config for nova-laptop
 { config, lib, modulesPath, ... }:
 
 {

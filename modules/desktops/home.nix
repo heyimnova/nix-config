@@ -1,3 +1,4 @@
+# User level general desktop config
 { pkgs, ... }:
 
 {

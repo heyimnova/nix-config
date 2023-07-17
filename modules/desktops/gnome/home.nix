@@ -1,3 +1,4 @@
+# User level Gnome config
 { pkgs, ... }:
 
 {
@@ -12,6 +13,7 @@
       preferred-audio-source = "desktop-audio";
     };
 
+    # Do not create a Utilities folder in the app grid
     "org/gnome/desktop/app-folders/folders/Utilities" = {
       apps = [];
       categories = [];
@@ -22,6 +24,7 @@
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
       document-font-name = "Liberation Sans 11";
+      # Disable middle-click paste (it is very annoying)
       gtk-enable-primary-paste = false;
       monospace-font-name = "Monofur Nerd Font Mono 16";
     };

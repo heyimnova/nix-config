@@ -1,3 +1,4 @@
+# System-wide config for aspire
 { pkgs, ... }:
 
 {
@@ -24,7 +25,7 @@
   };
 
   services.logind.extraConfig = ''
-    # disable the lid switch
+    # Disable the lid switch
     HandleLidSwitch=ignore
     HandleLidSwitchExternalPower=ignore
     HandleLidSwitchDocked=ignore

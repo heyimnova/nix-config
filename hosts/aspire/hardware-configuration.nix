@@ -1,3 +1,4 @@
+# Hardware config for aspire
 { config, lib, modulesPath, ... }:
 
 {
