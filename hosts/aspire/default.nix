@@ -1,3 +1,4 @@
+# System-wide config for aspire
 { pkgs, ... }:
 
 {
@@ -9,7 +10,6 @@
   console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = "aspire";
-  services.openssh.enable = true;
   system.stateVersion = "23.05";
   users.users.nova.extraGroups = [ "wheel" ];
   virtualisation.docker.enable = true;
@@ -23,10 +23,16 @@
     };
   };
 
-  services.logind.extraConfig = ''
-    # disable the lid switch
-    HandleLidSwitch=ignore
-    HandleLidSwitchExternalPower=ignore
-    HandleLidSwitchDocked=ignore
-  '';
+  services = {
+    # Workaround to fix build error
+    logrotate.checkConfig = false;
+    openssh.enable = true;
+
+    logind.extraConfig = ''
+      # Disable the lid switch
+      HandleLidSwitch=ignore
+      HandleLidSwitchExternalPower=ignore
+      HandleLidSwitchDocked=ignore
+    '';
+  };
 }

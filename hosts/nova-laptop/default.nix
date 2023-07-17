@@ -1,3 +1,4 @@
+# System-wide config for nova-laptop
 { config, pkgs, ... }:
 
 {

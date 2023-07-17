@@ -1,3 +1,4 @@
+# System-wide general desktop app config
 { config, pkgs, ... }:
 
 {
@@ -5,6 +6,7 @@
   services.mullvad-vpn.enable = true;
   system.fsPackages = [ pkgs.bindfs ];
 
+  # Fixes missing themes and icons in Flatpaks
   fileSystems = let
     mkRoSymBind = path: {
       device = path;

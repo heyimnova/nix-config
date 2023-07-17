@@ -1,3 +1,8 @@
+/*
+My own (very messy) ClamTk package, not submitted to nixpkgs since
+it doesn't work properly due to cron on NixOS. May come back to it
+in future if I can think of a solution to the cron problem.
+*/
 { stdenv
 , lib
 , fetchFromGitHub

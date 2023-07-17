@@ -1,3 +1,4 @@
+# User level config for nova-laptop
 { pkgs, ... }:
 
 {

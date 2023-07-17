@@ -1,3 +1,4 @@
+# System-wide config for all systems
 { pkgs, ... }:
 
 {
@@ -7,6 +8,7 @@
   time.timeZone = "Europe/London";
 
   boot = {
+    # A better tcp congestion control algorithm
     kernelModules = [ "tcp_bbr" ];
 
     # Network hardening from https://mdleom.com/blog/2020/03/04/caddy-nixos-part-2/
@@ -54,6 +56,7 @@
       VISUAL = "${pkgs.helix}/bin/hx";
     };
 
+    # These environment variables are set on user login
     sessionVariables = rec {
       XDG_BIN_HOME = "$HOME/.local/bin";
       XDG_CACHE_HOME = "$HOME/.cache";
@@ -63,6 +66,7 @@
 
       PATH = [ "${XDG_BIN_HOME}" ];
 
+      # Recommendations from xdg-ninja
       ANDROID_HOME = "${XDG_DATA_HOME}/android";
       CARGO_HOME = "${XDG_DATA_HOME}/cargo";
       CUDA_CACHE_PATH = "${XDG_CACHE_HOME}/nv";
@@ -107,7 +111,11 @@
 
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "flakes" "nix-command" ];
+
+      experimental-features = [
+        "flakes"
+        "nix-command"
+      ];
     };
   };
 
@@ -117,6 +125,7 @@
     avahi = {
       enable = true;
       nssmdns = true;
+
       publish = {
         addresses = true;
         enable = true;
@@ -126,12 +135,14 @@
   };
 
   systemd.extraConfig = ''
+    # Faster shutdowns
     DefaultTimeoutStopSec=10s
   '';
 
   users = {
     defaultUserShell = pkgs.fish;
     mutableUsers = false;
+    # Disable root password
     users.root.hashedPassword = "*";
 
     users.nova = {

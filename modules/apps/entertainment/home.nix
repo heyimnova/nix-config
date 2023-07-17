@@ -1,3 +1,4 @@
+# User level entertainment app config
 { pkgs, ... }:
 
 {

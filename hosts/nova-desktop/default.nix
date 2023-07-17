@@ -1,3 +1,4 @@
+# System-wide config for nova-desktop
 { config, pkgs, ... }:
 
 {
@@ -15,9 +16,11 @@
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = "nova-desktop";
   system.stateVersion = "22.11";
+  # Enable Nvidia GPU use within Podman containers
   virtualisation.podman.enableNvidia = true;
 
   boot = {
+    # Set virtual memory max map count to MAX_INT - 5, fixes some bugs with games under Proton
     kernel.sysctl."vm.max_map_count" = 2147483642;
     kernelPackages = pkgs.linuxPackages_zen;
     supportedFilesystems = [ "ntfs" ];

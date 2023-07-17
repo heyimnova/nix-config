@@ -1,3 +1,4 @@
+# Hardware config for nova-desktop
 { config, lib, modulesPath, ... }:
 
 {
@@ -29,6 +30,7 @@
         "nvidia_drm"
         "nvidia_modeset"
         "nvidia_uvm"
+        # Needed for Droidcam
         "v4l2loopback"
       ];
     };

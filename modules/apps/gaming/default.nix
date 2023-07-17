@@ -1,3 +1,4 @@
+# System-wide gaming app config
 { pkgs, ... }:
 
 {
