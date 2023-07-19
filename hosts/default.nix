@@ -4,7 +4,6 @@
 {
   console.font = "Lat2-Terminus16";
   documentation.nixos.enable = false;
-  programs.fish.enable = true;
   time.timeZone = "Europe/London";
 
   boot = {
@@ -49,6 +48,8 @@
   };
 
   environment = {
+    # Needed to remove perl and nano which I do not need
+    defaultPackages = [];
     shells = [ pkgs.fish ];
 
     variables = {
@@ -84,6 +85,8 @@
       exa
       helix
       pciutils
+      rsync
+      strace
       tmux
       unzip
       wget
@@ -117,6 +120,12 @@
         "nix-command"
       ];
     };
+  };
+
+  programs = {
+    fish.enable = true;
+    # Needed to completely remove nano
+    nano.syntaxHighlight = false;
   };
 
   services = {

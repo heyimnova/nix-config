@@ -2,8 +2,6 @@
 { config, pkgs, ... }:
 
 {
-  environment.systemPackages = [ pkgs.mullvad-vpn ];
-  services.mullvad-vpn.enable = true;
   system.fsPackages = [ pkgs.bindfs ];
 
   # Fixes missing themes and icons in Flatpaks
@@ -21,5 +19,10 @@
   in {
     "/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
     "/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
+  };
+
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
   };
 }

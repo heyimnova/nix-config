@@ -4,7 +4,6 @@
 {
   home.packages = with pkgs; [
     bottles
-    grapejuice
     heroic
     (lutris.override {
       extraLibraries = pkgs: [
