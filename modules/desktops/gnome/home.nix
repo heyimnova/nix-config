@@ -65,7 +65,7 @@
         "com.raggesilver.BlackBox.desktop"
         "spotify.desktop"
         "mullvadbrowser.desktop"
-        "brave-browser.desktop"
+        "firefox.desktop"
         "signal-desktop.desktop"
         "Session.desktop"
         "revolt-desktop.desktop"

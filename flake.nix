@@ -2,6 +2,7 @@
   description = "My NixOS system configurations as a flake";
 
   inputs = {
+    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     nur.url = "github:nix-community/NUR";
     stable.url = "github:nixos/nixpkgs/release-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -26,7 +27,7 @@
     nixpkgs.follows = "unstable";
   };
 
-  outputs = inputs @ { self, home-manager, home-manager-unstable, lanzaboote, nixpkgs, nur, stable, utils, ... }:
+  outputs = inputs @ { self, arkenfox, home-manager, home-manager-unstable, lanzaboote, nixpkgs, nur, stable, utils, ... }:
     utils.lib.mkFlake {
       inherit self inputs;
 
@@ -54,8 +55,12 @@
 
         home-manager-unstable.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
-          home-manager.users.nova.imports = [ ./hosts/nova-desktop/home.nix ];
           home-manager.useUserPackages = true;
+
+          home-manager.users.nova.imports = [
+            ./hosts/nova-desktop/home.nix
+            arkenfox.hmModules.arkenfox
+          ];
         }
       ];
 
@@ -67,8 +72,12 @@
 
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
-            home-manager.users.nova.imports = [ ./hosts/nova-laptop/home.nix ];
             home-manager.useUserPackages = true;
+
+            home-manager.users.nova.imports = [
+              ./hosts/nova-laptop/home.nix
+              arkenfox.hmModules.arkenfox
+            ];
           }
         ];
       };
