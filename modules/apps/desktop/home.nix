@@ -29,8 +29,6 @@
       };
 
       profiles.default = {
-        search.default = "DuckDuckGo";
-
         # Arkenfox config and overrides
         arkenfox = {
           enable = true;
@@ -82,6 +80,61 @@
           mullvad
           ublock-origin
         ];
+
+        search = {
+          default = "DuckDuckGo";
+          # Fixes a home-manager switching error
+          force = true;
+
+          engines = {
+            # Hide the default engines I don't use
+            "Amazon.de".metaData.hidden = true;
+            "Bing".metaData.hidden = true;
+            "eBay".metaData.hidden = true;
+            "Google".metaData.hidden = true;
+            # Set better aliases for the engines I do use
+            "Mullvad Leta".metaData.alias = "@ml";
+            "Wikipedia (en)".metaData.alias = "@wp";
+
+            # Search engine config for the NixOS option search
+            "NixOS Options" = {
+              definedAliases = [ "@no" ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+              urls = [{
+                template = "https://search.nixos.org/options";
+
+                params = [{
+                  name = "query";
+                  value = "{searchTerms}";
+                }];
+              }];
+            };
+
+            # Search engine config for the NixOS package search
+            "Nix Packages" = {
+              definedAliases = [ "@np" ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+              urls = [{
+                template = "https://search.nixos.org/packages";
+
+                params = [{
+                  name = "query";
+                  value = "{searchTerms}";
+                }];
+              }];
+            };
+          };
+
+          order = [
+            "DuckDuckGo"
+            "Nix Packages"
+            "Nix Options"
+            "Wikipedia (en)"
+            "Mullvad Leta"
+          ];
+        };
 
         settings = {
           # Only show downloads button when there is a download
