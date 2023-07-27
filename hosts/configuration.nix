@@ -40,7 +40,6 @@
       colloid-icon-theme
       curl
       firefox
-      git
       gnome.gnome-tweaks
       helix
       mullvad-vpn
