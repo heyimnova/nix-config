@@ -36,6 +36,7 @@
 
     git = {
       enable = true;
+      extraConfig.init.defaultBranch = "main";
       userEmail = "git@heyimnova.dev";
       userName = "heyimnova";
 
