@@ -4,7 +4,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../secrets/users/aspire/nova
+    ../../secrets/users/aspire
   ];
 
   console.keyMap = "us";

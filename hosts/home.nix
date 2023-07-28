@@ -2,12 +2,6 @@
 { config, pkgs, ... }:
 
 {
-  # Import secret git and fish configurations
-  imports = [
-    ../secrets/programs/git/home.nix
-    ../secrets/programs/fish/home.nix
-  ];
-
   home.packages = with pkgs; [
     efibootmgr
     git-crypt
@@ -32,8 +26,22 @@
         # Show nitch on fish start
         fish_greeting = "${pkgs.nitch}/bin/nitch";
         la = "${pkgs.exa}/bin/exa -la";
+        nix-gc = "sudo nix-collect-garbage -d; nix-collect-garbage -d";
+        # Assuming this repo is symlinked to /etc/nixos
+        nixpkgs-update = "pushd /etc/nixos; nix flake update; popd";
         # Recommendation from xdg-ninja
         wget = "${pkgs.wget}/bin/wget --hsts-file='$XDG_DATA_HOME/wget-hsts'";
+      };
+    };
+
+    git = {
+      enable = true;
+      userEmail = "git@heyimnova.dev";
+      userName = "heyimnova";
+
+      signing = {
+        key = "DEB0E15C6D2A5A7C";
+        signByDefault = true;
       };
     };
 

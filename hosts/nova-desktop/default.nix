@@ -8,7 +8,7 @@
     ../../modules/apps/gaming
     ../../modules/apps/virtualisation
     ../../modules/desktops/gnome
-    ../../secrets/users/nova-desktop/nova
+    ../../secrets/users/nova-desktop
   ];
 
   console.keyMap = "us";

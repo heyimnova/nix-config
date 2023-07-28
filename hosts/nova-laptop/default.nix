@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
     ../../modules/apps/desktop
     ../../modules/desktops/gnome
-    ../../secrets/users/nova-laptop/nova
+    ../../secrets/users/nova-laptop
   ];
 
   console.keyMap = "uk";
