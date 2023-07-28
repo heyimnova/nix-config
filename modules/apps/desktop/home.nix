@@ -44,6 +44,7 @@
           "1600".enable = true; # HEADERS / REFERERS
           "1700".enable = true; # CONTAINERS
           "2400".enable = true; # DOM (DOCUMENT OBJECT MODEL)
+          "2600".enable = true; # MISCELLANEOUS
           "2700".enable = true; # ETP (ENHANCED TRACKING PROTECTION)
           "2800".enable = true; # SHUTDOWN & SANITIZING
           "5500".enable = true; # OPTIONAL HARDENING
@@ -66,12 +67,6 @@
           "2000" = { # PLUGINS / MEDIA / WEBRTC
             enable = true;
             "2022"."media.eme.enabled".value = true; # Allow DRM media
-          };
-
-          "2600" = { # MISCELLANEOUS
-            enable = true;
-            "2651"."browser.download.useDownloadDir".value = true; # Download files to ~/Downloads
-            "2652"."browser.download.alwaysOpenPanel".value = true; # Open a popup when a download begins
           };
         };
 

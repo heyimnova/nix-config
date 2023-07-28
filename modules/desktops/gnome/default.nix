@@ -3,7 +3,7 @@
 
 {
   imports = [
-      ../.
+    ../.
   ];
 
   programs.dconf.enable = true;
@@ -28,7 +28,6 @@
       gnome-contacts
       gnome-music
       gnome-software
-      gnome-terminal
       hitori
       tali
       totem
