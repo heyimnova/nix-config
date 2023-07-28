@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ../../modules/apps/desktop
     ../../modules/desktops/gnome
+    ../../secrets/users/nova-laptop/nova
   ];
 
   console.keyMap = "uk";
@@ -39,4 +40,9 @@
     layout = "gb";
     xkbVariant = "";
   };
+
+  users.users.nova.extraGroups = [
+    "networkmanager"
+    "wheel"
+  ];
 }
