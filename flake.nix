@@ -2,10 +2,10 @@
   description = "My NixOS configs";
 
   inputs = {
+    nur.url = "github:nix-community/NUR";
     stable.url = "github:nixos/nixpkgs/release-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    nur.url = "github:nix-community/NUR";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
@@ -25,50 +25,49 @@
     nixpkgs.follows = "unstable";
   };
 
-  outputs = inputs @ { self, nixpkgs, stable, utils, home-manager, home-manager-unstable, nur, lanzaboote, ... }:
+  outputs = inputs @ { self, home-manager, home-manager-unstable, lanzaboote, nixpkgs, nur, stable, utils, ... }:
     utils.lib.mkFlake {
       inherit self inputs;
 
       channelsConfig.allowUnfree = true;
+      hostDefaults.modules = [ ./hosts ];
+      sharedOverlays = [ nur.overlay ];
 
-      sharedOverlays = [
-        nur.overlay
-      ];
+      hosts.aspire = {
+        channelName = "stable";
 
-      hostDefaults.modules = [
-        ./hosts
-      ];
+        modules = [
+          ./hosts/aspire
+
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.nova.imports = [ ./hosts/aspire/home.nix ];
+            home-manager.useUserPackages = true;
+          }
+        ];
+      };
 
       hosts.nova-desktop.modules = [
         ./hosts/nova-desktop
         lanzaboote.nixosModules.lanzaboote
+
         home-manager-unstable.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
           home-manager.users.nova.imports = [ ./hosts/nova-desktop/home.nix ];
+          home-manager.useUserPackages = true;
         }
       ];
 
       hosts.nova-laptop = {
         channelName = "stable";
+
         modules = [
           ./hosts/nova-laptop
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.nova.imports = [ ./hosts/nova-laptop/home.nix ];
-          }
-        ];
-      };
 
-      hosts.idea = {
-        channelName = "stable";
-        modules = [
-          ./hosts/idea
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
+            home-manager.users.nova.imports = [ ./hosts/nova-laptop/home.nix ];
             home-manager.useUserPackages = true;
-            home-manager.users.nova.imports = [ ./hosts/idea/home.nix ];
           }
         ];
       };
