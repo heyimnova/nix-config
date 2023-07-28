@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../secrets/users/idea/nova
+    ../../containers/caddy
   ];
 
   console.keyMap = "uk";
@@ -11,6 +12,7 @@
   networking.hostName = "idea";
   services.openssh.enable = true;
   system.stateVersion = "23.05";
+  users.users.nova.extraGroups = [ "wheel" ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_hardened;
@@ -21,44 +23,10 @@
     };
   };
 
-  networking.firewall = {
-    enable = true;
-
-    interfaces.enp0s4.allowedTCPPorts = [
-      80
-      443
-    ];
-  };
-
-  services = {
-    caddy = {
-      enable = true;
-
-      extraConfig = ''
-
-      '';
-    };
-
-    logind.extraConfig = ''
-      # disable the lid switch
-      HandleLidSwitch=ignore
-      HandleLidSwitchExternalPower=ignore
-      HandleLidSwitchDocked=ignore
-    '';
-  };
-
-  users = {
-    groups.caddyProxy.members = [ "caddyProxy" ];
-
-    users = {
-      nova.extraGroups = [ "wheel" ];
-
-      caddyProxy = {
-        createHome = true;
-        group = "caddyProxy";
-        home = "/var/lib/caddyProxy";
-        isSystemUser = true;
-      };
-    };
-  };
+  services.logind.extraConfig = ''
+    # disable the lid switch
+    HandleLidSwitch=ignore
+    HandleLidSwitchExternalPower=ignore
+    HandleLidSwitchDocked=ignore
+  '';
 }
