@@ -144,9 +144,13 @@
   };
 
   system.autoUpgrade = {
+    dates = "05:00";
     enable = true;
     # Assuming this repo is symlinked to (or in) /etc/nixos
     flake = "/etc/nixos";
+    # Allow the service to catch up on updates if the system was powered down
+    persistent = true;
+    randomizedDelaySec = "1h";
 
     # Update all flake inputs so new packages are installed
     flags = [
