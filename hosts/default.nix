@@ -143,6 +143,32 @@
     };
   };
 
+  system.autoUpgrade = {
+    enable = true;
+    # Assuming this repo is symlinked to (or in) /etc/nixos
+    flake = "/etc/nixos";
+
+    # Update all flake inputs so new packages are installed
+    flags = [
+      "--update-input"
+      "arkenfox"
+      "--update-input"
+      "home-manager"
+      "--update-input"
+      "home-manager-unstable"
+      "--update-input"
+      "lanzaboote"
+      "--update-input"
+      "nur"
+      "--update-input"
+      "stable"
+      "--update-input"
+      "unstable"
+      "--update-input"
+      "utils"
+    ];
+  };
+
   systemd.extraConfig = ''
     # Faster shutdowns
     DefaultTimeoutStopSec=10s
