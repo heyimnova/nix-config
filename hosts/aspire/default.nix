@@ -38,6 +38,8 @@
 
   system.autoUpgrade = {
     allowReboot = true;
+    # Don't want all systems upgrading at the same time
+    randomizedDelaySec = "1h";
 
     rebootWindow = {
       lower = "01:00";

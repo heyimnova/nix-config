@@ -150,7 +150,6 @@
     flake = "/etc/nixos";
     # Allow the service to catch up on updates if the system was powered down
     persistent = true;
-    randomizedDelaySec = "1h";
 
     # Update all flake inputs so new packages are installed
     flags = [
