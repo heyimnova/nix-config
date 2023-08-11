@@ -25,7 +25,7 @@
 
       arkenfox = {
         enable = true;
-        version = "112.0";
+        version = "115.0";
       };
 
       profiles.default = {
