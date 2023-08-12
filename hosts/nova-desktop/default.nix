@@ -4,7 +4,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/apps/desktop
     ../../modules/apps/gaming
     ../../modules/apps/virtualisation
     ../../modules/desktops/gnome

@@ -84,6 +84,7 @@
       curl
       exa
       helix
+      neovim
       pciutils
       rsync
       strace
