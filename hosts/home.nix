@@ -27,8 +27,6 @@
         fish_greeting = "${pkgs.nitch}/bin/nitch";
         la = "${pkgs.exa}/bin/exa -la";
         nix-gc = "sudo nix-collect-garbage -d; nix-collect-garbage -d";
-        # Assuming this repo is symlinked to /etc/nixos
-        nixpkgs-update = "pushd /etc/nixos; nix flake update; popd";
         vi = "${pkgs.neovim}/bin/nvim";
         # Recommendation from xdg-ninja
         wget = "${pkgs.wget}/bin/wget --hsts-file='$XDG_DATA_HOME/wget-hsts'";

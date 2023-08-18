@@ -2,11 +2,15 @@
   description = "My NixOS system configurations as a flake";
 
   inputs = {
-    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     nur.url = "github:nix-community/NUR";
     stable.url = "github:nixos/nixpkgs/release-23.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+
+    arkenfox = {
+      url = "github:dwarfmaster/arkenfox-nixos";
+      inputs.nixpkgs.follows = "stable";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
