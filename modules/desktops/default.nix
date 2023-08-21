@@ -2,12 +2,16 @@
 { config, pkgs, ... }:
 
 {
-  environment.systemPackages = [ pkgs.podman-compose ];
   hardware.pulseaudio.enable = false;
   networking.networkmanager.enable = true;
   # Needed for Pipewire
   security.rtkit.enable = true;
   system.fsPackages = [ pkgs.bindfs ];
+
+  environment.systemPackages = with pkgs; [
+    podman-compose
+    wl-clipboard
+  ];
 
   # Fixes missing themes and icons in Flatpaks
   fileSystems = let
@@ -62,11 +66,15 @@
     };
   };
 
-  virtualisation.podman = {
-    # Allows containers started with podman-compose to talk to each other
-    defaultNetwork.settings.dns_enabled = true;
-    # Creates "docker" alias for Podman
-    dockerCompat = true;
-    enable = true;
+  virtualisation = {
+    waydroid.enable = true;
+
+    podman = {
+      # Allows containers started with podman-compose to talk to each other
+      defaultNetwork.settings.dns_enabled = true;
+      # Creates "docker" alias for Podman
+      dockerCompat = true;
+      enable = true;
+    };
   };
 }

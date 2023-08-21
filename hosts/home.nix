@@ -26,7 +26,9 @@
         # Show nitch on fish start
         fish_greeting = "${pkgs.nitch}/bin/nitch";
         la = "${pkgs.exa}/bin/exa -la";
-        nix-gc = "sudo nix-collect-garbage -d; nix-collect-garbage -d";
+        nix-gc = "sudo nix-collect-garbage -d;nix-collect-garbage -d";
+        # A nix-shell with fish as the shell
+        nix-fish = "nix-shell --packages fish --run fish";
         vi = "${pkgs.neovim}/bin/nvim";
         # Recommendation from xdg-ninja
         wget = "${pkgs.wget}/bin/wget --hsts-file='$XDG_DATA_HOME/wget-hsts'";
