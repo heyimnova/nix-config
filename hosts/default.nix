@@ -73,6 +73,7 @@
       CUDA_CACHE_PATH = "${XDG_CACHE_HOME}/nv";
       GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
       INPUTRC = "${XDG_DATA_HOME}/readline/inputrc";
+      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=\"${XDG_CONFIG_HOME}\"/java";
       LESSHISTFILE = "${XDG_DATA_HOME}/less/history";
       NPM_CONFIG_USERCONFIG = "${XDG_CONFIG_HOME}/npm/npmrc";
       WINEPREFIX = "${XDG_DATA_HOME}/wine";

@@ -122,6 +122,7 @@
       curtail
       gnome.dconf-editor
       gnome-obfuscate
+      mission-center
       mousai
       warp
     ]) ++ (with pkgs.gnomeExtensions; [
