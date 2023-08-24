@@ -6,8 +6,6 @@
     ../.
   ];
 
-  programs.dconf.enable = true;
-
   environment = {
     variables.TERMINAL = "${pkgs.blackbox-terminal}/bin/blackbox";
 
@@ -39,8 +37,16 @@
       blackbox-terminal
       clapper
       gnome.gnome-tweaks
-      gnomeExtensions.gsconnect
     ];
+  };
+
+  programs = {
+    dconf.enable = true;
+
+    kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
+    };
   };
 
   services = {

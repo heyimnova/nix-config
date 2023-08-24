@@ -132,6 +132,7 @@
 
   services = {
     cron.enable = true;
+    fwupd.enable = true;
 
     avahi = {
       enable = true;

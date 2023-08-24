@@ -6,8 +6,8 @@
     ../.
   ];
 
-  # Fixes potential GTK theme bugs in Wayland
-  programs.dconf.enable = true;
+  # Unlock default Gnome keyring on login
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
   environment = {
     variables.TERMINAL = "${pkgs.libsForQt5.konsole}/bin/konsole";
@@ -16,9 +16,25 @@
       khelpcenter
       oxygen
     ];
+
+    systemPackages = with pkgs; [
+      # Needed for KDE Info Center
+      clinfo
+      glxinfo
+      vulkan-tools
+    ];
+  };
+
+  programs = {
+    # Fixes potential GTK theme bugs in Wayland
+    dconf.enable = true;
+    kdeconnect.enable = true;
   };
 
   services = {
+    # Manually disable KWallet for Gnome keyring to work as secret service
+    gnome.gnome-keyring.enable = true;
+
     xserver = {
       desktopManager.plasma5.enable = true;
       displayManager.sddm.enable = true;
