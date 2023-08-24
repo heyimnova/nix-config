@@ -9,7 +9,7 @@
     ../../modules/apps/programming/home.nix
     ../../modules/apps/social/home.nix
     ../../modules/apps/virtualisation/home.nix
-    ../../modules/desktops/gnome/home.nix
+    ../../modules/desktops/kde/home.nix
   ];
 
   home = {

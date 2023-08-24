@@ -47,8 +47,8 @@
     udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 
     xserver = {
-      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
     };
   };
 }

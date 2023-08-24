@@ -103,6 +103,20 @@
             "Mullvad Leta".metaData.alias = "@ml";
             "Wikipedia (en)".metaData.alias = "@wp";
 
+            # Search engine config for the home-manager option search
+            "Home Manager" = {
+              definedAliases = [ "@hm" ];
+
+              urls = [{
+                template = "https://mipmip.github.io/home-manager-option-search";
+
+                params = [{
+                  name = "query";
+                  value = "{searchTerms}";
+                }];
+              }];
+            };
+
             # Search engine config for the NixOS option search
             "NixOS Options" = {
               definedAliases = [ "@no" ];
@@ -135,7 +149,7 @@
 
             # Search engine config for ProtonDB search
             "ProtonDB" = {
-              definedAliases = [ "@pd" ];
+              definedAliases = [ "@pr" ];
 
               urls = [{
                 template = "https://www.protondb.com/search";

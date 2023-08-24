@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
     ../../modules/apps/gaming
     ../../modules/apps/virtualisation
-    ../../modules/desktops/gnome
+    ../../modules/desktops/kde
     ../../secrets/users/nova-desktop
   ];
 
