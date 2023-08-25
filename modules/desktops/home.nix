@@ -11,6 +11,7 @@
     gimp
     helvum
     inkscape
+    mission-center
     onlyoffice-bin
     protonmail-bridge
     qbittorrent
@@ -167,6 +168,7 @@
             "ProtonDB"
             "Nix Packages"
             "Nix Options"
+            "Home Manager"
             "Wikipedia (en)"
             "Mullvad Leta"
           ];
