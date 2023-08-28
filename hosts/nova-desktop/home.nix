@@ -15,7 +15,6 @@
   home = {
     packages = with pkgs; [
       clamav
-      (callPackage ../../pkgs/clamtk {})
       cubiomes-viewer
       distrobox
       librewolf
