@@ -26,7 +26,7 @@
 
     arkenfox = {
       enable = true;
-      version = "115.0";
+      version = "115.1";
     };
 
     profiles = {
@@ -42,6 +42,7 @@
           "0400".enable = true; # SAFE BROWSING
           "0600".enable = true; # BLOCK IMPLICIT OUTBOUND
           "0700".enable = true; # DNS / DoH / PROXY / SOCKS / IPv6
+          "0800".enable = true; # LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
           "0900".enable = true; # PASSWORDS
           "1000".enable = true; # DISK AVOIDANCE
           "1200".enable = true; # HTTPS (SSL/TLS / OCSP / CERTS / HPKP)
@@ -62,11 +63,6 @@
             "0104"."browser.newtabpage.enabled".value = true; # Set new tab page to homepage
           };
 
-          "0800" = { # LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
-            enable = true;
-            "0801"."keyword.enabled".value = true; # Allow searching from URL bar
-          };
-
           "5000" = { # OPTIONAL OPSEC
             enable = true;
             "5003"."signon.rememberSignons".value = false; # Disable saving passwords
@@ -79,6 +75,16 @@
             "5017" = { # Disable Form Autofill
               "extensions.formautofill.addresses.enabled".value = false;
               "extensions.formautofill.creditCards.enabled".value = false;
+            };
+          };
+
+          "5500" = { # OPTIONAL HARDENING
+            enable = true;
+            "5510"."network.http.referer.XOriginPolicy".value = 2; # Only send cross-origin referers when hosts match
+
+            "5508" = { # Disable DRM media
+              "browser.eme.ui.enabled".value = false;
+              "media.eme.enabled".value = false;
             };
           };
         };
@@ -207,11 +213,13 @@
           "0400".enable = true; # SAFE BROWSING
           "0600".enable = true; # BLOCK IMPLICIT OUTBOUND
           "0700".enable = true; # DNS / DoH / PROXY / SOCKS / IPv6
+          "0800".enable = true; # LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
           "0900".enable = true; # PASSWORDS
           "1000".enable = true; # DISK AVOIDANCE
           "1200".enable = true; # HTTPS (SSL/TLS / OCSP / CERTS / HPKP)
           "1600".enable = true; # HEADERS / REFERERS
           "1700".enable = true; # CONTAINERS
+          "2000".enable = true; # PLUGINS / MEDIA / WEBRTC
           "2400".enable = true; # DOM (DOCUMENT OBJECT MODEL)
           "2600".enable = true; # MISCELLANEOUS
           "2700".enable = true; # ETP (ENHANCED TRACKING PROTECTION)
@@ -224,16 +232,6 @@
             "0102"."browser.startup.page".value = 1; # Set startup page to homepage
             "0103"."browser.startup.homepage".value = "about:home"; # Set homepage to Firefox homepage
             "0104"."browser.newtabpage.enabled".value = true; # Set new tab page to homepage
-          };
-
-          "0800" = { # LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
-            enable = true;
-            "0801"."keyword.enabled".value = true; # Allow searching from URL bar
-          };
-
-          "2000" = { # PLUGINS / MEDIA / WEBRTC
-            enable = true;
-            "2022"."media.eme.enabled".value = true; # Allow DRM media
           };
 
           "5000" = { # OPTIONAL OPSEC
@@ -281,6 +279,7 @@
           "browser.download.autohideButton" = true;
           # Disable topsites on about:home
           "browser.newtabpage.activity-stream.feeds.system.topsites" = false;
+          "browser.newtabpage.activity-stream.feeds.system.topstories" = false;
           "browser.newtabpage.activity-stream.feeds.topsites" = false;
           # Disable default browser popup
           "browser.shell.checkDefaultBrowser" = false;
