@@ -6,6 +6,7 @@
     bottles
     # TODO: See if I can select different packages depending on the installed DE
     cartridges
+    grapejuice
     heroic
     (lutris.override {
       extraLibraries = pkgs: [
