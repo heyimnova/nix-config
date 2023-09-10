@@ -83,7 +83,7 @@
     systemPackages = with pkgs; [
       bat
       curl
-      exa
+      eza
       helix
       neovim
       pciutils
