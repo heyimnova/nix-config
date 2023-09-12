@@ -16,8 +16,6 @@
     packages = with pkgs; [
       clamav
       cubiomes-viewer
-      distrobox
-      librewolf
       polychromatic
       (python3.withPackages(ps: with ps; [
         flet
