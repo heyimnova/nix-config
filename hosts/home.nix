@@ -25,7 +25,8 @@
         cn = "clear;${pkgs.nitch}/bin/nitch";
         # Show nitch on fish start
         fish_greeting = "${pkgs.nitch}/bin/nitch";
-        la = "${pkgs.eza}/bin/eza -la";
+        la = "${pkgs.eza}/bin/eza --icons --group-directories-first -la";
+        ls = "${pkgs.eza}/bin/eza --icons --group-directories-first";
         nix-gc = "sudo nix-collect-garbage -d;nix-collect-garbage -d";
         # A nix-shell with fish as the shell
         nix-fish = "nix-shell --packages fish --run fish";
