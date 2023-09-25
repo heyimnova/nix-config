@@ -26,7 +26,7 @@
 
     arkenfox = {
       enable = true;
-      version = "115.1";
+      version = "117.0";
     };
 
     profiles = {
@@ -185,6 +185,7 @@
           "browser.download.autohideButton" = true;
           # Disable topsites on about:home
           "browser.newtabpage.activity-stream.feeds.system.topsites" = false;
+          "browser.newtabpage.activity-stream.feeds.system.topstories" = false;
           "browser.newtabpage.activity-stream.feeds.topsites" = false;
           # Disable default browser popup
           "browser.shell.checkDefaultBrowser" = false;
