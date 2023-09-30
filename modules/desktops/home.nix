@@ -11,6 +11,7 @@
     gimp
     helvum
     inkscape
+    logseq
     mission-center
     onlyoffice-bin
     protonmail-bridge

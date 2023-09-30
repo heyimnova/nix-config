@@ -79,6 +79,7 @@
         "net.lutris.Lutris.desktop"
         "com.usebottles.bottles.desktop"
         "org.prismlauncher.PrismLauncher.desktop"
+        "logseq.desktop"
         "bitwarden.desktop"
       ];
     };
