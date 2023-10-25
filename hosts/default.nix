@@ -23,7 +23,7 @@ in
 
       ./aspire
 
-      ../secrets/users/aspire
+      ../secrets/users/aspire.nix
 
       home-manager.nixosModules.home-manager {
         home-manager = {
@@ -53,7 +53,7 @@ in
       ../modules/apps/virtualisation
       ../modules/desktops/gnome
 
-      ../secrets/users/nova-desktop
+      ../secrets/users/nova-desktop.nix
 
       home-manager-rolling.nixosModules.home-manager {
         home-manager = {
@@ -88,7 +88,7 @@ in
 
       ../modules/desktops/gnome
 
-      ../secrets/users/nova-laptop
+      ../secrets/users/nova-laptop.nix
 
       home-manager.nixosModules.home-manager {
         home-manager = {
