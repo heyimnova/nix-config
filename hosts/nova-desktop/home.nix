@@ -9,9 +9,6 @@
       clamav
       cubiomes-viewer
       polychromatic
-      (python3.withPackages(ps: with ps; [
-        flet
-      ]))
       sbctl
       sqlitebrowser
       woeusb

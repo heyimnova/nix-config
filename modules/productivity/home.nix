@@ -1,13 +1,13 @@
-# User level programming app config
+# home-manager productivity app config
 { pkgs, ... }:
 
 {
   home.packages = with pkgs; [
-    file
+    gimp
     git-filter-repo
     gitnuro
-    nodejs
-    poetry
+    onlyoffice-bin
+    texworks
     vscodium
   ];
 }

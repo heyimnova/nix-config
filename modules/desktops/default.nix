@@ -1,17 +1,13 @@
-# System wide general desktop config
-{ config, pkgs, ... }:
+# Default NixOS desktop config
+{ config, lib, pkgs, ... }:
 
 {
+  environment.systemPackages = [ pkgs.podman-compose ];
   hardware.pulseaudio.enable = false;
   networking.networkmanager.enable = true;
   # Needed for Pipewire
   security.rtkit.enable = true;
   system.fsPackages = [ pkgs.bindfs ];
-
-  environment.systemPackages = with pkgs; [
-    podman-compose
-    wl-clipboard
-  ];
 
   # Fixes missing themes and icons in Flatpaks
   fileSystems = let
@@ -67,7 +63,7 @@
   };
 
   virtualisation = {
-    waydroid.enable = true;
+    waydroid.enable = lib.mkDefault true;
 
     podman = {
       # Allows containers started with podman-compose to talk to each other

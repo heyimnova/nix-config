@@ -1,10 +1,8 @@
-# System-wide KDE Plasma config
+# KDE NixOS config
 { pkgs, ... }:
 
 {
-  imports = [
-    ../.
-  ];
+  imports = [ ../. ];
 
   # Unlock default Gnome keyring on login
   security.pam.services.sddm.enableGnomeKeyring = true;

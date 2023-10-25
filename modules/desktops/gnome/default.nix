@@ -1,10 +1,8 @@
-# System-wide Gnome config
+# Gnome NixOS config
 { pkgs, ... }:
 
 {
-  imports = [
-    ../.
-  ];
+  imports = [ ../. ];
 
   environment = {
     variables.TERMINAL = "${pkgs.blackbox-terminal}/bin/blackbox";
@@ -12,7 +10,6 @@
     gnome.excludePackages = (with pkgs; [
       baobab
       gnome-connections
-      gnome-console
       gnome-photos
       gnome-tour
       orca

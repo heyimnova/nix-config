@@ -1,4 +1,4 @@
-# User level virtualisation app config
+# home-manager virtualisation config
 { pkgs, ... }:
 
 {

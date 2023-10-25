@@ -1,10 +1,8 @@
-# User level Gnome config
+# Gnome home-manager config
 { pkgs, ... }:
 
 {
-  imports = [
-    ../home.nix
-  ];
+  imports = [ ../home.nix ];
 
   services.gpg-agent.pinentryFlavor = "gnome3";
 

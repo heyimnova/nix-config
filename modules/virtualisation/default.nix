@@ -1,4 +1,4 @@
-# System-wide virtualisation app config
+# NixOS virtualisation config
 { pkgs, ... }:
 
 {
