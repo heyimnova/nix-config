@@ -49,9 +49,9 @@ in
 
       ./nova-desktop
 
-      ../modules/apps/gaming
-      ../modules/apps/virtualisation
       ../modules/desktops/gnome
+      ../modules/gaming
+      ../modules/virtualisation
 
       ../secrets/users/nova-desktop.nix
 
@@ -66,12 +66,11 @@ in
 
             ./nova-desktop/home.nix
 
-            ../modules/apps/entertainment/home.nix
-            ../modules/apps/gaming/home.nix
-            ../modules/apps/programming/home.nix
-            ../modules/apps/social/home.nix
-            ../modules/apps/virtualisation/home.nix
             ../modules/desktops/gnome/home.nix
+            ../modules/gaming/home.nix
+            ../modules/productivity/home.nix
+            ../modules/social/home.nix
+            ../modules/virtualisation/home.nix
           ];
         };
       }
@@ -101,10 +100,9 @@ in
 
             ./nova-laptop/home.nix
 
-            ../modules/apps/entertainment/home.nix
-            ../modules/apps/programming/home.nix
-            ../modules/apps/social/home.nix
             ../modules/desktops/gnome/home.nix
+            ../modules/productivity/home.nix
+            ../modules/social/home.nix
           ];
         };
       }

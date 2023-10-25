@@ -1,13 +1,14 @@
-# User level social app config
+# User level entertainment app config
 { pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     (discord.override {
-      # Don't tell Discord 🤫
       withOpenASAR = true;
     })
     element-desktop
+    fluent-reader
+    freetube
     revolt-desktop
     session-desktop
     signal-desktop
