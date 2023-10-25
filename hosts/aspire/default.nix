@@ -1,17 +1,17 @@
-# System-wide config for aspire
-{ pkgs, ... }:
+# NixOS config for aspire
+{ pkgs, flake-settings, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../../secrets/users/aspire
+    ../configuration.nix
   ];
 
   console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = "aspire";
   system.stateVersion = "23.05";
-  users.users.nova.extraGroups = [ "wheel" ];
+  users.users.${flake-settings.user}.extraGroups = [ "wheel" ];
   virtualisation.docker.enable = true;
 
   boot = {
@@ -34,16 +34,5 @@
       HandleLidSwitchExternalPower=ignore
       HandleLidSwitchDocked=ignore
     '';
-  };
-
-  system.autoUpgrade = {
-    allowReboot = true;
-    # Don't want all systems upgrading at the same time
-    randomizedDelaySec = "1h";
-
-    rebootWindow = {
-      lower = "01:00";
-      upper = "05:00";
-    };
   };
 }

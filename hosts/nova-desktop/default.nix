@@ -1,13 +1,10 @@
-# System-wide config for nova-desktop
-{ config, pkgs, ... }:
+# NixOS config for nova-desktop
+{ config, pkgs, flake-settings, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/apps/gaming
-    ../../modules/apps/virtualisation
-    ../../modules/desktops/gnome
-    ../../secrets/users/nova-desktop
+    ../configuration.nix
   ];
 
   console.keyMap = "us";
@@ -60,7 +57,7 @@
     xkbVariant = "";
   };
 
-  users.users.nova.extraGroups = [
+  users.users.${flake-settings.user}.extraGroups = [
     "libvirtd"
     "networkmanager"
     "openrazer"

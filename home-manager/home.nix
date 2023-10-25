@@ -1,14 +1,22 @@
-# User level config for all systems
-{ config, pkgs, ... }:
+# Default home-manager configuration
+{ config, lib, pkgs, flake-settings, ... }:
 
 {
-  home.packages = with pkgs; [
-    efibootmgr
-    git-crypt
-    shell-genie
-    tealdeer
-    xdg-ninja
-  ];
+  manual = { manpages.enable = false; }; # Disable manpages (nmd dependency is broken)
+
+  home = {
+    # Needed for standalone home-manager
+    homeDirectory = lib.mkDefault flake-settings.userHome;
+    stateVersion = lib.mkDefault flake-settings.stableVersion;
+    username = lib.mkDefault flake-settings.user;
+
+    packages = with pkgs; [
+      git-crypt
+      shell-genie
+      tealdeer
+      xdg-ninja
+    ];
+  };
 
   programs = {
     home-manager.enable = true;
@@ -28,9 +36,6 @@
         la = "${pkgs.eza}/bin/eza --icons --group-directories-first -la";
         ls = "${pkgs.eza}/bin/eza --icons --group-directories-first";
         nix-gc = "sudo nix-collect-garbage -d;nix-collect-garbage -d";
-        # A nix-shell with fish as the shell
-        nix-fish = "nix-shell --packages fish --run fish";
-        vi = "${pkgs.neovim}/bin/nvim";
         # Recommendation from xdg-ninja
         wget = "${pkgs.wget}/bin/wget --hsts-file='$XDG_DATA_HOME/wget-hsts'";
       };

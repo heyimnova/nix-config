@@ -31,11 +31,19 @@
   let
     flake-settings = { # Configurable settings for flake location in filesystem and default user
       location = "$HOME/.flake";
+      stableVersion = "23.05";
       user = "nova";
       userDescription = "Nova";
+      userHome = "/home/nova";
     };
   in
   {
+    homeConfigurations = (
+      import ./home-manager {
+        inherit nixpkgs-rolling home-manager-rolling flake-settings;
+      }
+    );
+
     nixosConfigurations = (
       import ./hosts {
         inherit nixpkgs nixpkgs-rolling nur arkenfox home-manager home-manager-rolling lanzaboote flake-settings;

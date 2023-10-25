@@ -1,5 +1,5 @@
-# System-wide config for all systems
-{ pkgs, ... }:
+# Default NixOS configuration
+{ pkgs, flake-settings, ... }:
 
 {
   console.font = "Lat2-Terminus16";
@@ -85,13 +85,11 @@
       curl
       eza
       helix
-      neovim
       pciutils
       rsync
       strace
       tmux
       unzip
-      wget
     ];
   };
 
@@ -186,8 +184,8 @@
     # Disable root password
     users.root.hashedPassword = "*";
 
-    users.nova = {
-      description = "Nova";
+    users.${flake-settings.user} = {
+      description = flake-settings.userDescription;
       isNormalUser = true;
       useDefaultShell = true;
     };

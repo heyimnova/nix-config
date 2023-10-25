@@ -1,11 +1,10 @@
-# System-wide config for nova-laptop
-{ config, pkgs, ... }:
+# NixOS config for nova-laptop
+{ config, pkgs, flake-settings, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/desktops/gnome
-    ../../secrets/users/nova-laptop
+    ../configuration.nix
   ];
 
   console.keyMap = "uk";
@@ -37,7 +36,7 @@
     xkbVariant = "";
   };
 
-  users.users.nova.extraGroups = [
+  users.users.${flake-settings.user}.extraGroups = [
     "networkmanager"
     "wheel"
   ];
