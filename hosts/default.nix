@@ -67,6 +67,7 @@ in
             ./nova-desktop/home.nix
 
             ../modules/desktops/gnome/home.nix
+            ../modules/firefox/home.nix
             ../modules/gaming/home.nix
             ../modules/productivity/home.nix
             ../modules/social/home.nix
@@ -101,6 +102,7 @@ in
             ./nova-laptop/home.nix
 
             ../modules/desktops/gnome/home.nix
+            ../modules/firefox/home.nix
             ../modules/productivity/home.nix
             ../modules/social/home.nix
           ];
