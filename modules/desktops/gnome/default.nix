@@ -1,4 +1,4 @@
-# Gnome NixOS config
+# GNOME NixOS config
 { pkgs, ... }:
 
 {
@@ -10,6 +10,7 @@
     gnome.excludePackages = (with pkgs; [
       baobab
       gnome-connections
+      gnome-console
       gnome-photos
       gnome-tour
       orca
@@ -34,6 +35,11 @@
       blackbox-terminal
       clapper
       gnome.gnome-tweaks
+
+      (writeShellScriptBin "xdg-terminal-exec" ''
+        # Use blackbox for gtk-launch
+        exec ${pkgs.blackbox-terminal}/bin/blackbox -c "$*"
+      '')
     ];
   };
 

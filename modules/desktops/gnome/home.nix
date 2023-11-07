@@ -1,4 +1,4 @@
-# Gnome home-manager config
+# GNOME home-manager config
 { pkgs, ... }:
 
 {
@@ -64,9 +64,8 @@
         "spotify.desktop"
         "firefox.desktop"
         "signal-desktop.desktop"
-        "Session.desktop"
-        "revolt-desktop.desktop"
         "element-desktop.desktop"
+        "revolt-desktop.desktop"
         "discord.desktop"
         "freetube.desktop"
         "fluent-reader.desktop"
@@ -117,7 +116,6 @@
     sessionVariables.GTK_THEME = "adw-gtk3-dark";
 
     packages = (with pkgs; [
-      amberol
       curtail
       gnome.dconf-editor
       gnome-obfuscate
