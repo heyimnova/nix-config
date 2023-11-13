@@ -1,5 +1,5 @@
 { nixpkgs
-, nixpkgs-rolling
+, nixpkgs-unstable
 , nur
 , arkenfox
 , home-manager
@@ -9,7 +9,7 @@
 }:
 
 let
-  nixpkgsOptions = {
+  nixpkgsConfig.nixpkgs = {
     overlays = [ nur.overlay ];
     config.allowUnfree = true;
   };
@@ -19,9 +19,9 @@ in
     specialArgs = { inherit flake-settings; };
 
     modules = [
-      ({ nixpkgs = nixpkgsOptions; })
+      (nixpkgsConfig)
 
-      ./aspire
+      ./aspire/configuration.nix
 
       ../secrets/users/aspire.nix
 
@@ -39,19 +39,19 @@ in
     ];
   };
 
-  nova-desktop = nixpkgs-rolling.lib.nixosSystem {
+  nova-desktop = nixpkgs-unstable.lib.nixosSystem {
     specialArgs = { inherit flake-settings; };
 
     modules = [
-      ({ nixpkgs = nixpkgsOptions; })
+      (nixpkgsConfig)
 
       lanzaboote.nixosModules.lanzaboote
 
-      ./nova-desktop
+      ./nova-desktop/configuration.nix
 
-      ../modules/desktops/gnome
-      ../modules/gaming
-      ../modules/virtualisation
+      ../modules/desktops/gnome/configuration.nix
+      ../modules/gaming/configuration.nix
+      ../modules/virtualisation/configuration.nix
 
       ../secrets/users/nova-desktop.nix
 
@@ -67,10 +67,10 @@ in
             ./nova-desktop/home.nix
 
             ../modules/desktops/gnome/home.nix
-            ../modules/firefox/home.nix
+            ../modules/firefox.nix
             ../modules/gaming/home.nix
-            ../modules/productivity/home.nix
-            ../modules/social/home.nix
+            ../modules/productivity.nix
+            ../modules/social.nix
             ../modules/virtualisation/home.nix
           ];
         };
@@ -82,11 +82,11 @@ in
     specialArgs = { inherit flake-settings; };
 
     modules = [
-      ({ nixpkgs = nixpkgsOptions; })
+      (nixpkgsConfig)
 
-      ./nova-laptop
+      ./nova-laptop/configuration.nix
 
-      ../modules/desktops/gnome
+      ../modules/desktops/gnome/configuration.nix
 
       ../secrets/users/nova-laptop.nix
 
@@ -102,9 +102,9 @@ in
             ./nova-laptop/home.nix
 
             ../modules/desktops/gnome/home.nix
-            ../modules/firefox/home.nix
-            ../modules/productivity/home.nix
-            ../modules/social/home.nix
+            ../modules/firefox.nix
+            ../modules/productivity.nix
+            ../modules/social.nix
           ];
         };
       }

@@ -2,9 +2,9 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../. ];
+  imports = [ ../configuration.nix ];
 
-  # Unlock default Gnome keyring on login
+  # Unlock default GNOME keyring on login
   security.pam.services.sddm.enableGnomeKeyring = true;
 
   environment = {
@@ -30,7 +30,7 @@
   };
 
   services = {
-    # Manually disable KWallet for Gnome keyring to work as secret service
+    # Manually disable KWallet for GNOME keyring to work as secret service
     gnome.gnome-keyring.enable = true;
 
     xserver = {

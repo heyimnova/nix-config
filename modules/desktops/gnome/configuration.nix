@@ -2,7 +2,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../. ];
+  imports = [ ../configuration.nix ];
 
   environment = {
     variables.TERMINAL = "${pkgs.blackbox-terminal}/bin/blackbox";

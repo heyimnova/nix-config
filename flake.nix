@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-23.05";
-    nixpkgs-rolling.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
     arkenfox = {
@@ -18,16 +18,16 @@
 
     home-manager-rolling = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-rolling";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs-rolling";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-rolling, nur, arkenfox, home-manager, home-manager-rolling, lanzaboote, ... }:
+  outputs = { self, ... }@inputs:
   let
     flake-settings = { # Configurable settings for flake location in filesystem and default user
       location = "$HOME/.flake";
@@ -39,14 +39,14 @@
   in
   {
     homeConfigurations = (
-      import ./home-manager {
-        inherit nixpkgs-rolling home-manager-rolling flake-settings;
+      with inputs; import ./home-manager {
+        inherit nixpkgs-unstable home-manager-rolling flake-settings;
       }
     );
 
     nixosConfigurations = (
-      import ./hosts {
-        inherit nixpkgs nixpkgs-rolling nur arkenfox home-manager home-manager-rolling lanzaboote flake-settings;
+      with inputs; import ./hosts {
+        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote flake-settings;
       }
     );
   };

@@ -27,6 +27,12 @@
       # Enable starship prompt
       interactiveShellInit = ''
         ${pkgs.starship}/bin/starship init fish | source
+
+        # Set fish vi mode cursor settings
+        set fish_cursor_default underscore
+        set fish_cursor_insert line blink
+        set fish_cursor_replace_one underscore blink
+        set fish_cursor_visual block
       '';
 
       shellAliases = {
