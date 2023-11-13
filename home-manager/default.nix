@@ -11,6 +11,7 @@
 
     modules = [
       ./home.nix
+      ../modules/shells
     ];
   };
 }

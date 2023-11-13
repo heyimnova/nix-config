@@ -50,12 +50,6 @@
   environment = {
     # Needed to remove perl and nano which I do not need
     defaultPackages = [];
-    shells = [ pkgs.fish ];
-
-    variables = {
-      EDITOR = "${pkgs.helix}/bin/hx";
-      VISUAL = "${pkgs.helix}/bin/hx";
-    };
 
     # These environment variables are set on user login
     sessionVariables = rec {
@@ -80,6 +74,12 @@
       XCOMPOSECACHE = "${XDG_CACHE_HOME}/X11/xcompose";
     };
 
+    shells = with pkgs; [
+      bashInteractive
+      fish
+      nushell
+    ];
+
     systemPackages = with pkgs; [
       bat
       curl
@@ -91,6 +91,11 @@
       tmux
       unzip
     ];
+
+    variables = {
+      EDITOR = "${pkgs.helix}/bin/hx";
+      VISUAL = "${pkgs.helix}/bin/hx";
+    };
   };
 
   i18n.extraLocaleSettings = {
@@ -179,10 +184,14 @@
   '';
 
   users = {
-    defaultUserShell = pkgs.fish;
     mutableUsers = false;
     # Disable root password
     users.root.hashedPassword = "*";
+
+    defaultUserShell =
+      if flake-settings.userShell == "fish" then pkgs.fish
+      else if flake-settings.userShell == "nushell" then pkgs.nushell
+      else pkgs.bashInteractive;
 
     users.${flake-settings.user} = {
       description = flake-settings.userDescription;

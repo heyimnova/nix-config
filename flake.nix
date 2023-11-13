@@ -35,6 +35,7 @@
       user = "nova";
       userDescription = "Nova";
       userHome = "/home/nova";
+      userShell = "fish";
     };
   in
   {

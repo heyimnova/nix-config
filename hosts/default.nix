@@ -33,6 +33,7 @@ in
 
           users.${flake-settings.user}.imports = [
             ./aspire/home.nix
+            ../modules/shells
           ];
         };
       }
@@ -70,6 +71,7 @@ in
             ../modules/firefox.nix
             ../modules/gaming/home.nix
             ../modules/productivity.nix
+            ../modules/shells
             ../modules/social.nix
             ../modules/virtualisation/home.nix
           ];
@@ -104,6 +106,7 @@ in
             ../modules/desktops/gnome/home.nix
             ../modules/firefox.nix
             ../modules/productivity.nix
+            ../modules/shells
             ../modules/social.nix
           ];
         };
