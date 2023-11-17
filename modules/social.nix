@@ -12,6 +12,7 @@
 
     (discord.override {
       withOpenASAR = true;
+      withVencord = true;
     })
   ];
 }

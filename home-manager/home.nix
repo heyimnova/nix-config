@@ -1,5 +1,10 @@
 # Default home-manager configuration
-{ config, lib, pkgs, flake-settings, ... }:
+{ config
+, lib
+, pkgs
+, flake-settings
+, ...
+}:
 
 {
   manual = { manpages.enable = false; }; # Disable manpages (nmd dependency is broken)
@@ -20,6 +25,7 @@
 
   programs = {
     home-manager.enable = true;
+    nix-index.enable = true;
 
     git = {
       enable = true;

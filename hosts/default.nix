@@ -5,6 +5,7 @@
 , home-manager
 , home-manager-rolling
 , lanzaboote
+, nix-index-database
 , flake-settings
 }:
 
@@ -32,6 +33,8 @@ in
           useUserPackages = true;
 
           users.${flake-settings.user}.imports = [
+            nix-index-database.hmModules.nix-index
+
             ./aspire/home.nix
             ../modules/shells
           ];
@@ -64,6 +67,7 @@ in
 
           users.${flake-settings.user}.imports = [
             arkenfox.hmModules.arkenfox
+            nix-index-database.hmModules.nix-index
 
             ./nova-desktop/home.nix
 
@@ -100,6 +104,7 @@ in
 
           users.${flake-settings.user}.imports = [
             arkenfox.hmModules.arkenfox
+            nix-index-database.hmModules.nix-index
 
             ./nova-laptop/home.nix
 

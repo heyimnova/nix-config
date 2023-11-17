@@ -1,5 +1,6 @@
 { nixpkgs-unstable
 , home-manager-rolling
+, nix-index-database
 , flake-settings
 }:
 
@@ -10,6 +11,8 @@
     pkgs = nixpkgs-unstable.legacyPackages."x86_64-linux";
 
     modules = [
+      nix-index-database.hmModules.nix-index
+
       ./home.nix
       ../modules/shells
     ];

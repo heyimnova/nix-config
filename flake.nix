@@ -25,6 +25,11 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    nix-index-database = {
+      url = "github:mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -41,13 +46,13 @@
   {
     homeConfigurations = (
       with inputs; import ./home-manager {
-        inherit nixpkgs-unstable home-manager-rolling flake-settings;
+        inherit nixpkgs-unstable home-manager-rolling nix-index-database flake-settings;
       }
     );
 
     nixosConfigurations = (
       with inputs; import ./hosts {
-        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote flake-settings;
+        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote nix-index-database flake-settings;
       }
     );
   };
