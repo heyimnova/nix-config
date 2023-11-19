@@ -11,7 +11,6 @@
     signal-desktop
 
     (discord.override {
-      withOpenASAR = true;
       withVencord = true;
     })
   ];

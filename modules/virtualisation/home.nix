@@ -3,7 +3,6 @@
 
 {
   home.packages = with pkgs; [
-    quickemu
-    quickgui
+    (callPackage ../../packages/quickgui { })
   ];
 }
