@@ -116,9 +116,7 @@
     sessionVariables.GTK_THEME = "adw-gtk3-dark";
 
     packages = (with pkgs; [
-      curtail
       gnome.dconf-editor
-      gnome-obfuscate
       mousai
       warp
     ]) ++ (with pkgs.gnomeExtensions; [

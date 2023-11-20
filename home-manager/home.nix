@@ -19,7 +19,6 @@
       git-crypt
       shell-genie
       tealdeer
-      xdg-ninja
     ];
   };
 

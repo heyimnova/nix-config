@@ -3,15 +3,9 @@
 
 {
   home.packages = with pkgs; [
-    bottles
+    heroic
     prismlauncher
     protonup-qt
-
-    (heroic.override {
-      extraLibraries = pkgs: [
-        libunwind
-      ];
-    })
 
     (lutris.override {
       extraLibraries = pkgs: [
