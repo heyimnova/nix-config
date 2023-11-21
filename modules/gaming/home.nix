@@ -11,6 +11,7 @@
       extraLibraries = pkgs: [
         libgpg-error
         jansson
+        pango
         wine
       ];
     })
