@@ -5,6 +5,7 @@
 , home-manager
 , home-manager-rolling
 , lanzaboote
+, nix-gaming
 , nix-index-database
 , flake-settings
 }:
@@ -13,6 +14,11 @@ let
   nixpkgsConfig.nixpkgs = {
     overlays = [ nur.overlay ];
     config.allowUnfree = true;
+  };
+
+  nixConfig.nix.settings = {
+    substituters = [ "https://nix-gaming.cachix.org" ];
+    trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
   };
 in
 {
@@ -48,8 +54,10 @@ in
 
     modules = [
       (nixpkgsConfig)
+      (nixConfig)
 
       lanzaboote.nixosModules.lanzaboote
+      nix-gaming.nixosModules.pipewireLowLatency
 
       ./nova-desktop/configuration.nix
 

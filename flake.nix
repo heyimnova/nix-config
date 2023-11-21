@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-gaming.url = "github:fufexan/nix-gaming";
     nur.url = "github:nix-community/NUR";
 
     arkenfox = {
@@ -52,7 +53,7 @@
 
     nixosConfigurations = (
       with inputs; import ./hosts {
-        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote nix-index-database flake-settings;
+        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote nix-gaming nix-index-database flake-settings;
       }
     );
   };

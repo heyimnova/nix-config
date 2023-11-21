@@ -5,7 +5,7 @@
   environment.systemPackages = [ pkgs.podman-compose ];
   hardware.pulseaudio.enable = false;
   networking.networkmanager.enable = true;
-  # Needed for Pipewire
+  # Make pipewire realtime-capable
   security.rtkit.enable = true;
   system.fsPackages = [ pkgs.bindfs ];
 
