@@ -63,6 +63,7 @@ in
 
       ../modules/desktops/gnome/configuration.nix
       ../modules/gaming/configuration.nix
+      ../modules/syncthing.nix
       ../modules/virtualisation/configuration.nix
 
       ../secrets/users/nova-desktop.nix
