@@ -8,7 +8,6 @@
   ];
 
   console.keyMap = "us";
-  environment.systemPackages = [ pkgs.droidcam ];
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = "nova-desktop";
   system.stateVersion = "22.11";
@@ -34,6 +33,11 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
+  };
+
+  environment = {
+    gnome.excludePackages = [ pkgs.snapshot ];
+    systemPackages = [ pkgs.droidcam ];
   };
 
   hardware = {

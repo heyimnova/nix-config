@@ -54,7 +54,6 @@
         "blur-my-shell@aunetx"
         "gsconnect@andyholmes.github.io"
         "Vitals@CoreCoding.com"
-        "logomenu@aryan_k"
         "AlphabeticalAppGrid@stuarthayhurst"
       ];
 
@@ -126,7 +125,6 @@
       caffeine
       clipboard-indicator
       grand-theft-focus
-      logo-menu
       status-area-horizontal-spacing
       vitals
     ]);
