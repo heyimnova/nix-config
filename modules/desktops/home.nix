@@ -6,6 +6,7 @@
     birdtray
     bitwarden
     bleachbit
+    clamtk
     cpu-x
     distrobox
     helvum

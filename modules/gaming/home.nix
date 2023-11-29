@@ -3,6 +3,7 @@
 
 {
   home.packages = with pkgs; [
+    gamescope
     heroic
     prismlauncher
     protonup-qt
