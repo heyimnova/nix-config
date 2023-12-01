@@ -3,20 +3,16 @@
 
 {
   home.packages = with pkgs; [
-    bottles
+    gamescope
+    heroic
     prismlauncher
     protonup-qt
-
-    (heroic.override {
-      extraLibraries = pkgs: [
-        libunwind
-      ];
-    })
 
     (lutris.override {
       extraLibraries = pkgs: [
         libgpg-error
         jansson
+        pango
         wine
       ];
     })

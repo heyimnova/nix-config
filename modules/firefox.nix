@@ -7,7 +7,7 @@
 
     arkenfox = {
       enable = true;
-      version = "118.0";
+      version = "119.0";
     };
 
     profiles = {
@@ -60,7 +60,7 @@
 
           "5500" = { # OPTIONAL HARDENING
             enable = true;
-            "5510"."network.http.referer.XOriginPolicy".value = 2; # Only send cross-origin referers when hosts match
+            "5510"."network.http.referer.XOriginPolicy".value = 2; # Only send cross-origin referrers when hosts match
 
             "5508" = { # Disable DRM media
               "browser.eme.ui.enabled".value = false;
@@ -82,7 +82,7 @@
 
           engines = {
             # Hide the default engines I don't use
-            "Amazon.de".metaData.hidden = true;
+            "Amazon.co.uk".metaData.hidden = true;
             "Bing".metaData.hidden = true;
             "eBay".metaData.hidden = true;
             "Google".metaData.hidden = true;
@@ -163,10 +163,6 @@
         settings = {
           # Only show downloads button when there is a download
           "browser.download.autohideButton" = true;
-          # Disable topsites on about:home
-          "browser.newtabpage.activity-stream.feeds.system.topsites" = false;
-          "browser.newtabpage.activity-stream.feeds.system.topstories" = false;
-          "browser.newtabpage.activity-stream.feeds.topsites" = false;
           # Disable default browser popup
           "browser.shell.checkDefaultBrowser" = false;
           # Disable Firefox View
@@ -246,7 +242,7 @@
 
           engines = {
             # Hide the default engines I don't use
-            "Amazon.de".metaData.hidden = true;
+            "Amazon.co.uk".metaData.hidden = true;
             "Bing".metaData.hidden = true;
             "eBay".metaData.hidden = true;
             "Google".metaData.hidden = true;
@@ -258,22 +254,14 @@
         settings = {
           # Only show downloads button when there is a download
           "browser.download.autohideButton" = true;
-          # Disable topsites on about:home
-          "browser.newtabpage.activity-stream.feeds.system.topsites" = false;
-          "browser.newtabpage.activity-stream.feeds.system.topstories" = false;
-          "browser.newtabpage.activity-stream.feeds.topsites" = false;
           # Disable default browser popup
           "browser.shell.checkDefaultBrowser" = false;
-          # Disable Firefox View
-          "browser.tabs.firefox-view" = false;
           # Disable saving form data
           "dom.payments.defaults.saveAddress" = false;
           # Disable Pocket
           "extensions.pocket.enabled" = false;
           # Enable middle click scroll
           "general.autoScroll" = true;
-          # Disable Firefox accounts
-          "identity.fxaccounts.enabled" = false;
         };
       };
     };

@@ -54,7 +54,6 @@
         "blur-my-shell@aunetx"
         "gsconnect@andyholmes.github.io"
         "Vitals@CoreCoding.com"
-        "logomenu@aryan_k"
         "AlphabeticalAppGrid@stuarthayhurst"
       ];
 
@@ -116,9 +115,7 @@
     sessionVariables.GTK_THEME = "adw-gtk3-dark";
 
     packages = (with pkgs; [
-      curtail
       gnome.dconf-editor
-      gnome-obfuscate
       mousai
       warp
     ]) ++ (with pkgs.gnomeExtensions; [
@@ -128,7 +125,6 @@
       caffeine
       clipboard-indicator
       grand-theft-focus
-      logo-menu
       status-area-horizontal-spacing
       vitals
     ]);

@@ -6,12 +6,8 @@
 
   home = {
     packages = with pkgs; [
-      clamav
-      cubiomes-viewer
       polychromatic
       sbctl
-      sqlitebrowser
-      woeusb
 
       (libsForQt5.callPackage ../../packages/discord-screenaudio { })
     ];

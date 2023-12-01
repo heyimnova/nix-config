@@ -16,7 +16,6 @@
       orca
     ]) ++ (with pkgs.gnome; [
       atomix
-      cheese
       epiphany
       geary
       gedit
