@@ -7,6 +7,7 @@
     heroic
     prismlauncher
     protonup-qt
+    r2modman
 
     (lutris.override {
       extraLibraries = pkgs: [
