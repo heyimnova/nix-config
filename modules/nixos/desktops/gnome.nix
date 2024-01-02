@@ -1,9 +1,7 @@
 # GNOME NixOS config
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
-{
-  imports = [ ../configuration.nix ];
-
+lib.mkIf config.desktops.gnome.enable {
   environment = {
     variables.TERMINAL = "${pkgs.blackbox-terminal}/bin/blackbox";
 
@@ -18,7 +16,6 @@
       atomix
       epiphany
       geary
-      gedit
       gnome-clocks
       gnome-contacts
       gnome-music

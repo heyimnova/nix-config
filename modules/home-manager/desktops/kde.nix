@@ -1,8 +1,6 @@
 # home-manager KDE config
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
-{
-  imports = [ ../home.nix ];
-
+lib.mkIf config.desktops.kde.enable {
   services.gpg-agent.pinentryFlavor = "qt";
 }

@@ -1,9 +1,7 @@
 # KDE NixOS config
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
-{
-  imports = [ ../configuration.nix ];
-
+lib.mkIf config.desktops.kde.enable {
   # Unlock default GNOME keyring on login
   security.pam.services.sddm.enableGnomeKeyring = true;
 

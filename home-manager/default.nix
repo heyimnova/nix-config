@@ -14,7 +14,7 @@
       nix-index-database.hmModules.nix-index
 
       ./home.nix
-      ../modules/shells
+      ../modules/home-manager/shells
     ];
   };
 }

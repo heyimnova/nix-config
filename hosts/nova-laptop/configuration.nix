@@ -8,6 +8,7 @@
   ];
 
   console.keyMap = "uk";
+  desktops.gnome.enable = true;
   i18n.defaultLocale = "en_GB.UTF-8";
   networking.hostName = "nova-laptop";
   system.stateVersion = "23.05";

@@ -1,8 +1,19 @@
 # home-manager config for nova-desktop
-{ pkgs, lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [ ../../home-manager/home.nix ];
+
+  desktops.gnome.enable = true;
+  firefox.enable = true;
+  gaming.enable = true;
+  shells.nushell.enable = true;
+  virtualisation.enable = true;
+
+  apps = {
+    productivity = true;
+    social = true;
+  };
 
   home = {
     packages = with pkgs; [

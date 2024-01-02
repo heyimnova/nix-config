@@ -1,5 +1,5 @@
 # home-manager config for aspire
-{ pkgs, lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [ ../../home-manager/home.nix ];
