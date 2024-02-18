@@ -12,12 +12,8 @@
 
 let
   nixpkgsConfig.nixpkgs = {
+    config.allowUnfree = true;
     overlays = [ nur.overlay ];
-
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [ "electron-25.9.0" ];
-    };
   };
 
   nixConfig.nix.settings = {
@@ -52,27 +48,6 @@ let
   };
 in
 {
-  aspire = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit flake-settings; };
-
-    modules = ([
-      (nixpkgsConfig)
-
-      ./aspire/configuration.nix
-
-      ../secrets/users/aspire.nix
-
-      home-manager.nixosModules.home-manager {
-        home-manager = {
-          extraSpecialArgs = { inherit flake-settings; };
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.${flake-settings.user}.imports = ([ ./aspire/home.nix ] ++ modules.home-manager);
-        };
-      }
-    ] ++ modules.nixos);
-  };
-
   nova-desktop = nixpkgs-unstable.lib.nixosSystem {
     specialArgs = { inherit flake-settings; };
 

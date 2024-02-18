@@ -1,5 +1,5 @@
 # NixOS config for nova-desktop
-{ config, pkgs, flake-settings, ... }:
+{ lib, config, pkgs, flake-settings, ... }:
 
 {
   imports = [
@@ -56,9 +56,12 @@
   };
 
   services.xserver = {
-    layout = "us";
     videoDrivers = [ "nvidia" ];
-    xkbVariant = "";
+
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
 
   syncthing = {
@@ -78,5 +81,7 @@
     enable = true;
     # Enable Nvidia GPU use within Podman containers
     podman.enableNvidia = true;
+    # Don't enable waydroid on nova-desktop, it uses X11 at the moment
+    waydroid.enable = lib.mkForce false;
   };
 }

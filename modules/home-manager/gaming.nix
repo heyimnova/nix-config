@@ -22,6 +22,10 @@ in
           pango
           wine
         ];
+
+        extraPkgs = pkgs: [
+          wget
+        ];
       })
     ];
   };

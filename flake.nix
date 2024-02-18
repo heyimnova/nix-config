@@ -8,7 +8,7 @@
     nur.url = "github:nix-community/NUR";
 
     arkenfox = {
-      url = "github:dwarfmaster/arkenfox-nixos";
+      url = "github:pipelight/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

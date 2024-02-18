@@ -18,7 +18,6 @@
 
     packages = with pkgs; [
       git-crypt
-      shell-genie
       tealdeer
     ];
   };
