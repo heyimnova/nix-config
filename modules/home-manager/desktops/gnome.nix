@@ -1,9 +1,7 @@
 # GNOME home-manager config
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
-{
-  imports = [ ../home.nix ];
-
+lib.mkIf config.desktops.gnome.enable {
   services.gpg-agent.pinentryFlavor = "gnome3";
 
   dconf.settings = {
@@ -97,7 +95,7 @@
 
     cursorTheme = {
       name = "Vimix-white-cursors";
-      package = pkgs.nur.repos.ambroisie.vimix-cursors;
+      package = pkgs.vimix-cursors;
     };
 
     iconTheme = {

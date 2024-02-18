@@ -1,5 +1,5 @@
 # NixOS config for nova-desktop
-{ config, pkgs, flake-settings, ... }:
+{ lib, config, pkgs, flake-settings, ... }:
 
 {
   imports = [
@@ -8,11 +8,11 @@
   ];
 
   console.keyMap = "us";
+  desktops.gnome.enable = true;
+  gaming.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = "nova-desktop";
   system.stateVersion = "22.11";
-  # Enable Nvidia GPU use within Podman containers
-  virtualisation.podman.enableNvidia = true;
 
   boot = {
     # Set virtual memory max map count to MAX_INT - 5, fixes some bugs with games under Proton
@@ -56,9 +56,18 @@
   };
 
   services.xserver = {
-    layout = "us";
     videoDrivers = [ "nvidia" ];
-    xkbVariant = "";
+
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+  };
+
+  syncthing = {
+    devices.coral = true;
+    enable = true;
+    folders.logseq = true;
   };
 
   users.users.${flake-settings.user}.extraGroups = [
@@ -67,4 +76,12 @@
     "openrazer"
     "wheel"
   ];
+
+  virtualisation = {
+    enable = true;
+    # Enable Nvidia GPU use within Podman containers
+    podman.enableNvidia = true;
+    # Don't enable waydroid on nova-desktop, it uses X11 at the moment
+    waydroid.enable = lib.mkForce false;
+  };
 }

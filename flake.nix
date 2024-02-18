@@ -2,18 +2,18 @@
   description = "NixOS and home-manager configurations as a flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nur.url = "github:nix-community/NUR";
 
     arkenfox = {
-      url = "github:dwarfmaster/arkenfox-nixos";
+      url = "github:pipelight/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -37,7 +37,7 @@
   let
     flake-settings = { # Configurable settings for flake location in filesystem and default user
       location = "$HOME/.flake";
-      stableVersion = "23.05";
+      stableVersion = "23.11";
       user = "nova";
       userDescription = "Nova";
       userHome = "/home/nova";

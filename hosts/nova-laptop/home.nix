@@ -1,8 +1,16 @@
 # home-manager config for nova-laptop
-{ pkgs, lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [ ../../home-manager/home.nix ];
+
+  desktops.gnome.enable = true;
+  firefox.enable = true;
+
+  apps = {
+    productivity = true;
+    social = true;
+  };
 
   home = {
     packages = [ pkgs.watchmate ];

@@ -8,6 +8,7 @@
 
 {
   manual = { manpages.enable = false; }; # Disable manpages (nmd dependency is broken)
+  shells.fish.enable = true;
 
   home = {
     # Needed for standalone home-manager
@@ -17,7 +18,6 @@
 
     packages = with pkgs; [
       git-crypt
-      shell-genie
       tealdeer
     ];
   };
