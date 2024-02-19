@@ -53,6 +53,8 @@
     "/home" = {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
+      # So sops-nix can find my age key on boot
+      neededForBoot = true;
 
       options = [
         "compress=zstd"

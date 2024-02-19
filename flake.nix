@@ -8,7 +8,7 @@
     nur.url = "github:nix-community/NUR";
 
     arkenfox = {
-      url = "github:pipelight/arkenfox-nixos";
+      url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -30,6 +30,11 @@
     nix-index-database = {
       url = "github:mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -53,7 +58,7 @@
 
     nixosConfigurations = (
       with inputs; import ./hosts {
-        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote nix-gaming nix-index-database flake-settings;
+        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote nix-gaming nix-index-database sops-nix flake-settings;
       }
     );
   };

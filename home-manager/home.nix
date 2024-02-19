@@ -13,13 +13,9 @@
   home = {
     # Needed for standalone home-manager
     homeDirectory = lib.mkDefault flake-settings.userHome;
+    packages = [ pkgs.tealdeer ];
     stateVersion = lib.mkDefault flake-settings.stableVersion;
     username = lib.mkDefault flake-settings.user;
-
-    packages = with pkgs; [
-      git-crypt
-      tealdeer
-    ];
   };
 
   programs = {

@@ -7,6 +7,7 @@
 , lanzaboote
 , nix-gaming
 , nix-index-database
+, sops-nix
 , flake-settings
 }:
 
@@ -44,6 +45,7 @@ let
 
       lanzaboote.nixosModules.lanzaboote
       nix-gaming.nixosModules.pipewireLowLatency
+      sops-nix.nixosModules.sops
     ];
   };
 in
@@ -56,8 +58,6 @@ in
       (nixConfig)
 
       ./nova-desktop/configuration.nix
-
-      ../secrets/users/nova-desktop.nix
 
       home-manager-rolling.nixosModules.home-manager {
         home-manager = {
@@ -77,8 +77,6 @@ in
       (nixpkgsConfig)
 
       ./nova-laptop/configuration.nix
-
-      ../secrets/users/nova-laptop.nix
 
       home-manager.nixosModules.home-manager {
         home-manager = {

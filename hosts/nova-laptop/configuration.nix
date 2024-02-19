@@ -11,6 +11,7 @@
   desktops.gnome.enable = true;
   i18n.defaultLocale = "en_GB.UTF-8";
   networking.hostName = "nova-laptop";
+  sops.secrets."passwords/nova-laptop".neededForUsers = true;
   system.stateVersion = "23.05";
 
   boot = {
@@ -37,8 +38,12 @@
     xkbVariant = "";
   };
 
-  users.users.${flake-settings.user}.extraGroups = [
-    "networkmanager"
-    "wheel"
-  ];
+  users.users.${flake-settings.user} = {
+    hashedPasswordFile = config.sops.secrets."passwords/nova-laptop".path;
+
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+  };
 }
