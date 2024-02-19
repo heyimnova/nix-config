@@ -12,6 +12,7 @@
   gaming.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = "nova-desktop";
+  sops.secrets."passwords/nova-desktop".neededForUsers = true;
   system.stateVersion = "22.11";
 
   boot = {
@@ -70,12 +71,16 @@
     folders.logseq = true;
   };
 
-  users.users.${flake-settings.user}.extraGroups = [
-    "libvirtd"
-    "networkmanager"
-    "openrazer"
-    "wheel"
-  ];
+  users.users.${flake-settings.user} = {
+    hashedPasswordFile = config.sops.secrets."passwords/nova-desktop".path;
+
+    extraGroups = [
+      "libvirtd"
+      "networkmanager"
+      "openrazer"
+      "wheel"
+    ];
+  };
 
   virtualisation = {
     enable = true;

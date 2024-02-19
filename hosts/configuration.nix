@@ -87,6 +87,7 @@
       helix
       pciutils
       rsync
+      sops
       strace
       tmux
       unzip
@@ -127,6 +128,12 @@
     };
   };
 
+  sops = {
+    age.keyFile = "/home/${flake-settings.user}/.config/sops/age/keys.txt";
+    defaultSopsFile = ../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+  };
+
   programs = {
     fish.enable = true;
     # Needed to completely remove nano
@@ -139,7 +146,7 @@
 
     avahi = {
       enable = true;
-      nssmdns4 = true;
+      nssmdns = true;
 
       publish = {
         addresses = true;
@@ -186,7 +193,7 @@
   users = {
     mutableUsers = false;
     # Disable root password
-    users.root.hashedPassword = "*";
+    users.root.hashedPassword = "!";
 
     defaultUserShell =
       if flake-settings.userShell == "fish" then pkgs.fish

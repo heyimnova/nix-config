@@ -1,0 +1,7 @@
+keys:
+  - &admin_nova age1wfvh7feej2m5grl2sfv08wxcq7usah9e0he9dvv6mpa2v8nfnd4s3cg4cw
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+    - age:
+      - *admin_nova
