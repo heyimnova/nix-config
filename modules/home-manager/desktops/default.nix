@@ -26,6 +26,7 @@ in
       helvum
       logseq
       mission-center
+      mullvad-browser
       protonmail-bridge
       qbittorrent
       spotify

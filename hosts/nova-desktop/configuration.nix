@@ -85,7 +85,7 @@
   virtualisation = {
     enable = true;
     # Enable Nvidia GPU use within Podman containers
-    podman.enableNvidia = true;
+    containers.cdi.dynamic.nvidia.enable = true;
     # Don't enable waydroid on nova-desktop, it uses X11 at the moment
     waydroid.enable = lib.mkForce false;
   };

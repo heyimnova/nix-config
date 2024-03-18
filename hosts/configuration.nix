@@ -94,8 +94,8 @@
     ];
 
     variables = {
-      EDITOR = "${pkgs.helix}/bin/hx";
-      VISUAL = "${pkgs.helix}/bin/hx";
+      EDITOR = "${pkgs.neovim}/bin/nvim";
+      VISUAL = "${pkgs.neovim}/bin/nvim";
     };
   };
 

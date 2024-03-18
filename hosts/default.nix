@@ -7,6 +7,7 @@
 , lanzaboote
 , nix-gaming
 , nix-index-database
+, nixvim
 , sops-nix
 , flake-settings
 }:
@@ -32,8 +33,11 @@ let
       ../modules/home-manager/desktops
       ../modules/home-manager/shells
 
+      ../modules/nixvim.nix
+
       arkenfox.hmModules.arkenfox
       nix-index-database.hmModules.nix-index
+      nixvim.homeManagerModules.nixvim
     ];
 
     nixos = [

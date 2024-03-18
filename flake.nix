@@ -32,6 +32,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,13 +57,13 @@
   {
     homeConfigurations = (
       with inputs; import ./home-manager {
-        inherit nixpkgs-unstable home-manager-rolling nix-index-database flake-settings;
+        inherit nixpkgs-unstable home-manager-rolling nix-index-database nixvim flake-settings;
       }
     );
 
     nixosConfigurations = (
       with inputs; import ./hosts {
-        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote nix-gaming nix-index-database sops-nix flake-settings;
+        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote nix-gaming nix-index-database nixvim sops-nix flake-settings;
       }
     );
   };
