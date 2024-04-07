@@ -2,6 +2,7 @@
 , nixpkgs-unstable
 , nur
 , arkenfox
+, firefox-gnome-theme
 , home-manager
 , home-manager-rolling
 , lanzaboote
@@ -65,7 +66,7 @@ in
 
       home-manager-rolling.nixosModules.home-manager {
         home-manager = {
-          extraSpecialArgs = { inherit flake-settings; };
+          extraSpecialArgs = { inherit flake-settings firefox-gnome-theme; };
           useGlobalPkgs = true;
           useUserPackages = true;
           users.${flake-settings.user}.imports = ([ ./nova-desktop/home.nix ] ++ modules.home-manager);
@@ -84,7 +85,7 @@ in
 
       home-manager.nixosModules.home-manager {
         home-manager = {
-          extraSpecialArgs = { inherit flake-settings; };
+          extraSpecialArgs = { inherit flake-settings firefox-gnome-theme; };
           useGlobalPkgs = true;
           useUserPackages = true;
           users.${flake-settings.user}.imports = ([ ./nova-laptop/home.nix ] ++ modules.home-manager);

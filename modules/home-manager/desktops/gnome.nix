@@ -2,7 +2,7 @@
 { lib, config, pkgs, ... }:
 
 lib.mkIf config.desktops.gnome.enable {
-  services.gpg-agent.pinentryFlavor = "gnome3";
+  services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
 
   dconf.settings = {
     "io/github/seadve/Mousai" = {
@@ -126,58 +126,5 @@ lib.mkIf config.desktops.gnome.enable {
       status-area-horizontal-spacing
       vitals
     ]);
-  };
-
-  # Needed for firefox-gnome-theme
-  programs.firefox.profiles = {
-    default = {
-      settings = {
-        # Disable private window dark theme
-        "browser.theme.dark-private-windows" = false;
-        # Set UI density to normal
-        "browser.uidensity" = 0;
-        # Hide single tab
-        "gnomeTheme.hideSingleTab" = true;
-        # Hide extensions button
-        "gnomeTheme.hideUnifiedExtensions" = true;
-        # Allow recoloring of icons
-        "svg.context-properties.content.enabled" = true;
-        # Enable customChrome.css
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      };
-
-      userChrome = ''
-        @import "firefox-gnome-theme/userChrome.css";
-      '';
-
-      userContent = ''
-        @import "firefox-gnome-theme/userContent.css";
-      '';
-    };
-
-    home = {
-      settings = {
-        # Disable private window dark theme
-        "browser.theme.dark-private-windows" = false;
-        # Set UI density to normal
-        "browser.uidensity" = 0;
-        # Hide single tab
-        "gnomeTheme.hideSingleTab" = true;
-        # Hide extensions button
-        "gnomeTheme.hideUnifiedExtensions" = true;
-        # Allow recoloring of icons
-        "svg.context-properties.content.enabled" = true;
-        # Enable customChrome.css
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      };
-
-      userChrome = ''
-        @import "firefox-gnome-theme/userChrome.css";
-      '';
-
-      userContent = ''
-        @import "firefox-gnome-theme/userContent.css";
-      '';
-    };
   };
 }

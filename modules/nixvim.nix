@@ -37,7 +37,7 @@
       }
     ];
 
-    options = {
+    opts = {
       # Sync Neovim clipboard with system clipboard
       clipboard = "unnamedplus";
 
@@ -92,10 +92,13 @@
     };
 
     plugins = {
-      comment-nvim.enable = true;
+      comment.enable = true;
       gitsigns.enable = true;
       nix.enable = true;
       treesitter.enable = true;
+
+      # Autocompletions
+      cmp.enable = true;
 
       # Notification window
       fidget.enable = true;
@@ -106,9 +109,6 @@
       # Discord status
       neocord.enable = true;
 
-      # Autocompletions
-      nvim-cmp.enable = true;
-
       # Keybind hints
       which-key.enable = true;
 
@@ -117,7 +117,7 @@
 
         servers = {
           nixd.enable = true;
-          pylsp.enable = true;
+          # pylsp.enable = true;
         };
       };
 
