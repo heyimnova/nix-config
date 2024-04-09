@@ -114,6 +114,7 @@ lib.mkIf config.desktops.gnome.enable {
 
     packages = (with pkgs; [
       gnome.dconf-editor
+      helvum
       mousai
       warp
     ]) ++ (with pkgs.gnomeExtensions; [
@@ -126,5 +127,21 @@ lib.mkIf config.desktops.gnome.enable {
       status-area-horizontal-spacing
       vitals
     ]);
+
+    pointerCursor = {
+      name = "Vimix-white-cursors";
+      package = pkgs.vimix-cursors;
+      x11.enable = true;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt6;
+    };
   };
 }

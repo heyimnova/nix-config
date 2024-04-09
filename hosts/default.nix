@@ -66,6 +66,7 @@ in
 
       home-manager-rolling.nixosModules.home-manager {
         home-manager = {
+          backupFileExtension = "hmbak";
           extraSpecialArgs = { inherit flake-settings firefox-gnome-theme; };
           useGlobalPkgs = true;
           useUserPackages = true;
@@ -85,6 +86,7 @@ in
 
       home-manager.nixosModules.home-manager {
         home-manager = {
+          backupFileExtension = "hmbak";
           extraSpecialArgs = { inherit flake-settings firefox-gnome-theme; };
           useGlobalPkgs = true;
           useUserPackages = true;

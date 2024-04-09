@@ -181,6 +181,10 @@ in
       };
     }
 
+    (lib.mkIf config.desktops.kde.enable {
+      programs.firefox.profiles.default.extensions = [ pkgs.nur.repos.rycee.firefox-addons.plasma-integration ];
+    })
+
     (lib.mkIf config.desktops.gnome.enable {
       programs.firefox.profiles.default = {
         settings = {
