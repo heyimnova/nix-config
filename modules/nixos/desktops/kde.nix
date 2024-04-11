@@ -65,7 +65,7 @@ lib.mkIf config.desktops.kde.enable {
 
           ${pkgs.greetd.tuigreet}/bin/tuigreet \
             --asterisks \
-            --cmd startplasma-wayland \
+            --cmd dbus-run-session\ startplasma-wayland \
             --remember \
             --time \
             --user-menu \

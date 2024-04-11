@@ -56,12 +56,17 @@
     };
   };
 
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
+  services = {
+    # Set default gnome session to x11
+    displayManager.defaultSession = lib.mkIf config.desktops.gnome.enable "gnome-xorg";
 
-    xkb = {
-      layout = "us";
-      variant = "";
+    xserver = {
+      videoDrivers = [ "nvidia" ];
+
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
   };
 

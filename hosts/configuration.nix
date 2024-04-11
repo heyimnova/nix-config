@@ -1,5 +1,5 @@
 # Default NixOS configuration
-{ pkgs, flake-settings, ... }:
+{ pkgs, nur, flake-settings, ... }:
 
 {
   console.font = "Lat2-Terminus16";
@@ -53,6 +53,9 @@
 
     # These environment variables are set on user login
     sessionVariables = rec {
+      # Used by nh
+      FLAKE = flake-settings.location;
+
       XDG_BIN_HOME = "$HOME/.local/bin";
       XDG_CACHE_HOME = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
@@ -85,6 +88,8 @@
       curl
       eza
       helix
+      nh
+      nix-output-monitor
       pciutils
       rsync
       sops
@@ -120,12 +125,19 @@
 
     settings = {
       auto-optimise-store = true;
+      substituters = [ "https://nix-gaming.cachix.org" ];
+      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
 
       experimental-features = [
         "flakes"
         "nix-command"
       ];
     };
+  };
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ nur.overlay ];
   };
 
   sops = {

@@ -1,28 +1,11 @@
-{ nixpkgs
-, nixpkgs-unstable
-, nur
-, arkenfox
-, firefox-gnome-theme
-, home-manager
-, home-manager-rolling
-, lanzaboote
-, nix-gaming
-, nix-index-database
-, nixvim
-, sops-nix
-, flake-settings
-}:
+{ inputs, flake-settings }:
 
 let
-  nixpkgsConfig.nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [ nur.overlay ];
-  };
+  # Unpack inputs needed in this file
+  inherit (inputs) arkenfox home-manager home-manager-rolling lanzaboote nix-gaming nix-index-database nixpkgs nixpkgs-unstable nixvim sops-nix;
 
-  nixConfig.nix.settings = {
-    substituters = [ "https://nix-gaming.cachix.org" ];
-    trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
-  };
+  # Inputs to be passed to further configs
+  config-inputs = with inputs; { inherit firefox-gnome-theme nur flake-settings; };
 
   modules = {
     home-manager = [
@@ -56,18 +39,15 @@ let
 in
 {
   nova-desktop = nixpkgs-unstable.lib.nixosSystem {
-    specialArgs = { inherit flake-settings; };
+    specialArgs = config-inputs;
 
     modules = ([
-      (nixpkgsConfig)
-      (nixConfig)
-
       ./nova-desktop/configuration.nix
 
       home-manager-rolling.nixosModules.home-manager {
         home-manager = {
           backupFileExtension = "hmbak";
-          extraSpecialArgs = { inherit flake-settings firefox-gnome-theme; };
+          extraSpecialArgs = config-inputs;
           useGlobalPkgs = true;
           useUserPackages = true;
           users.${flake-settings.user}.imports = ([ ./nova-desktop/home.nix ] ++ modules.home-manager);
@@ -77,17 +57,15 @@ in
   };
 
   nova-laptop = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit flake-settings; };
+    specialArgs = config-inputs;
 
     modules = ([
-      (nixpkgsConfig)
-
       ./nova-laptop/configuration.nix
 
       home-manager.nixosModules.home-manager {
         home-manager = {
           backupFileExtension = "hmbak";
-          extraSpecialArgs = { inherit flake-settings firefox-gnome-theme; };
+          extraSpecialArgs = config-inputs;
           useGlobalPkgs = true;
           useUserPackages = true;
           users.${flake-settings.user}.imports = ([ ./nova-laptop/home.nix ] ++ modules.home-manager);

@@ -29,6 +29,10 @@ lib.mkIf config.desktops.gnome.enable {
       autorun-never = true;
     };
 
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":close";
+    };
+
     "org/gnome/GWeather4" = {
       temperature-unit = "centigrade";
     };

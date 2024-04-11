@@ -31,6 +31,8 @@ in
         fish_greeting = "${pkgs.nitch}/bin/nitch";
         la = "${pkgs.eza}/bin/eza --icons --group-directories-first -la";
         ls = "${pkgs.eza}/bin/eza --icons --group-directories-first";
+        # Use nom in place of nix
+        nix = "${pkgs.nix-output-monitor}/bin/nom";
         # Recommendation from xdg-ninja
         wget = "${pkgs.wget}/bin/wget --hsts-file='$XDG_DATA_HOME/wget-hsts'";
       };

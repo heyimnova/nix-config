@@ -61,15 +61,11 @@
   in
   {
     homeConfigurations = (
-      with inputs; import ./home-manager {
-        inherit nixpkgs-unstable home-manager-rolling nix-index-database nixvim flake-settings;
-      }
+      import ./home-manager { inherit inputs flake-settings; }
     );
 
     nixosConfigurations = (
-      with inputs; import ./hosts {
-        inherit nixpkgs nixpkgs-unstable nur arkenfox firefox-gnome-theme home-manager home-manager-rolling lanzaboote nix-gaming nix-index-database nixvim sops-nix flake-settings;
-      }
+      import ./hosts { inherit inputs flake-settings; }
     );
   };
 }
