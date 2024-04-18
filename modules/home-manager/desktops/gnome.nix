@@ -1,7 +1,13 @@
 # GNOME home-manager config
 { lib, config, pkgs, ... }:
 
+let
+  gtk-settings = {
+    extraConfig.gtk-application-prefer-dark-theme = 1;
+  };
+in
 lib.mkIf config.desktops.gnome.enable {
+  modules.alacritty.enable = true;
   services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
 
   dconf.settings = {
@@ -94,8 +100,8 @@ lib.mkIf config.desktops.gnome.enable {
 
   gtk = {
     enable = true;
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk3 = gtk-settings;
+    gtk4 = gtk-settings;
 
     cursorTheme = {
       name = "Vimix-white-cursors";
@@ -115,6 +121,35 @@ lib.mkIf config.desktops.gnome.enable {
 
   home = {
     sessionVariables.GTK_THEME = "adw-gtk3-dark";
+
+    # Create nix-colors colorscheme for blackbox
+    file.".local/share/blackbox/schemes/nix-colors.json".text = with config.colorScheme.colors; ''
+      {
+        "name": "nix-colors",
+        "comment": "Use nix-colors theme for blackbox",
+        "use-theme-colors": false,
+        "foreground-color": "#${base06}",
+        "background-color": "#${base00}",
+        "palette": [
+          "#${base01}",
+          "#${base08}",
+          "#${base0B}",
+          "#${base0A}",
+          "#${base0D}",
+          "#${base0E}",
+          "#${base0C}",
+          "#${base04}",
+          "#${base03}",
+          "#${base08}",
+          "#${base0B}",
+          "#${base0A}",
+          "#${base0D}",
+          "#${base0E}",
+          "#${base0C}",
+          "#${base06}"
+        ]
+      }
+    '';
 
     packages = (with pkgs; [
       gnome.dconf-editor

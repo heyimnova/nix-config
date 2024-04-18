@@ -16,6 +16,8 @@ in
   };
 
   config = lib.mkIf (cfg.gnome.enable || cfg.kde.enable) {
+    modules.spicetify.enable = true;
+
     home.packages = with pkgs; [
       birdtray
       bitwarden
@@ -26,9 +28,9 @@ in
       logseq
       mission-center
       mullvad-browser
+      pods
       protonmail-bridge
       qbittorrent
-      spotify
       thunderbird
       tor-browser-bundle-bin
     ];

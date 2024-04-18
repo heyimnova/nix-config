@@ -11,7 +11,6 @@
   desktops.gnome.enable = true;
   gaming.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
-  networking.hostName = "nova-desktop";
   sops.secrets."passwords/nova-desktop".neededForUsers = true;
   system.stateVersion = "22.11";
 
@@ -56,9 +55,21 @@
     };
   };
 
+  networking = {
+    # Allow access to the ollama port
+    firewall.allowedTCPPorts = [ 11434 ];
+    hostName = "nova-desktop";
+  };
+
   services = {
     # Set default gnome session to x11
     displayManager.defaultSession = lib.mkIf config.desktops.gnome.enable "gnome-xorg";
+
+    ollama = {
+      acceleration = "cuda";
+      enable = true;
+      listenAddress = "0.0.0.0:11434";
+    };
 
     xserver = {
       videoDrivers = [ "nvidia" ];

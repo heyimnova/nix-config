@@ -2,12 +2,14 @@
 { config
 , lib
 , pkgs
+, nix-colors
 , flake-settings
 , ...
 }:
 
 {
   shells.fish.enable = true;
+  colorScheme = lib.mkDefault nix-colors.colorSchemes.catppuccin-macchiato;
 
   home = {
     # Needed for standalone home-manager
@@ -38,10 +40,17 @@
       # Recommendation from xdg-ninja
       homedir = "${config.xdg.dataHome}/gnupg";
     };
+
+    zoxide = {
+      enable = true;
+      enableFishIntegration = config.shells.fish.enable;
+      enableNushellIntegration = config.shells.nushell.enable;
+    };
   };
 
   services.gpg-agent = {
     enable = true;
-    enableFishIntegration = true;
+    enableFishIntegration = config.shells.fish.enable;
+    enableNushellIntegration = config.shells.nushell.enable;
   };
 }

@@ -19,7 +19,6 @@ lib.mkIf config.desktops.kde.enable {
     ];
 
     systemPackages = with pkgs; [
-      alacritty
       # Needed for KDE Info Center
       clinfo
       glxinfo

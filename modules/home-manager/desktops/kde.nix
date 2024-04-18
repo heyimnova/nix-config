@@ -1,7 +1,9 @@
 # home-manager KDE config
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nix-colors, ... }:
 
 lib.mkIf config.desktops.kde.enable {
+  colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
+  modules.alacritty.enable = true;
   services.gpg-agent.pinentryPackage = pkgs.pinentry-qt;
 
   home = {

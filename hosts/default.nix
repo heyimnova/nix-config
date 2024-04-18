@@ -2,26 +2,27 @@
 
 let
   # Unpack inputs needed in this file
-  inherit (inputs) arkenfox home-manager home-manager-rolling lanzaboote nix-gaming nix-index-database nixpkgs nixpkgs-unstable nixvim sops-nix;
+  inherit (inputs) nixpkgs nixpkgs-unstable nix-colors nix-gaming spicetify-nix arkenfox home-manager home-manager-rolling lanzaboote nix-index-database nixvim sops-nix;
 
   # Inputs to be passed to further configs
-  config-inputs = with inputs; { inherit firefox-gnome-theme nur flake-settings; };
+  config-inputs = with inputs; { inherit nix-colors nur spicetify-nix firefox-gnome-theme flake-settings; };
 
   modules = {
     home-manager = [
+      ../modules/home-manager/alacritty.nix
       ../modules/home-manager/apps.nix
       ../modules/home-manager/firefox.nix
       ../modules/home-manager/gaming.nix
+      ../modules/home-manager/spicetify.nix
       ../modules/home-manager/virtualisation.nix
 
       ../modules/home-manager/desktops
       ../modules/home-manager/shells
 
-      ../modules/nixvim.nix
-
       arkenfox.hmModules.arkenfox
+      nix-colors.homeManagerModules.default
       nix-index-database.hmModules.nix-index
-      nixvim.homeManagerModules.nixvim
+      spicetify-nix.homeManagerModule
     ];
 
     nixos = [
@@ -29,10 +30,13 @@ let
       ../modules/nixos/syncthing.nix
       ../modules/nixos/virtualisation.nix
 
+      ../modules/nixvim.nix
+
       ../modules/nixos/desktops
 
       lanzaboote.nixosModules.lanzaboote
       nix-gaming.nixosModules.pipewireLowLatency
+      nixvim.nixosModules.nixvim
       sops-nix.nixosModules.sops
     ];
   };
