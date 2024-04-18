@@ -19,8 +19,6 @@ in
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
-      environment.systemPackages = [ pkgs.syncthingtray ];
-
       services.syncthing = {
         configDir = "/home/${flake-settings.user}/.config/syncthing";
         dataDir = "/home/${flake-settings.user}/.local/state/syncthing";
@@ -59,5 +57,11 @@ in
         services.syncthing.settings.folders."logseq".devices = [ "coral" ];
       })
     ]))
+
+    # Desktop specific
+
+    (lib.mkIf config.desktops.kde.enable {
+      environment.systemPackages = [ pkgs.syncthingtray-minimal ];
+    })
   ]);
 }

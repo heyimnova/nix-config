@@ -2,7 +2,7 @@
 { lib, config, pkgs, ... }:
 
 lib.mkIf config.desktops.gnome.enable {
-  services.gpg-agent.pinentryFlavor = "gnome3";
+  services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
 
   dconf.settings = {
     "io/github/seadve/Mousai" = {
@@ -27,6 +27,10 @@ lib.mkIf config.desktops.gnome.enable {
 
     "org/gnome/desktop/media-handling" = {
       autorun-never = true;
+    };
+
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":close";
     };
 
     "org/gnome/GWeather4" = {
@@ -59,6 +63,7 @@ lib.mkIf config.desktops.gnome.enable {
         "org.gnome.Nautilus.desktop"
         "com.raggesilver.BlackBox.desktop"
         "spotify.desktop"
+        "mullvad-browser.desktop"
         "firefox.desktop"
         "signal-desktop.desktop"
         "element-desktop.desktop"
@@ -67,7 +72,6 @@ lib.mkIf config.desktops.gnome.enable {
         "freetube.desktop"
         "fluent-reader.desktop"
         "onlyoffice-desktopeditors.desktop"
-        "codium.desktop"
         "steam.desktop"
         "com.heroicgameslauncher.hgl.desktop"
         "net.lutris.Lutris.desktop"
@@ -114,6 +118,7 @@ lib.mkIf config.desktops.gnome.enable {
 
     packages = (with pkgs; [
       gnome.dconf-editor
+      helvum
       mousai
       warp
     ]) ++ (with pkgs.gnomeExtensions; [
@@ -126,58 +131,21 @@ lib.mkIf config.desktops.gnome.enable {
       status-area-horizontal-spacing
       vitals
     ]);
+
+    pointerCursor = {
+      name = "Vimix-white-cursors";
+      package = pkgs.vimix-cursors;
+      x11.enable = true;
+    };
   };
 
-  # Needed for firefox-gnome-theme
-  programs.firefox.profiles = {
-    default = {
-      settings = {
-        # Disable private window dark theme
-        "browser.theme.dark-private-windows" = false;
-        # Set UI density to normal
-        "browser.uidensity" = 0;
-        # Hide single tab
-        "gnomeTheme.hideSingleTab" = true;
-        # Hide extensions button
-        "gnomeTheme.hideUnifiedExtensions" = true;
-        # Allow recoloring of icons
-        "svg.context-properties.content.enabled" = true;
-        # Enable customChrome.css
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      };
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
 
-      userChrome = ''
-        @import "firefox-gnome-theme/userChrome.css";
-      '';
-
-      userContent = ''
-        @import "firefox-gnome-theme/userContent.css";
-      '';
-    };
-
-    home = {
-      settings = {
-        # Disable private window dark theme
-        "browser.theme.dark-private-windows" = false;
-        # Set UI density to normal
-        "browser.uidensity" = 0;
-        # Hide single tab
-        "gnomeTheme.hideSingleTab" = true;
-        # Hide extensions button
-        "gnomeTheme.hideUnifiedExtensions" = true;
-        # Allow recoloring of icons
-        "svg.context-properties.content.enabled" = true;
-        # Enable customChrome.css
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      };
-
-      userChrome = ''
-        @import "firefox-gnome-theme/userChrome.css";
-      '';
-
-      userContent = ''
-        @import "firefox-gnome-theme/userContent.css";
-      '';
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt6;
     };
   };
 }

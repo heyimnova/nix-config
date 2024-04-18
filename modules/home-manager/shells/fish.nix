@@ -20,6 +20,9 @@ in
         set fish_cursor_insert line blink
         set fish_cursor_replace_one underscore blink
         set fish_cursor_visual block
+
+        # Bind k to atuin search in vi command mode
+        bind -M default k _atuin_search
       '';
 
       shellAliases = {
@@ -28,6 +31,8 @@ in
         fish_greeting = "${pkgs.nitch}/bin/nitch";
         la = "${pkgs.eza}/bin/eza --icons --group-directories-first -la";
         ls = "${pkgs.eza}/bin/eza --icons --group-directories-first";
+        # Use nom in place of nix
+        nix = "${pkgs.nix-output-monitor}/bin/nom";
         # Recommendation from xdg-ninja
         wget = "${pkgs.wget}/bin/wget --hsts-file='$XDG_DATA_HOME/wget-hsts'";
       };

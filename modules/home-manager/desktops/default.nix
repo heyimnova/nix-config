@@ -23,9 +23,9 @@ in
       clamtk
       cpu-x
       distrobox
-      helvum
       logseq
       mission-center
+      mullvad-browser
       protonmail-bridge
       qbittorrent
       spotify

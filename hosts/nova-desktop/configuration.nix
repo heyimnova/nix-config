@@ -52,16 +52,21 @@
 
     nvidia = {
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
 
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
+  services = {
+    # Set default gnome session to x11
+    displayManager.defaultSession = lib.mkIf config.desktops.gnome.enable "gnome-xorg";
 
-    xkb = {
-      layout = "us";
-      variant = "";
+    xserver = {
+      videoDrivers = [ "nvidia" ];
+
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
   };
 
@@ -85,7 +90,7 @@
   virtualisation = {
     enable = true;
     # Enable Nvidia GPU use within Podman containers
-    podman.enableNvidia = true;
+    containers.cdi.dynamic.nvidia.enable = true;
     # Don't enable waydroid on nova-desktop, it uses X11 at the moment
     waydroid.enable = lib.mkForce false;
   };

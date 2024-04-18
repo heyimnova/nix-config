@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    firefox-gnome-theme = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +34,11 @@
 
     nix-index-database = {
       url = "github:mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -51,15 +61,11 @@
   in
   {
     homeConfigurations = (
-      with inputs; import ./home-manager {
-        inherit nixpkgs-unstable home-manager-rolling nix-index-database flake-settings;
-      }
+      import ./home-manager { inherit inputs flake-settings; }
     );
 
     nixosConfigurations = (
-      with inputs; import ./hosts {
-        inherit nixpkgs nixpkgs-unstable nur arkenfox home-manager home-manager-rolling lanzaboote nix-gaming nix-index-database sops-nix flake-settings;
-      }
+      import ./hosts { inherit inputs flake-settings; }
     );
   };
 }
