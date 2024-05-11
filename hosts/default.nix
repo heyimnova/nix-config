@@ -2,10 +2,10 @@
 
 let
   # Unpack inputs needed in this file
-  inherit (inputs) nixpkgs nixpkgs-unstable nix-colors nix-gaming spicetify-nix arkenfox home-manager home-manager-rolling lanzaboote nix-index-database nixvim sops-nix;
+  inherit (inputs) nixpkgs nixpkgs-unstable nix-gaming spicetify-nix stylix arkenfox home-manager home-manager-rolling lanzaboote nix-index-database nixvim sops-nix;
 
   # Inputs to be passed to further configs
-  config-inputs = with inputs; { inherit nix-colors nur spicetify-nix firefox-gnome-theme flake-settings; };
+  config-inputs = with inputs; { inherit nur spicetify-nix easyeffects-presets firefox-gnome-theme flake-settings; };
 
   modules = {
     home-manager = [
@@ -20,7 +20,6 @@ let
       ../modules/home-manager/shells
 
       arkenfox.hmModules.arkenfox
-      nix-colors.homeManagerModules.default
       nix-index-database.hmModules.nix-index
       spicetify-nix.homeManagerModule
     ];
@@ -31,9 +30,11 @@ let
       ../modules/nixos/virtualisation.nix
 
       ../modules/nixvim.nix
+      ../modules/stylix.nix
 
       ../modules/nixos/desktops
 
+      stylix.nixosModules.stylix
       lanzaboote.nixosModules.lanzaboote
       nix-gaming.nixosModules.pipewireLowLatency
       nixvim.nixosModules.nixvim

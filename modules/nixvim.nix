@@ -1,5 +1,5 @@
 # Nixvim Neovim configuration
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.nixvim = {
@@ -40,11 +40,37 @@
         mode = "n";
         options.desc = "Clear search result highlighting";
       }
+
+      # Some keybinds I like from Helix
+      {
+        action = "$";
+        key = "gl";
+        options.desc = "Go to end of line";
+
+        mode = [
+          "n"
+          "v"
+        ];
+      }
+
+      {
+        action = "0";
+        key = "gh";
+        options.desc = "Go to beginning of line";
+
+        mode = [
+          "n"
+          "v"
+        ];
+      }
     ];
 
     opts = {
       # Sync Neovim clipboard with system clipboard
       clipboard = "unnamedplus";
+
+      # Don't fold code on buffer open
+      foldenable = false;
 
       # Highlight results on search
       hlsearch = true;
@@ -97,13 +123,10 @@
     };
 
     plugins = {
-      comment.enable = true;
       gitsigns.enable = true;
-      nix.enable = true;
-      treesitter.enable = true;
 
       # Autocompletions
-      cmp.enable = true;
+      # cmp.enable = true;
 
       # Notification window
       fidget.enable = true;
@@ -111,27 +134,35 @@
       # Status bar
       lightline.enable = true;
 
-      # Discord status
-      neocord.enable = true;
-
       # Keybind hints
       which-key.enable = true;
+
+      comment = {
+        enable = true;
+        # Toggle commenting line/selection with Ctrl c
+        settings = {
+          opleader.line = "<C-c>";
+          toggler.line = "<C-c>";
+        };
+      };
 
       lsp = {
         enable = true;
 
         servers = {
           nixd.enable = true;
-          # pylsp.enable = true;
+          pylsp.enable = true;
         };
       };
 
       # Filesystem tree buffer
-      nvim-tree = {
-        enable = true;
-        disableNetrw = true;
-        hijackCursor = true;
-      };
+      # nvim-tree = {
+      #   enable = true;
+      #   disableNetrw = true;
+      #   folding = true;
+      #   hijackCursor = true;
+      #   indent = true;
+      # };
 
       telescope = {
         enable = true;
@@ -140,6 +171,43 @@
           fzf-native.enable = true;
           ui-select.enable = true;
         };
+
+        keymaps = {
+          "<C-p>" = {
+            action = "git_files";
+            options.desc = "Telescope Git Files";
+          };
+
+          "<leader>ff" = {
+            action = "find_files";
+            options.desc = "Telescope Find Files";
+          };
+        };
+      };
+
+      treesitter = {
+        enable = true;
+        folding = true;
+        nixvimInjections = true;
+
+        grammarPackages = with pkgs.tree-sitter-grammars; [
+          tree-sitter-bash
+          tree-sitter-comment
+          tree-sitter-dockerfile
+          tree-sitter-fish
+          tree-sitter-javascript
+          tree-sitter-json
+          tree-sitter-lua
+          tree-sitter-markdown
+          tree-sitter-markdown-inline
+          tree-sitter-nix
+          tree-sitter-nu
+          tree-sitter-python
+          tree-sitter-regex
+          tree-sitter-sql
+          tree-sitter-toml
+          tree-sitter-yaml
+        ];
       };
     };
   };

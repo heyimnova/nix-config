@@ -41,12 +41,15 @@
   };
 
   hardware = {
-    openrazer.enable = true;
-
     opengl = {
       driSupport = true;
       driSupport32Bit = true;
       enable = true;
+    };
+
+    openrazer = {
+      enable = true;
+      users = [ flake-settings.user ];
     };
 
     nvidia = {
@@ -56,9 +59,12 @@
   };
 
   networking = {
-    # Allow access to the ollama port
-    firewall.allowedTCPPorts = [ 11434 ];
     hostName = "nova-desktop";
+    # Needed for AI applications
+    firewall.allowedTCPPorts = [
+      11434
+      11435
+    ];
   };
 
   services = {
@@ -93,7 +99,6 @@
     extraGroups = [
       "libvirtd"
       "networkmanager"
-      "openrazer"
       "wheel"
     ];
   };

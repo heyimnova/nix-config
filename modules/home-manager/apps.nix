@@ -25,10 +25,7 @@ in
         revolt-desktop
         session-desktop
         signal-desktop
-
-        (discord.override {
-          withVencord = true;
-        })
+        vesktop
       ];
     })
   ];

@@ -2,14 +2,12 @@
 { config
 , lib
 , pkgs
-, nix-colors
 , flake-settings
 , ...
 }:
 
 {
   shells.fish.enable = true;
-  colorScheme = lib.mkDefault nix-colors.colorSchemes.catppuccin-macchiato;
 
   home = {
     # Needed for standalone home-manager

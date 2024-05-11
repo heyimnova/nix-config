@@ -4,14 +4,19 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-colors.url = "github:misterio77/nix-colors";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nur.url = "github:nix-community/NUR";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
+    stylix.url = "github:danth/stylix";
 
     arkenfox = {
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    easyeffects-presets = {
+      url = "github:jackhack96/easyeffects-presets";
+      flake = false;
     };
 
     firefox-gnome-theme = {
