@@ -4,7 +4,7 @@
 lib.mkMerge [
   (lib.mkIf config.desktops.gnome.enable {
     stylix = {
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
       image = ../assets/wallpapers/anders-jilden.jpg;
       polarity = "dark";
 

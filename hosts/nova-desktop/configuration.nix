@@ -23,7 +23,7 @@
     kernelParams = [
       "boot.shell_on_fail"
       "loglevel=3"
-      "nvidia.drm.modeset=1"
+      "nvidia-drm.fbdev=1"
       "rd.udev.log_level=3"
       "splash"
       "udev.log_priority=3"
@@ -41,6 +41,9 @@
   };
 
   hardware = {
+    # Enable Nvidia GPU use within Podman containers
+    nvidia-container-toolkit.enable = true;
+
     opengl = {
       driSupport = true;
       driSupport32Bit = true;
@@ -74,7 +77,8 @@
     ollama = {
       acceleration = "cuda";
       enable = true;
-      listenAddress = "0.0.0.0:11434";
+      host = "0.0.0.0";
+      sandbox = true;
     };
 
     xserver = {
@@ -105,8 +109,6 @@
 
   virtualisation = {
     enable = true;
-    # Enable Nvidia GPU use within Podman containers
-    containers.cdi.dynamic.nvidia.enable = true;
     # Don't enable waydroid on nova-desktop, it uses X11 at the moment
     waydroid.enable = lib.mkForce false;
   };

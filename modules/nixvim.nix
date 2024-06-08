@@ -1,5 +1,5 @@
 # Nixvim Neovim configuration
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.nixvim = {
@@ -16,16 +16,6 @@
     clipboard.providers = {
       wl-copy.enable = true;
       xclip.enable = true;
-    };
-
-    colorschemes = {
-      # Set gruvbox on kde plasma
-      gruvbox.enable = if config.desktops.kde.enable then true else false;
-
-      catppuccin = {
-        enable = if config.desktops.kde.enable then false else true;
-        settings.flavour = "macchiato";
-      };
     };
 
     globals = {

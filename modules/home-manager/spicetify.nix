@@ -10,8 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.spicetify = {
       enable = true;
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "macchiato";
+      theme = spicePkgs.themes.Comfy;
 
       enabledExtensions = with spicePkgs.extensions; [
         playlistIntersection
