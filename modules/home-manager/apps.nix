@@ -13,6 +13,7 @@ in
     (lib.mkIf cfg.productivity {
       home.packages = with pkgs; [
         gimp
+        gitnuro
         onlyoffice-bin
       ];
     })

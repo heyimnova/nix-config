@@ -5,6 +5,7 @@ lib.mkMerge [
   (lib.mkIf config.desktops.gnome.enable {
     stylix = {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+      enable = true;
       image = ../assets/wallpapers/anders-jilden.jpg;
       polarity = "dark";
 
@@ -43,6 +44,7 @@ lib.mkMerge [
   (lib.mkIf config.desktops.kde.enable {
     stylix = {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-pale.yaml";
+      enable = true;
       image = ../assets/wallpapers/forest-mountain-cloudy-valley.png;
       polarity = "dark";
 
