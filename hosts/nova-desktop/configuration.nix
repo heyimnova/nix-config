@@ -11,7 +11,6 @@
   desktops.gnome.enable = true;
   gaming.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
-  networking.hostName = "nova-desktop";
   sops.secrets."passwords/nova-desktop".neededForUsers = true;
   system.stateVersion = "22.11";
 
@@ -24,7 +23,7 @@
     kernelParams = [
       "boot.shell_on_fail"
       "loglevel=3"
-      "nvidia.drm.modeset=1"
+      "nvidia-drm.fbdev=1"
       "rd.udev.log_level=3"
       "splash"
       "udev.log_priority=3"
@@ -42,12 +41,18 @@
   };
 
   hardware = {
-    openrazer.enable = true;
+    # Enable Nvidia GPU use within Podman containers
+    nvidia-container-toolkit.enable = true;
 
     opengl = {
       driSupport = true;
       driSupport32Bit = true;
       enable = true;
+    };
+
+    openrazer = {
+      enable = true;
+      users = [ flake-settings.user ];
     };
 
     nvidia = {
@@ -56,9 +61,25 @@
     };
   };
 
+  networking = {
+    hostName = "nova-desktop";
+    # Needed for AI applications
+    firewall.allowedTCPPorts = [
+      11434
+      11435
+    ];
+  };
+
   services = {
     # Set default gnome session to x11
     displayManager.defaultSession = lib.mkIf config.desktops.gnome.enable "gnome-xorg";
+
+    ollama = {
+      acceleration = "cuda";
+      enable = true;
+      host = "0.0.0.0";
+      sandbox = true;
+    };
 
     xserver = {
       videoDrivers = [ "nvidia" ];
@@ -82,15 +103,12 @@
     extraGroups = [
       "libvirtd"
       "networkmanager"
-      "openrazer"
       "wheel"
     ];
   };
 
   virtualisation = {
     enable = true;
-    # Enable Nvidia GPU use within Podman containers
-    containers.cdi.dynamic.nvidia.enable = true;
     # Don't enable waydroid on nova-desktop, it uses X11 at the moment
     waydroid.enable = lib.mkForce false;
   };

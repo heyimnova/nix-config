@@ -13,6 +13,7 @@ in
     (lib.mkIf cfg.productivity {
       home.packages = with pkgs; [
         gimp
+        gitnuro
         onlyoffice-bin
       ];
     })
@@ -25,10 +26,7 @@ in
         revolt-desktop
         session-desktop
         signal-desktop
-
-        (discord.override {
-          withVencord = true;
-        })
+        vesktop
       ];
     })
   ];

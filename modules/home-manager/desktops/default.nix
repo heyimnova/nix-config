@@ -1,5 +1,5 @@
 # Default home-manager desktop config
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, easyeffects-presets, flake-settings, ... }:
 
 let
   cfg = config.desktops;
@@ -16,21 +16,45 @@ in
   };
 
   config = lib.mkIf (cfg.gnome.enable || cfg.kde.enable) {
-    home.packages = with pkgs; [
-      birdtray
-      bitwarden
-      bleachbit
-      clamtk
-      cpu-x
-      distrobox
-      logseq
-      mission-center
-      mullvad-browser
-      protonmail-bridge
-      qbittorrent
-      spotify
-      thunderbird
-      tor-browser-bundle-bin
-    ];
+    modules.spicetify.enable = true;
+
+    home = {
+      file = {
+        ".config/easyeffects/irs" = {
+          source = "${easyeffects-presets}/irs";
+          recursive = true;
+        };
+
+        ".config/easyeffects/output" = {
+          source = easyeffects-presets;
+          recursive = true;
+
+          # Remove extra files present in the repo
+          onChange = ''
+            find $HOME/.config/easyeffects/output/irs -type l -delete
+            rmdir $HOME/.config/easyeffects/output/irs
+            find $HOME/.config/easyeffects/output -type l -not -name "*.json" -delete
+          '';
+        };
+      };
+
+      packages = with pkgs; [
+        birdtray
+        bitwarden
+        bleachbit
+        clamtk
+        cpu-x
+        distrobox
+        easyeffects
+        logseq
+        mission-center
+        mullvad-browser
+        pods
+        protonmail-bridge
+        qbittorrent
+        thunderbird
+        tor-browser-bundle-bin
+      ];
+    };
   };
 }

@@ -1,7 +1,13 @@
 # GNOME home-manager config
 { lib, config, pkgs, ... }:
 
+let
+  gtk-settings = {
+    extraConfig.gtk-application-prefer-dark-theme = 1;
+  };
+in
 lib.mkIf config.desktops.gnome.enable {
+  modules.alacritty.enable = true;
   services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
 
   dconf.settings = {
@@ -18,11 +24,8 @@ lib.mkIf config.desktops.gnome.enable {
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
       clock-show-weekday = true;
-      color-scheme = "prefer-dark";
-      document-font-name = "Liberation Sans 11";
       # Disable middle-click paste (it is very annoying)
       gtk-enable-primary-paste = false;
-      monospace-font-name = "Monofur Nerd Font Mono 16";
     };
 
     "org/gnome/desktop/media-handling" = {
@@ -57,6 +60,7 @@ lib.mkIf config.desktops.gnome.enable {
         "gsconnect@andyholmes.github.io"
         "Vitals@CoreCoding.com"
         "AlphabeticalAppGrid@stuarthayhurst"
+        "eepresetselector@ulville.github.io"
       ];
 
       favorite-apps = [
@@ -68,7 +72,7 @@ lib.mkIf config.desktops.gnome.enable {
         "signal-desktop.desktop"
         "element-desktop.desktop"
         "revolt-desktop.desktop"
-        "discord.desktop"
+        "vesktop.desktop"
         "freetube.desktop"
         "fluent-reader.desktop"
         "onlyoffice-desktopeditors.desktop"
@@ -94,27 +98,46 @@ lib.mkIf config.desktops.gnome.enable {
 
   gtk = {
     enable = true;
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
-
-    cursorTheme = {
-      name = "Vimix-white-cursors";
-      package = pkgs.vimix-cursors;
-    };
+    gtk3 = gtk-settings;
+    gtk4 = gtk-settings;
 
     iconTheme = {
       name = "Colloid";
       package = pkgs.colloid-icon-theme;
     };
-
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-    };
   };
 
   home = {
     sessionVariables.GTK_THEME = "adw-gtk3-dark";
+
+    # Create stylix colorscheme for blackbox
+    file.".local/share/blackbox/schemes/stylix.json".text = with config.lib.stylix.colors.withHashtag; ''
+      {
+        "name": "stylix",
+        "comment": "Use stylix theme for blackbox",
+        "use-theme-colors": false,
+        "foreground-color": "${base06}",
+        "background-color": "${base00}",
+        "palette": [
+          "${base01}",
+          "${base08}",
+          "${base0B}",
+          "${base0A}",
+          "${base0D}",
+          "${base0E}",
+          "${base0C}",
+          "${base04}",
+          "${base03}",
+          "${base08}",
+          "${base0B}",
+          "${base0A}",
+          "${base0D}",
+          "${base0E}",
+          "${base0C}",
+          "${base06}"
+        ]
+      }
+    '';
 
     packages = (with pkgs; [
       gnome.dconf-editor
@@ -127,25 +150,20 @@ lib.mkIf config.desktops.gnome.enable {
       blur-my-shell
       caffeine
       clipboard-indicator
+      easyeffects-preset-selector
       grand-theft-focus
       status-area-horizontal-spacing
       vitals
     ]);
-
-    pointerCursor = {
-      name = "Vimix-white-cursors";
-      package = pkgs.vimix-cursors;
-      x11.enable = true;
-    };
   };
 
   qt = {
     enable = true;
-    platformTheme = "gnome";
-
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt6;
-    };
+    # platformTheme = "gnome";
+    #
+    # style = {
+    #   name = "adwaita-dark";
+    #   package = pkgs.adwaita-qt6;
+    # };
   };
 }

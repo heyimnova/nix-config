@@ -34,7 +34,7 @@ lib.mkIf config.desktops.gnome.enable {
 
       (writeShellScriptBin "xdg-terminal-exec" ''
         # Use blackbox for gtk-launch
-        exec ${pkgs.blackbox-terminal}/bin/blackbox -c "$*"
+        exec ${blackbox-terminal}/bin/blackbox -c "$*"
       '')
     ];
   };

@@ -38,10 +38,17 @@
       # Recommendation from xdg-ninja
       homedir = "${config.xdg.dataHome}/gnupg";
     };
+
+    zoxide = {
+      enable = true;
+      enableFishIntegration = config.shells.fish.enable;
+      enableNushellIntegration = config.shells.nushell.enable;
+    };
   };
 
   services.gpg-agent = {
     enable = true;
-    enableFishIntegration = true;
+    enableFishIntegration = config.shells.fish.enable;
+    enableNushellIntegration = config.shells.nushell.enable;
   };
 }
