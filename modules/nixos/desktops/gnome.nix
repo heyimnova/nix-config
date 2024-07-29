@@ -7,30 +7,30 @@ lib.mkIf config.desktops.gnome.enable {
 
     gnome.excludePackages = (with pkgs; [
       baobab
+      epiphany
+      geary
       gnome-connections
       gnome-console
       gnome-photos
       gnome-tour
       orca
+      totem
+      yelp
+      yelp-xsl
     ]) ++ (with pkgs.gnome; [
       atomix
-      epiphany
-      geary
       gnome-clocks
       gnome-contacts
       gnome-music
       gnome-software
       hitori
       tali
-      totem
-      yelp
-      yelp-xsl
     ]);
 
     systemPackages = with pkgs; [
       blackbox-terminal
       clapper
-      gnome.gnome-tweaks
+      gnome-tweaks
 
       (writeShellScriptBin "xdg-terminal-exec" ''
         # Use blackbox for gtk-launch

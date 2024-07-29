@@ -45,7 +45,6 @@
     nvidia-container-toolkit.enable = true;
 
     opengl = {
-      driSupport = true;
       driSupport32Bit = true;
       enable = true;
     };
@@ -65,7 +64,6 @@
     hostName = "nova-desktop";
     # Needed for AI applications
     firewall.allowedTCPPorts = [
-      11434
       11435
     ];
   };
@@ -78,7 +76,13 @@
       acceleration = "cuda";
       enable = true;
       host = "0.0.0.0";
-      sandbox = true;
+      openFirewall = true;
+
+      loadModels = [
+        "gemma2"
+        "codegemma"
+        "llava"
+      ];
     };
 
     xserver = {

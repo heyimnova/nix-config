@@ -140,7 +140,7 @@ lib.mkIf config.desktops.gnome.enable {
     '';
 
     packages = (with pkgs; [
-      gnome.dconf-editor
+      dconf-editor
       helvum
       mousai
       warp

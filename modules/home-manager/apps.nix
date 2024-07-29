@@ -14,6 +14,7 @@ in
       home.packages = with pkgs; [
         gimp
         gitnuro
+        godot_4
         onlyoffice-bin
       ];
     })
