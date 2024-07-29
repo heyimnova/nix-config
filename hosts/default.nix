@@ -21,7 +21,7 @@ let
 
       arkenfox.hmModules.arkenfox
       nix-index-database.hmModules.nix-index
-      spicetify-nix.homeManagerModule
+      spicetify-nix.homeManagerModules.default
     ];
 
     nixos = [

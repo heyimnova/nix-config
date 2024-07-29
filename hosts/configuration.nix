@@ -137,6 +137,7 @@
 
   nixpkgs = {
     config.allowUnfree = true;
+    config.permittedInsecurePackages = [ "electron-27.3.11" ];
     overlays = [ nur.overlay ];
   };
 
