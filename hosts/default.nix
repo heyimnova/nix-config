@@ -5,7 +5,7 @@ let
   inherit (inputs) nixpkgs nixpkgs-unstable nix-gaming spicetify-nix stylix arkenfox home-manager home-manager-rolling lanzaboote nix-index-database nixvim sops-nix;
 
   # Inputs to be passed to further configs
-  config-inputs = with inputs; { inherit nur spicetify-nix easyeffects-presets firefox-gnome-theme flake-settings; };
+  config-inputs = with inputs; { inherit nur spicetify-nix easyeffects-presets easypulse firefox-gnome-theme flake-settings; };
 
   modules = {
     home-manager = [

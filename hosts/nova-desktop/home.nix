@@ -19,8 +19,6 @@
     packages = with pkgs; [
       polychromatic
       sbctl
-
-      (libsForQt5.callPackage ../../packages/discord-screenaudio { })
     ];
 
     stateVersion = lib.mkForce "22.11";

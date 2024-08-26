@@ -1,5 +1,5 @@
 # Default home-manager desktop config
-{ lib, config, pkgs, easyeffects-presets,  ... }:
+{ lib, config, pkgs, easyeffects-presets, easypulse, ... }:
 
 let
   cfg = config.desktops;
@@ -26,13 +26,20 @@ in
         };
 
         ".config/easyeffects/output" = {
-          source = easyeffects-presets;
           recursive = true;
 
-          # Remove extra files present in the repo
+          source = pkgs.symlinkJoin {
+            name = "easyeffects-output";
+
+            paths = [
+              "${easyeffects-presets}"
+              "${easypulse}/output"
+            ];
+          };
+
+          # Remove extra files present in the easyeffects-presets repo
           onChange = ''
-            find $HOME/.config/easyeffects/output/irs -type l -delete
-            rmdir $HOME/.config/easyeffects/output/irs
+            find $HOME/.config/easyeffects/output/irs -delete
             find $HOME/.config/easyeffects/output -type l -not -name "*.json" -delete
           '';
         };

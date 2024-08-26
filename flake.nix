@@ -18,6 +18,11 @@
       flake = false;
     };
 
+    easypulse = {
+      url = "github:p-chan5/easypulse";
+      flake = false;
+    };
+
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
