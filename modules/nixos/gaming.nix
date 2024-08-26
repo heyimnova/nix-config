@@ -1,5 +1,5 @@
 # NixOS gaming config
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 
 let
   cfg = config.gaming;

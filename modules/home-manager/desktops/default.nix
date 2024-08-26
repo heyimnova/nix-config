@@ -1,5 +1,5 @@
 # Default home-manager desktop config
-{ lib, config, pkgs, easyeffects-presets, flake-settings, ... }:
+{ lib, config, pkgs, easyeffects-presets,  ... }:
 
 let
   cfg = config.desktops;
@@ -42,15 +42,14 @@ in
         birdtray
         bitwarden
         bleachbit
-        clamtk
-        cpu-x
+        # clamtk
         distrobox
         easyeffects
         logseq
         mission-center
         mullvad-browser
         pods
-        protonmail-bridge
+        protonmail-bridge-gui
         qbittorrent
         thunderbird
         tor-browser-bundle-bin

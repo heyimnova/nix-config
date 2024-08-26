@@ -44,19 +44,19 @@
     # Enable Nvidia GPU use within Podman containers
     nvidia-container-toolkit.enable = true;
 
-    opengl = {
-      driSupport32Bit = true;
+    graphics = {
       enable = true;
-    };
-
-    openrazer = {
-      enable = true;
-      users = [ flake-settings.user ];
+      enable32Bit = true;
     };
 
     nvidia = {
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
+    };
+
+    openrazer = {
+      enable = true;
+      users = [ flake-settings.user ];
     };
   };
 
@@ -77,12 +77,6 @@
       enable = true;
       host = "0.0.0.0";
       openFirewall = true;
-
-      loadModels = [
-        "gemma2"
-        "codegemma"
-        "llava"
-      ];
     };
 
     xserver = {
