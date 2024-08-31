@@ -5,27 +5,21 @@ lib.mkIf config.desktops.gnome.enable {
   environment = {
     variables.TERMINAL = "${pkgs.blackbox-terminal}/bin/blackbox";
 
-    gnome.excludePackages = (with pkgs; [
+    gnome.excludePackages = with pkgs; [
       baobab
       epiphany
       geary
+      gnome-clocks
       gnome-connections
       gnome-console
+      gnome-contacts
+      gnome-music
       gnome-photos
       gnome-tour
       orca
       totem
       yelp
-      yelp-xsl
-    ]) ++ (with pkgs.gnome; [
-      atomix
-      gnome-clocks
-      gnome-contacts
-      gnome-music
-      gnome-software
-      hitori
-      tali
-    ]);
+    ];
 
     systemPackages = with pkgs; [
       blackbox-terminal

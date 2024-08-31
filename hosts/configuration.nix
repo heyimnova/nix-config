@@ -87,8 +87,8 @@
       bat
       curl
       eza
-      helix
       nh
+      neovim
       nix-output-monitor
       pciutils
       rsync

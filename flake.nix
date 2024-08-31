@@ -18,8 +18,8 @@
       flake = false;
     };
 
-    easypulse = {
-      url = "github:p-chan5/easypulse";
+    easyeffects-presets-loudness-equalizer = {
+      url = "github:digitalone1/easyeffects-presets";
       flake = false;
     };
 

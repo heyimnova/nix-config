@@ -12,7 +12,11 @@ in
 
     programs = {
       gamemode.enable = true;
-      steam.enable = true;
+
+      steam = {
+        enable = true;
+        extest.enable = true;
+      };
     };
   };
 }

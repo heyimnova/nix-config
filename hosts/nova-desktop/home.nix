@@ -23,4 +23,10 @@
 
     stateVersion = lib.mkForce "22.11";
   };
+
+  modules.easyeffects = {
+    enable = true;
+    presets.enable = true;
+    presets-loudness-equalizer.enable = true;
+  };
 }
