@@ -16,4 +16,9 @@
     packages = [ pkgs.watchmate ];
     stateVersion = lib.mkForce "23.05";
   };
+
+  modules.easyeffects = {
+    enable = true;
+    presets.enable = true;
+  };
 }

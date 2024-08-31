@@ -5,32 +5,26 @@ lib.mkIf config.desktops.gnome.enable {
   environment = {
     variables.TERMINAL = "${pkgs.blackbox-terminal}/bin/blackbox";
 
-    gnome.excludePackages = (with pkgs; [
+    gnome.excludePackages = with pkgs; [
       baobab
-      gnome-connections
-      gnome-console
-      gnome-photos
-      gnome-tour
-      orca
-    ]) ++ (with pkgs.gnome; [
-      atomix
       epiphany
       geary
       gnome-clocks
+      gnome-connections
+      gnome-console
       gnome-contacts
       gnome-music
-      gnome-software
-      hitori
-      tali
+      gnome-photos
+      gnome-tour
+      orca
       totem
       yelp
-      yelp-xsl
-    ]);
+    ];
 
     systemPackages = with pkgs; [
       blackbox-terminal
       clapper
-      gnome.gnome-tweaks
+      gnome-tweaks
 
       (writeShellScriptBin "xdg-terminal-exec" ''
         # Use blackbox for gtk-launch

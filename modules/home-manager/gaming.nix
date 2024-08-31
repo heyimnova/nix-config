@@ -9,6 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      bottles
       gamescope
       heroic
       prismlauncher

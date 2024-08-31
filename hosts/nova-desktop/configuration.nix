@@ -1,5 +1,5 @@
 # NixOS config for nova-desktop
-{ lib, config, pkgs, flake-settings, ... }:
+{ config, pkgs, flake-settings, ... }:
 
 {
   imports = [
@@ -13,6 +13,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   sops.secrets."passwords/nova-desktop".neededForUsers = true;
   system.stateVersion = "22.11";
+  virtualisation.enable = true;
 
   boot = {
     # Set virtual memory max map count to MAX_INT - 5, fixes some bugs with games under Proton
@@ -44,20 +45,20 @@
     # Enable Nvidia GPU use within Podman containers
     nvidia-container-toolkit.enable = true;
 
-    opengl = {
-      driSupport = true;
-      driSupport32Bit = true;
+    graphics = {
       enable = true;
+      enable32Bit = true;
+    };
+
+    nvidia = {
+      open = true;
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
 
     openrazer = {
       enable = true;
       users = [ flake-settings.user ];
-    };
-
-    nvidia = {
-      modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
 
@@ -65,20 +66,16 @@
     hostName = "nova-desktop";
     # Needed for AI applications
     firewall.allowedTCPPorts = [
-      11434
       11435
     ];
   };
 
   services = {
-    # Set default gnome session to x11
-    displayManager.defaultSession = lib.mkIf config.desktops.gnome.enable "gnome-xorg";
-
     ollama = {
       acceleration = "cuda";
       enable = true;
       host = "0.0.0.0";
-      sandbox = true;
+      openFirewall = true;
     };
 
     xserver = {
@@ -105,11 +102,5 @@
       "networkmanager"
       "wheel"
     ];
-  };
-
-  virtualisation = {
-    enable = true;
-    # Don't enable waydroid on nova-desktop, it uses X11 at the moment
-    waydroid.enable = lib.mkForce false;
   };
 }

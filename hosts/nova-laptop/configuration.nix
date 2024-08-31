@@ -33,9 +33,9 @@
     };
   };
 
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "gb";
-    xkbVariant = "";
+    variant = "";
   };
 
   users.users.${flake-settings.user} = {

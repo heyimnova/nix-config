@@ -19,10 +19,14 @@
     packages = with pkgs; [
       polychromatic
       sbctl
-
-      (libsForQt5.callPackage ../../packages/discord-screenaudio { })
     ];
 
     stateVersion = lib.mkForce "22.11";
+  };
+
+  modules.easyeffects = {
+    enable = true;
+    presets.enable = true;
+    presets-loudness-equalizer.enable = true;
   };
 }

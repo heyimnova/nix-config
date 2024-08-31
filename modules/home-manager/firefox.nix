@@ -77,7 +77,9 @@ in
               multi-account-containers
               simplelogin
               skip-redirect
+              snowflake
               ublock-origin
+              user-agent-string-switcher
             ];
 
             search = {

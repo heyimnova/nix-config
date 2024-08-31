@@ -1,5 +1,5 @@
 # NixOS gaming config
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 
 let
   cfg = config.gaming;
@@ -12,7 +12,11 @@ in
 
     programs = {
       gamemode.enable = true;
-      steam.enable = true;
+
+      steam = {
+        enable = true;
+        extest.enable = true;
+      };
     };
   };
 }

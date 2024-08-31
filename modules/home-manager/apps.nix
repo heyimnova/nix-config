@@ -14,17 +14,16 @@ in
       home.packages = with pkgs; [
         gimp
         gitnuro
+        godot_4
         onlyoffice-bin
       ];
     })
 
     (lib.mkIf cfg.social {
       home.packages = with pkgs; [
-        element-desktop
         fluent-reader
         freetube
         revolt-desktop
-        session-desktop
         signal-desktop
         vesktop
       ];

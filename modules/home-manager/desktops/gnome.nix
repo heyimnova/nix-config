@@ -60,7 +60,6 @@ lib.mkIf config.desktops.gnome.enable {
         "gsconnect@andyholmes.github.io"
         "Vitals@CoreCoding.com"
         "AlphabeticalAppGrid@stuarthayhurst"
-        "eepresetselector@ulville.github.io"
       ];
 
       favorite-apps = [
@@ -70,11 +69,11 @@ lib.mkIf config.desktops.gnome.enable {
         "mullvad-browser.desktop"
         "firefox.desktop"
         "signal-desktop.desktop"
-        "element-desktop.desktop"
-        "revolt-desktop.desktop"
         "vesktop.desktop"
+        "revolt-desktop.desktop"
         "freetube.desktop"
         "fluent-reader.desktop"
+        "thunderbird.desktop"
         "onlyoffice-desktopeditors.desktop"
         "steam.desktop"
         "com.heroicgameslauncher.hgl.desktop"
@@ -140,7 +139,7 @@ lib.mkIf config.desktops.gnome.enable {
     '';
 
     packages = (with pkgs; [
-      gnome.dconf-editor
+      dconf-editor
       helvum
       mousai
       warp
@@ -150,7 +149,6 @@ lib.mkIf config.desktops.gnome.enable {
       blur-my-shell
       caffeine
       clipboard-indicator
-      easyeffects-preset-selector
       grand-theft-focus
       status-area-horizontal-spacing
       vitals
