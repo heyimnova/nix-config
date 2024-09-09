@@ -16,12 +16,16 @@ in
   };
 
   config = lib.mkIf (cfg.gnome.enable || cfg.kde.enable) {
-    environment.systemPackages = [ pkgs.podman-compose ];
     hardware.pulseaudio.enable = false;
     networking.networkmanager.enable = true;
     # Make pipewire realtime-capable
     security.rtkit.enable = true;
     system.fsPackages = [ pkgs.bindfs ];
+
+    environment = {
+      variables.TERMINAL = "${pkgs.alacritty}/bin/alacritty";
+      systemPackages = [ pkgs.podman-compose ];
+    };
 
     # Fixes missing themes and icons in Flatpaks
     fileSystems = let

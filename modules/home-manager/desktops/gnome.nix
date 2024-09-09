@@ -60,11 +60,12 @@ lib.mkIf config.desktops.gnome.enable {
         "gsconnect@andyholmes.github.io"
         "Vitals@CoreCoding.com"
         "AlphabeticalAppGrid@stuarthayhurst"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
 
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
-        "com.raggesilver.BlackBox.desktop"
+        "Alacritty.desktop"
         "spotify.desktop"
         "mullvad-browser.desktop"
         "firefox.desktop"

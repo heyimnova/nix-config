@@ -14,7 +14,7 @@ in
 
         arkenfox = {
           enable = true;
-          version = "126.1";
+          version = "128.0";
         };
 
         profiles = {
@@ -76,7 +76,6 @@ in
               mullvad
               multi-account-containers
               simplelogin
-              skip-redirect
               snowflake
               ublock-origin
               user-agent-string-switcher

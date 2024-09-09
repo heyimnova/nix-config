@@ -4,6 +4,7 @@
 {
   programs.nixvim = {
     enable = true;
+    enableMan = false; # Fixes a build error
     viAlias = true;
     vimAlias = true;
 
@@ -31,7 +32,7 @@
         options.desc = "Clear search result highlighting";
       }
 
-      # Some keybinds I like from Helix
+      # Two keybinds I like from Helix
       {
         action = "$";
         key = "gl";
@@ -53,11 +54,38 @@
           "v"
         ];
       }
+
+      {
+        action = "<cmd>NvimTreeToggle<CR>";
+        key = "<C-n>";
+        mode = "n";
+        options.desc = "Open file tree";
+      }
+
+      {
+        action = " ";
+        key = " ";
+        mode = "t";
+
+        options = {
+          desc = "Clear space keymap in terminal mode";
+          nowait = true;
+          silent = true;
+        };
+      }
     ];
 
     opts = {
       # Sync Neovim clipboard with system clipboard
       clipboard = "unnamedplus";
+
+      # Options for code suggestions
+      completeopt = [
+        "menuone" # Show popup when there is only one selection
+        "noinsert" # Only insert text when selection is confirmed
+        "noselect" # Force a selection from the suggestions
+        "preview"
+      ];
 
       # Don't fold code on buffer open
       foldenable = false;
@@ -113,19 +141,97 @@
     };
 
     plugins = {
-      gitsigns.enable = true;
-
-      # Autocompletions
-      # cmp.enable = true;
+      # Tabs for open buffers
+      bufferline.enable = true;
 
       # Notification window
       fidget.enable = true;
 
+      # Show git changes
+      gitsigns.enable = true;
+
       # Status bar
-      lightline.enable = true;
+      lualine.enable = true;
+
+      # Snippets
+      luasnip.enable = true;
+      friendly-snippets.enable = true;
+
+      # Automatically close parentheses
+      nvim-autopairs.enable = true;
 
       # Keybind hints
       which-key.enable = true;
+
+      # Autocompletions
+      cmp = {
+        enable = true;
+
+        settings = {
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-e>" = "cmp.mapping.close()";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' })";
+          };
+
+          sources = [
+            { name = "async_path"; }
+            { name = "nvim_lsp_signature_help"; }
+
+            {
+              name = "buffer";
+              keyword_length = 2;
+            }
+
+            {
+              name = "luasnip";
+              keyword_length = 2;
+            }
+
+            {
+              name = "nvim_lsp";
+              keyword_length = 3;
+            }
+          ];
+
+          window = {
+            completion.scrolloff = 1;
+
+            # Give the suggestion windows borders
+            __raw = ''{
+              completion = cmp.config.window.bordered(),
+              documentation = cmp.config.window.bordered()
+            }'';
+          };
+
+          # Set a menu icon to show the suggestion source
+          formatting.format = ''
+            function(entry, item)
+              local menu_icon = {
+                nvim_lsp = 'λ',
+                luasnip = '✂',
+                buffer = 'b',
+                path = 'p'
+              }
+
+              item.menu = menu_icon[entry.source.name]
+
+              return item
+            end
+          '';
+
+          # Define the snippet expansion function
+          snippet.expand = ''
+            function(args)
+              require('luasnip').lsp_expand(args.body)
+            end
+          '';
+        };
+      };
 
       comment = {
         enable = true;
@@ -133,6 +239,16 @@
         settings = {
           opleader.line = "<C-c>";
           toggler.line = "<C-c>";
+        };
+      };
+
+      # Floating terminal buffer
+      floaterm = {
+        enable = true;
+
+        keymaps = {
+          new = "<leader>t";
+          toggle = "<C-t>";
         };
       };
 
@@ -146,14 +262,14 @@
       };
 
       # Filesystem tree buffer
-      # nvim-tree = {
-      #   enable = true;
-      #   disableNetrw = true;
-      #   folding = true;
-      #   hijackCursor = true;
-      #   indent = true;
-      # };
+      nvim-tree = {
+        enable = true;
+        disableNetrw = true;
+        hijackCursor = true;
+        openOnSetup = true;
+      };
 
+      # Finder
       telescope = {
         enable = true;
 
@@ -163,9 +279,9 @@
         };
 
         keymaps = {
-          "<C-p>" = {
-            action = "git_files";
-            options.desc = "Telescope Git Files";
+          "<leader>fg" = {
+            action = "live_grep";
+            options.desc = "Telescope Live Grep";
           };
 
           "<leader>ff" = {
@@ -175,6 +291,7 @@
         };
       };
 
+      # Highlighting
       treesitter = {
         enable = true;
         folding = true;

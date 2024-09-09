@@ -1,5 +1,5 @@
 # NixOS config for nova-desktop
-{ config, pkgs, flake-settings, ... }:
+{ lib, config, pkgs, flake-settings, ... }:
 
 {
   imports = [
@@ -71,6 +71,9 @@
   };
 
   services = {
+    # Set default gnome session to wayland
+    displayManager.defaultSession = lib.mkIf config.desktops.gnome.enable "gnome";
+
     ollama = {
       acceleration = "cuda";
       enable = true;

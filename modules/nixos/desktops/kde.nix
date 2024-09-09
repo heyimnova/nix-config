@@ -9,7 +9,6 @@ lib.mkIf config.desktops.kde.enable {
   security.pam.services.sddm.enableGnomeKeyring = true;
 
   environment = {
-    variables.TERMINAL = "${pkgs.alacritty}/bin/alacritty";
     sessionVariables.NIXOS_OZONE_WL = "1";
 
     plasma6.excludePackages = with pkgs.kdePackages; [

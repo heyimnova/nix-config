@@ -3,8 +3,6 @@
 
 lib.mkIf config.desktops.gnome.enable {
   environment = {
-    variables.TERMINAL = "${pkgs.blackbox-terminal}/bin/blackbox";
-
     gnome.excludePackages = with pkgs; [
       baobab
       epiphany
@@ -22,7 +20,6 @@ lib.mkIf config.desktops.gnome.enable {
     ];
 
     systemPackages = with pkgs; [
-      blackbox-terminal
       clapper
       gnome-tweaks
 
@@ -43,7 +40,7 @@ lib.mkIf config.desktops.gnome.enable {
   };
 
   services = {
-    udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+    udev.packages = [ pkgs.gnome-settings-daemon ];
 
     xserver = {
       desktopManager.gnome.enable = true;

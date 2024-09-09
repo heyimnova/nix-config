@@ -15,6 +15,7 @@ in
       prismlauncher
       protonup-qt
       r2modman
+      vkbasalt
 
       (lutris.override {
         extraLibraries = pkgs: [
