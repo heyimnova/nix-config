@@ -48,7 +48,7 @@ in
       liberation_ttf
       (nerdfonts.override { fonts = [ "Monofur" ]; })
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
     ];
 

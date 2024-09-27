@@ -1,5 +1,5 @@
 # home-manager gaming module
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, umu, ... }:
 
 let
   cfg = config.gaming;
@@ -27,6 +27,8 @@ in
 
         extraPkgs = pkgs: [
           wget
+
+          (umu.packages.${pkgs.system}.umu.override {version = "${umu.shortRev}";})
         ];
       })
     ];

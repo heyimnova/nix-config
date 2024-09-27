@@ -8,9 +8,11 @@ in
   options.modules.spicetify.enable = lib.mkEnableOption "my spicetify config";
 
   config = lib.mkIf cfg.enable {
+    stylix.targets.spicetify.enable = false;
+
     programs.spicetify = {
       enable = true;
-      theme = spicePkgs.themes.comfy;
+      theme = spicePkgs.themes.defaultDynamic;
 
       enabledExtensions = with spicePkgs.extensions; [
         playlistIntersection

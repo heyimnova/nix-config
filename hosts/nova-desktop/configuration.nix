@@ -18,7 +18,7 @@
   boot = {
     # Set virtual memory max map count to MAX_INT - 5, fixes some bugs with games under Proton
     kernel.sysctl."vm.max_map_count" = 2147483642;
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     supportedFilesystems = [ "ntfs" ];
 
     kernelParams = [

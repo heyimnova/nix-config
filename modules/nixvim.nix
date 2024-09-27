@@ -160,6 +160,9 @@
       # Automatically close parentheses
       nvim-autopairs.enable = true;
 
+      # Icon pack
+      web-devicons.enable = true;
+
       # Keybind hints
       which-key.enable = true;
 

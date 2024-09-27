@@ -27,7 +27,7 @@ in
       mission-center
       mullvad-browser
       pods
-      protonmail-bridge-gui
+      protonmail-desktop
       qbittorrent
       thunderbird
       tor-browser-bundle-bin

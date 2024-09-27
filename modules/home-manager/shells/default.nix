@@ -1,5 +1,5 @@
 # Import all home-manager shell configurations
-{ lib, config, ... }:
+{ config, ... }:
 
 {
   imports = [

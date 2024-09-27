@@ -136,9 +136,15 @@
   };
 
   nixpkgs = {
-    config.allowUnfree = true;
-    config.permittedInsecurePackages = [ "electron-27.3.11" ];
-    overlays = [ nur.overlay ];
+    config = {
+      allowUnfree = true;
+      # Logseq workaround
+      permittedInsecurePackages = [ "electron-27.3.11" ];
+    };
+
+    overlays = [
+      nur.overlay
+    ];
   };
 
   sops = {

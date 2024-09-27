@@ -74,7 +74,7 @@ lib.mkIf config.desktops.gnome.enable {
         "revolt-desktop.desktop"
         "freetube.desktop"
         "fluent-reader.desktop"
-        "thunderbird.desktop"
+        "proton-mail.desktop"
         "onlyoffice-desktopeditors.desktop"
         "steam.desktop"
         "com.heroicgameslauncher.hgl.desktop"
