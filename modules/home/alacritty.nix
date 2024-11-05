@@ -1,5 +1,5 @@
 # home-manager alacritty config
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 
 let
   cfg = config.modules.alacritty;

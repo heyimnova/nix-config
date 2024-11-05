@@ -1,11 +1,16 @@
 # home-manager gaming module
-{ lib, config, pkgs, umu, ... }:
+{ lib
+, config
+, pkgs
+, inputs
+, ...
+}:
 
 let
-  cfg = config.gaming;
+  cfg = config.modules.gaming;
 in
 {
-  options.gaming.enable = lib.mkEnableOption "gaming apps";
+  options.modules.gaming.enable = lib.mkEnableOption "gaming apps";
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
@@ -28,7 +33,7 @@ in
         extraPkgs = pkgs: [
           wget
 
-          (umu.packages.${pkgs.system}.umu.override {version = "${umu.shortRev}";})
+          (inputs.umu.packages.${pkgs.system}.umu.override {version = "${inputs.umu.shortRev}";})
         ];
       })
     ];

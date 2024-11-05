@@ -2,10 +2,10 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.virtualisation;
+  cfg = config.modules.virtualisation;
 in
 {
-  options.virtualisation.enable = lib.mkEnableOption "virtualisation services";
+  options.modules.virtualisation.enable = lib.mkEnableOption "virtualisation services";
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.virt-manager ];

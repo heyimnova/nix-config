@@ -1,11 +1,16 @@
 # Syncthing NixOS config
-{ lib, config, pkgs, flake-settings, ... }:
+{ lib
+, config
+, pkgs
+, variables
+, ...
+}:
 
 let
-  cfg = config.syncthing;
+  cfg = config.modules.syncthing;
 in
 {
-  options.syncthing = {
+  options.modules.syncthing = {
     enable = lib.mkEnableOption "Syncthing";
 
     devices = {
@@ -20,11 +25,11 @@ in
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
       services.syncthing = {
-        configDir = "/home/${flake-settings.user}/.config/syncthing";
-        dataDir = "/home/${flake-settings.user}/.local/state/syncthing";
+        configDir = "${variables.userHome}/.config/syncthing";
+        dataDir = "${variables.userHome}/.local/state/syncthing";
         enable = true;
         openDefaultPorts = true;
-        user = flake-settings.user;
+        user = variables.user;
 
         settings.options = {
           globalAnnounceEnabled = false; # Don't use global discovery
@@ -37,13 +42,11 @@ in
     }
 
     # Devices
-
     (lib.mkIf cfg.devices.coral {
       services.syncthing.settings.devices."coral".id = "STTRZSA-DBQGY3Z-7GQE5IJ-EUZG7LI-7FGZUKF-7UX2NKR-UC5GE6F-GGAQPQJ";
     })
 
     # Folders
-
     (lib.mkIf cfg.folders.logseq (lib.mkMerge [
       {
         services.syncthing.settings.folders."logseq" = {
@@ -59,8 +62,7 @@ in
     ]))
 
     # Desktop specific
-
-    (lib.mkIf config.desktops.kde.enable {
+    (lib.mkIf (variables.desktop == "kde") {
       environment.systemPackages = [ pkgs.syncthingtray-minimal ];
     })
   ]);

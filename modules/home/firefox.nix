@@ -1,11 +1,17 @@
 # home-manager Firefox module
-{ lib, config, pkgs, firefox-gnome-theme, ... }:
+{ lib
+, config
+, pkgs
+, inputs
+, variables
+, ...
+}:
 
 let
-  cfg = config.firefox;
+  cfg = config.modules.firefox;
 in
 {
-  options.firefox.enable = lib.mkEnableOption "my custom Firefox";
+  options.modules.firefox.enable = lib.mkEnableOption "my custom Firefox config";
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
@@ -100,7 +106,7 @@ in
                   definedAliases = [ "@hm" ];
 
                   urls = [{
-                    template = "https://mipmip.github.io/home-manager-option-search";
+                    template = "https://home-manager-options.extranix.com";
 
                     params = [{
                       name = "query";
@@ -182,11 +188,13 @@ in
       };
     }
 
-    (lib.mkIf config.desktops.kde.enable {
+    # Firefox KDE settings
+    (lib.mkIf (variables.desktop == "kde") {
       programs.firefox.profiles.default.extensions = [ pkgs.nur.repos.rycee.firefox-addons.plasma-integration ];
     })
 
-    (lib.mkIf config.desktops.gnome.enable {
+    # Firefox GNOME settings
+    (lib.mkIf (variables.desktop == "gnome") {
       programs.firefox.profiles.default = {
         settings = {
           # Disable private window dark theme
@@ -206,11 +214,11 @@ in
         };
 
         userChrome = ''
-          @import "${firefox-gnome-theme}/userChrome.css";
+          @import "${inputs.firefox-gnome-theme}/userChrome.css";
         '';
 
         userContent = ''
-          @import "${firefox-gnome-theme}/userContent.css";
+          @import "${inputs.firefox-gnome-theme}/userContent.css";
         '';
       };
     })

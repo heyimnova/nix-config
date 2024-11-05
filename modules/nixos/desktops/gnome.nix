@@ -1,8 +1,9 @@
 # GNOME NixOS config
-{ lib, config, pkgs, ... }:
+{ lib, pkgs, variables, ... }:
 
-lib.mkIf config.desktops.gnome.enable {
+lib.mkIf (variables.desktop == "gnome") {
   environment = {
+    # Default packages I don't want
     gnome.excludePackages = with pkgs; [
       baobab
       epiphany

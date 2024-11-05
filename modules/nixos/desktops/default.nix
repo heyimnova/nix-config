@@ -1,22 +1,19 @@
 # Default NixOS desktop config
-{ lib, config, pkgs, ... }:
+{ lib
+, config
+, pkgs
+, variables
+, ...
+}:
 
-let
-  cfg = config.desktops;
-in
 {
   imports = [
     ./gnome.nix
     ./kde.nix
   ];
 
-  options.desktops = {
-    gnome.enable = lib.mkEnableOption "GNOME desktop and config";
-    kde.enable = lib.mkEnableOption "KDE desktop and config";
-  };
-
-  config = lib.mkIf (cfg.gnome.enable || cfg.kde.enable) {
-    hardware.pulseaudio.enable = false;
+  # Only run if a desktop is set
+  config = lib.mkIf (variables.desktop != "") {
     networking.networkmanager.enable = true;
     # Make pipewire realtime-capable
     security.rtkit.enable = true;
@@ -52,6 +49,17 @@ in
       noto-fonts-emoji
     ];
 
+    hardware = {
+      # Disable pulseaudio we are using pipewire
+      pulseaudio.enable = false;
+
+      # Enable hardware acceleration
+      graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
+    };
+
     services = {
       mullvad-vpn = {
         enable = true;
@@ -84,11 +92,11 @@ in
       waydroid.enable = lib.mkDefault true;
 
       podman = {
+        enable = true;
         # Allows containers started with podman-compose to talk to each other
         defaultNetwork.settings.dns_enabled = true;
         # Creates "docker" alias for Podman
         dockerCompat = true;
-        enable = true;
       };
     };
   };

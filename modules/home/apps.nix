@@ -1,10 +1,11 @@
+# Optional app bundles for home-manager
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.apps;
+  cfg = config.modules.apps;
 in
 {
-  options.apps = {
+  options.modules.apps = {
     productivity = lib.mkEnableOption "productivity apps";
     social = lib.mkEnableOption "social apps";
   };

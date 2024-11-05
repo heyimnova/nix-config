@@ -1,10 +1,11 @@
 # Default NixOS configuration
-{ pkgs, nur, flake-settings, ... }:
+{ pkgs, inputs, variables, ... }:
 
 {
   console.font = "Lat2-Terminus16";
-  documentation.nixos.enable = false;
   time.timeZone = "Europe/London";
+  documentation.nixos.enable = false;
+  modules.nixvim.enable = true;
 
   boot = {
     # A better tcp congestion control algorithm
@@ -54,7 +55,7 @@
     # These environment variables are set on user login
     sessionVariables = rec {
       # Used by nh
-      FLAKE = flake-settings.location;
+      FLAKE = "$HOME/.config/flake";
 
       XDG_BIN_HOME = "$HOME/.local/bin";
       XDG_CACHE_HOME = "$HOME/.cache";
@@ -143,12 +144,13 @@
     };
 
     overlays = [
-      nur.overlay
+      inputs.nur.overlay
     ];
   };
 
+  # Secrets management with Nix
   sops = {
-    age.keyFile = "/home/${flake-settings.user}/.config/sops/age/keys.txt";
+    age.keyFile = "/home/${variables.user}/.config/sops/age/keys.txt";
     defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
   };
@@ -175,35 +177,6 @@
     };
   };
 
-  system.autoUpgrade = {
-    dates = "05:00";
-    enable = true;
-    # Assuming this repo is symlinked to (or in) /etc/nixos
-    flake = "/etc/nixos";
-    # Allow the service to catch up on updates if the system was powered down
-    persistent = true;
-
-    # Update all flake inputs so new packages are installed
-    flags = [
-      "--update-input"
-      "arkenfox"
-      "--update-input"
-      "home-manager"
-      "--update-input"
-      "home-manager-unstable"
-      "--update-input"
-      "lanzaboote"
-      "--update-input"
-      "nur"
-      "--update-input"
-      "stable"
-      "--update-input"
-      "unstable"
-      "--update-input"
-      "utils"
-    ];
-  };
-
   systemd.extraConfig = ''
     # Faster shutdowns
     DefaultTimeoutStopSec=10s
@@ -215,12 +188,12 @@
     users.root.hashedPassword = "!";
 
     defaultUserShell =
-      if flake-settings.userShell == "fish" then pkgs.fish
-      else if flake-settings.userShell == "nushell" then pkgs.nushell
+      if variables.userShell == "fish" then pkgs.fish
+      else if variables.userShell == "nushell" then pkgs.nushell
       else pkgs.bashInteractive;
 
-    users.${flake-settings.user} = {
-      description = flake-settings.userDescription;
+    users.${variables.user} = {
+      description = variables.userDescription;
       isNormalUser = true;
       useDefaultShell = true;
     };

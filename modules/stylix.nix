@@ -1,12 +1,12 @@
 # Stylix configuration
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, variables, ... }:
 
 lib.mkMerge [
-  (lib.mkIf config.desktops.gnome.enable {
+  (lib.mkIf (variables.desktop == "gnome") {
     stylix = {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
       enable = true;
-      image = ../assets/wallpapers/anders-jilden.jpg;
+      image = ../config/wallpapers/anders-jilden.jpg;
       polarity = "dark";
 
       cursor = {
@@ -41,11 +41,11 @@ lib.mkMerge [
     };
   })
 
-  (lib.mkIf config.desktops.kde.enable {
+  (lib.mkIf (variables.desktop == "kde2") {
     stylix = {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-pale.yaml";
       enable = true;
-      image = ../assets/wallpapers/forest-mountain-cloudy-valley.png;
+      image = ../config/wallpapers/forest-mountain-cloudy-valley.png;
       polarity = "dark";
 
       cursor = {

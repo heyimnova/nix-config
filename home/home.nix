@@ -2,7 +2,7 @@
 { config
 , lib
 , pkgs
-, flake-settings
+, variables
 , ...
 }:
 
@@ -11,9 +11,9 @@
 
   home = {
     # Needed for standalone home-manager
-    homeDirectory = lib.mkDefault flake-settings.userHome;
-    stateVersion = lib.mkDefault flake-settings.stableVersion;
-    username = lib.mkDefault flake-settings.user;
+    username = lib.mkDefault variables.user;
+    homeDirectory = lib.mkDefault variables.userHome;
+    stateVersion = lib.mkDefault "24.11";
 
     packages = with pkgs; [
       tealdeer
@@ -27,9 +27,9 @@
 
     git = {
       enable = true;
-      extraConfig.init.defaultBranch = "main";
-      userEmail = "git@heyimnova.dev";
       userName = "heyimnova";
+      userEmail = "git@heyimnova.dev";
+      extraConfig.init.defaultBranch = "main";
 
       signing = {
         key = "DEB0E15C6D2A5A7C";

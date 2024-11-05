@@ -2,12 +2,13 @@
 { lib, config, ... }:
 
 let
-  cfg = config.gaming;
+  cfg = config.modules.gaming;
 in
 {
-  options.gaming.enable = lib.mkEnableOption "gaming nixos options";
+  options.modules.gaming.enable = lib.mkEnableOption "gaming nixos options";
 
   config = lib.mkIf cfg.enable {
+    # Low latency pipewire from nix-gaming
     services.pipewire.lowLatency.enable = true;
 
     programs = {
@@ -15,6 +16,10 @@ in
 
       steam = {
         enable = true;
+        localNetworkGameTransfers.openFirewall = true;
+        # Enable SteamOS optimizations
+        platformOptimizations.enable = true;
+        # Enable Steam Input on Wayland
         extest.enable = true;
       };
     };

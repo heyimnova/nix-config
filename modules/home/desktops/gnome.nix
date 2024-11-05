@@ -1,12 +1,12 @@
 # GNOME home-manager config
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, variables, ... }:
 
 let
   gtk-settings = {
     extraConfig.gtk-application-prefer-dark-theme = 1;
   };
 in
-lib.mkIf config.desktops.gnome.enable {
+lib.mkIf (variables.desktop == "gnome") {
   modules.alacritty.enable = true;
   services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
 
