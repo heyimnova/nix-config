@@ -265,8 +265,16 @@ in
           enable = true;
 
           servers = {
+            clangd.enable = true;
             nixd.enable = true;
             pylsp.enable = true;
+
+            rust_analyzer = {
+              enable = true;
+              installCargo = true;
+              installRustc = true;
+              installRustfmt = true;
+            };
           };
         };
 
@@ -308,7 +316,9 @@ in
 
           grammarPackages = with pkgs.tree-sitter-grammars; [
             tree-sitter-bash
+            tree-sitter-c
             tree-sitter-comment
+            tree-sitter-cpp
             tree-sitter-dockerfile
             tree-sitter-fish
             tree-sitter-javascript
@@ -320,6 +330,7 @@ in
             tree-sitter-nu
             tree-sitter-python
             tree-sitter-regex
+            tree-sitter-rust
             tree-sitter-sql
             tree-sitter-toml
             tree-sitter-yaml

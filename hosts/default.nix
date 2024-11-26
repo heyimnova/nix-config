@@ -27,7 +27,7 @@ let
   };
 in
 {
-  nova-desktop = nixpkgs.lib.nixosSystem {
+  nova-desktop = nixpkgs-stable.lib.nixosSystem {
     specialArgs = { # Pass inputs and variables as arguments
       inherit inputs variables;
     };
@@ -36,7 +36,7 @@ in
     modules = ([
       ./nova-desktop/configuration.nix
 
-      inputs.home-manager.nixosModules.home-manager {
+      inputs.home-manager-stable.nixosModules.home-manager {
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;

@@ -1,6 +1,14 @@
 # Stylix configuration
 { lib, pkgs, variables, ... }:
 
+let
+  # I only want the proportional italics from Victor Mono
+  victor-mono-italics = (pkgs.nerdfonts.override { fonts = [ "VictorMono" ]; }).overrideAttrs (finalAttrs: previousAttrs: {
+    postFixup = ''
+      find $out/share/fonts -type f -not -name "*Propo*Italic*" -delete
+    '';
+  });
+in
 lib.mkMerge [
   (lib.mkIf (variables.desktop == "gnome") {
     stylix = {
@@ -23,14 +31,16 @@ lib.mkMerge [
           popups = 12;
         };
 
+        # GNOME document font (don't think it actually does anything)
         serif = {
-          package = pkgs.maple-mono-autohint;
-          name = "Maple Mono";
+          package = victor-mono-italics;
+          name = "VictorMono Nerd Font Propo Italic";
         };
 
+        # GNOME interface font
         sansSerif = {
-          package = pkgs.nerdfonts.override { fonts = [ "CascadiaCode" ]; };
-          name = "Caskaydia Cove Nerd Font";
+          package = victor-mono-italics;
+          name = "VictorMono Nerd Font Propo Semi-Bold Italic";
         };
 
         monospace = {
@@ -41,7 +51,7 @@ lib.mkMerge [
     };
   })
 
-  (lib.mkIf (variables.desktop == "kde2") {
+  (lib.mkIf (variables.desktop == "kde") {
     stylix = {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-pale.yaml";
       enable = true;

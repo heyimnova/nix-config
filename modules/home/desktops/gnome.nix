@@ -58,9 +58,9 @@ lib.mkIf (variables.desktop == "gnome") {
         "clipboard-indicator@tudmotu.com"
         "blur-my-shell@aunetx"
         "gsconnect@andyholmes.github.io"
-        "Vitals@CoreCoding.com"
         "AlphabeticalAppGrid@stuarthayhurst"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "system-monitor@gnome-shell-extensions.gcampax.github.com"
       ];
 
       favorite-apps = [
@@ -152,7 +152,6 @@ lib.mkIf (variables.desktop == "gnome") {
       clipboard-indicator
       grand-theft-focus
       status-area-horizontal-spacing
-      vitals
     ]);
   };
 
