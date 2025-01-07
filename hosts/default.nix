@@ -15,9 +15,7 @@ let
     nixos = [
       ../modules/nixos
       ../modules/nixvim.nix
-      ../modules/stylix.nix
 
-      inputs.stylix.nixosModules.stylix
       inputs.lanzaboote.nixosModules.lanzaboote
       inputs.nix-gaming.nixosModules.pipewireLowLatency
       inputs.nix-gaming.nixosModules.platformOptimizations
@@ -35,6 +33,10 @@ in
     # Import nova-desktop NixOS config with the modules declared earlier
     modules = ([
       ./nova-desktop/configuration.nix
+
+      # Colorscheme management
+      inputs.stylix-stable.nixosModules.stylix
+      ../modules/stylix.nix
 
       inputs.home-manager-stable.nixosModules.home-manager {
         home-manager = {

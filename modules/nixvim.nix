@@ -255,9 +255,9 @@ in
         floaterm = {
           enable = true;
 
-          keymaps = {
-            new = "<leader>t";
-            toggle = "<C-t>";
+          settings = {
+            keymap_new = "<leader>t";
+            keymap_toggle = "<C-t>";
           };
         };
 

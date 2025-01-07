@@ -13,6 +13,7 @@
 
     # Automatic for colorscheme management
     stylix.url = "github:danth/stylix";
+    stylix-stable.url = "github:danth/stylix/release-24.11";
 
     arkenfox = { # Firefox enhancements
       url = "github:dwarfmaster/arkenfox-nixos";

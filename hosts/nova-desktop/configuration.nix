@@ -17,7 +17,7 @@
 
   boot = {
     # Use xanmod kernel
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_stable;
     supportedFilesystems = [ "ntfs" ];
 
     kernelParams = [

@@ -17,11 +17,15 @@ in
 
     programs.spicetify = {
       enable = true;
-      theme = spicePkgs.themes.defaultDynamic;
+      theme = spicePkgs.themes.ziro;
+      colorScheme = "rose-pine";
 
       enabledExtensions = with spicePkgs.extensions; [
+        addToQueueTop
+        keyboardShortcut
         playlistIntersection
         savePlaylists
+        volumePercentage
       ];
     };
   };

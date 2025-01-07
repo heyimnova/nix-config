@@ -61,6 +61,8 @@
     };
 
     services = {
+      printing.enable = true;
+
       mullvad-vpn = {
         enable = true;
         package = pkgs.mullvad-vpn;
@@ -75,11 +77,6 @@
           enable = true;
           support32Bit = true;
         };
-      };
-
-      printing = {
-        enable = true;
-        drivers = [ pkgs.canon-cups-ufr2 ];
       };
 
       xserver = {

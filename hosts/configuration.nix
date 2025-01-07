@@ -144,7 +144,7 @@
     };
 
     overlays = [
-      inputs.nur.overlay
+      inputs.nur.overlays.default
     ];
   };
 
@@ -168,6 +168,7 @@
     avahi = {
       enable = true;
       nssmdns4 = true;
+      openFirewall = true;
 
       publish = {
         addresses = true;
