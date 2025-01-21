@@ -25,8 +25,8 @@ lib.mkIf (variables.desktop == "gnome") {
       gnome-tweaks
 
       (writeShellScriptBin "xdg-terminal-exec" ''
-        # Use blackbox for gtk-launch
-        exec ${blackbox-terminal}/bin/blackbox -c "$*"
+        # Use ghostty for gtk-launch
+        exec ${lib.getExe pkgs.ghostty} -e "$*"
       '')
     ];
   };

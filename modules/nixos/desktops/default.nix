@@ -20,7 +20,7 @@
     system.fsPackages = [ pkgs.bindfs ];
 
     environment = {
-      variables.TERMINAL = "${pkgs.alacritty}/bin/alacritty";
+      variables.TERMINAL = lib.getExe pkgs.ghostty;
       systemPackages = [ pkgs.podman-compose ];
     };
 

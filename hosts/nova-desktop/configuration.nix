@@ -75,8 +75,16 @@
 
     syncthing = {
       enable = true;
-      devices.coral = true;
-      folders.logseq = true;
+
+      folders = {
+        logseq = true;
+        work = true;
+      };
+
+      devices = {
+        coral = true;
+        the-thinker = true;
+      };
     };
   };
 

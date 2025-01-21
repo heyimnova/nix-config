@@ -13,7 +13,7 @@ in
 
       interactiveShellInit = ''
         # Enable starship prompt
-        ${pkgs.starship}/bin/starship init fish | source
+        ${lib.getExe pkgs.starship} init fish | source
 
         # Set fish vi mode cursor settings
         set fish_cursor_default underscore
@@ -26,13 +26,13 @@ in
       '';
 
       shellAliases = {
-        cn = "clear;${pkgs.nitch}/bin/nitch";
+        cn = "clear;${lib.getExe pkgs.nitch}";
         # Show nitch on fish start
-        fish_greeting = "${pkgs.nitch}/bin/nitch";
-        la = "${pkgs.eza}/bin/eza --icons --group-directories-first -la";
-        ls = "${pkgs.eza}/bin/eza --icons --group-directories-first";
+        fish_greeting = lib.getExe pkgs.nitch;
+        la = "${lib.getExe pkgs.eza} --icons --group-directories-first -la";
+        ls = "${lib.getExe pkgs.eza} --icons --group-directories-first";
         # Recommendation from xdg-ninja
-        wget = "${pkgs.wget}/bin/wget --hsts-file='$XDG_DATA_HOME/wget-hsts'";
+        wget = "${lib.getExe pkgs.wget} --hsts-file='$XDG_DATA_HOME/wget-hsts'";
       };
     };
   };

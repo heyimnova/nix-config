@@ -1,5 +1,5 @@
 # GNOME home-manager config
-{ lib, config, pkgs, variables, ... }:
+{ lib, pkgs, variables, ... }:
 
 let
   gtk-settings = {
@@ -7,7 +7,6 @@ let
   };
 in
 lib.mkIf (variables.desktop == "gnome") {
-  modules.alacritty.enable = true;
   services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
 
   dconf.settings = {
@@ -65,7 +64,7 @@ lib.mkIf (variables.desktop == "gnome") {
 
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
-        "Alacritty.desktop"
+        "com.mitchellh.ghostty.desktop"
         "spotify.desktop"
         "mullvad-browser.desktop"
         "firefox.desktop"
@@ -109,35 +108,6 @@ lib.mkIf (variables.desktop == "gnome") {
 
   home = {
     sessionVariables.GTK_THEME = "adw-gtk3-dark";
-
-    # Create stylix colorscheme for blackbox
-    file.".local/share/blackbox/schemes/stylix.json".text = with config.lib.stylix.colors.withHashtag; ''
-      {
-        "name": "stylix",
-        "comment": "Use stylix theme for blackbox",
-        "use-theme-colors": false,
-        "foreground-color": "${base06}",
-        "background-color": "${base00}",
-        "palette": [
-          "${base01}",
-          "${base08}",
-          "${base0B}",
-          "${base0A}",
-          "${base0D}",
-          "${base0E}",
-          "${base0C}",
-          "${base04}",
-          "${base03}",
-          "${base08}",
-          "${base0B}",
-          "${base0A}",
-          "${base0D}",
-          "${base0E}",
-          "${base0C}",
-          "${base06}"
-        ]
-      }
-    '';
 
     packages = (with pkgs; [
       dconf-editor

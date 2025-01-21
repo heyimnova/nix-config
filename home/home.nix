@@ -16,6 +16,7 @@
     stateVersion = lib.mkDefault "24.11";
 
     packages = with pkgs; [
+      ghostty
       tealdeer
       topgrade
     ];

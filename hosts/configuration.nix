@@ -1,5 +1,10 @@
 # Default NixOS configuration
-{ pkgs, inputs, variables, ... }:
+{ lib
+, pkgs
+, inputs
+, variables
+, ...
+}:
 
 {
   console.font = "Lat2-Terminus16";
@@ -100,8 +105,8 @@
     ];
 
     variables = {
-      EDITOR = "${pkgs.neovim}/bin/nvim";
-      VISUAL = "${pkgs.neovim}/bin/nvim";
+      EDITOR = lib.getExe pkgs.neovim;
+      VISUAL = lib.getExe pkgs.neovim;
     };
   };
 

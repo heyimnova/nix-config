@@ -2,7 +2,6 @@
 { lib, pkgs, variables, ... }:
 
 lib.mkIf (variables.desktop == "kde") {
-  modules.alacritty.enable = true;
   services.gpg-agent.pinentryPackage = pkgs.pinentry-qt;
   stylix.targets.kde.enable = false;
 
