@@ -1,10 +1,11 @@
 # home-manager alacritty config
-{ lib, config, ... }:
-
-let
-  cfg = config.modules.alacritty;
-in
 {
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.modules.alacritty;
+in {
   options.modules.alacritty.enable = lib.mkEnableOption "my alacritty config";
 
   config = lib.mkIf cfg.enable {

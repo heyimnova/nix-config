@@ -1,7 +1,5 @@
 # Import all home-manager modules
-{ ... }:
-
-{
+{...}: {
   imports = [
     ./desktops
     ./shells

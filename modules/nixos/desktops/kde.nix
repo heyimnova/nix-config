@@ -1,9 +1,13 @@
 # KDE NixOS config
-{ lib, pkgs, variables, ... }:
-
+{
+  lib,
+  pkgs,
+  variables,
+  ...
+}:
 lib.mkIf (variables.desktop == "kde") {
   # To remove hibernate from the power menu
-  boot.kernelParams = [ "nohibernate" ];
+  boot.kernelParams = ["nohibernate"];
   programs.kdeconnect.enable = true;
   # Unlock gnome-keyring on login
   security.pam.services.sddm.enableGnomeKeyring = true;

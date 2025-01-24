@@ -1,16 +1,14 @@
 # home-manager EasyEffects module
-{ lib
-, config
-, pkgs
-, inputs
-, variables
-, ...
-}:
-
-let
-  cfg = config.modules.easyeffects;
-in
 {
+  lib,
+  config,
+  pkgs,
+  inputs,
+  variables,
+  ...
+}: let
+  cfg = config.modules.easyeffects;
+in {
   options.modules.easyeffects = {
     enable = lib.mkEnableOption "EasyEffects";
     presets.enable = lib.mkEnableOption "EasyEffects Presets";
@@ -20,7 +18,7 @@ in
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
       home = {
-        packages = [ pkgs.easyeffects ];
+        packages = [pkgs.easyeffects];
 
         file = {
           ".config/easyeffects/irs" = lib.mkIf cfg.presets.enable {
@@ -35,8 +33,16 @@ in
               name = "easyeffects-output";
 
               paths = [
-                (if cfg.presets.enable then "${inputs.easyeffects-presets}" else null)
-                (if cfg.presets-loudness-equalizer.enable then "${inputs.easyeffects-presets-loudness-equalizer}" else null)
+                (
+                  if cfg.presets.enable
+                  then "${inputs.easyeffects-presets}"
+                  else null
+                )
+                (
+                  if cfg.presets-loudness-equalizer.enable
+                  then "${inputs.easyeffects-presets-loudness-equalizer}"
+                  else null
+                )
               ];
             };
 
@@ -52,8 +58,8 @@ in
 
     # Add EasyEffects GNOME extension on GNOME
     (lib.mkIf (variables.desktop == "gnome") {
-      home.packages = [ pkgs.gnomeExtensions.easyeffects-preset-selector ];
-      dconf.settings."org/gnome/shell".enabled-extensions = [ "eepresetselector@ulville.github.io" ];
+      home.packages = [pkgs.gnomeExtensions.easyeffects-preset-selector];
+      dconf.settings."org/gnome/shell".enabled-extensions = ["eepresetselector@ulville.github.io"];
     })
   ]);
 }

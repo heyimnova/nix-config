@@ -1,16 +1,14 @@
 # home-manager Firefox module
-{ lib
-, config
-, pkgs
-, inputs
-, variables
-, ...
-}:
-
-let
-  cfg = config.modules.firefox;
-in
 {
+  lib,
+  config,
+  pkgs,
+  inputs,
+  variables,
+  ...
+}: let
+  cfg = config.modules.firefox;
+in {
   options.modules.firefox.enable = lib.mkEnableOption "my custom Firefox config";
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
@@ -50,14 +48,16 @@ in
               "6000".enable = true; # DON'T TOUCH
               "9000".enable = true; # NON-PROJECT RELATED
 
-              "0100" = { # STARTUP
+              "0100" = {
+                # STARTUP
                 enable = true;
                 "0102"."browser.startup.page".value = 1; # Set startup page to homepage
                 "0103"."browser.startup.homepage".value = "about:home"; # Set homepage to Firefox homepage
                 "0104"."browser.newtabpage.enabled".value = true; # Set new tab page to homepage
               };
 
-              "5000" = { # OPTIONAL OPSEC
+              "5000" = {
+                # OPTIONAL OPSEC
                 enable = true;
                 "5003"."signon.rememberSignons".value = false; # Disable saving passwords
                 "5005"."security.nocertdb".value = true; # Disable intermediate certificate caching
@@ -65,13 +65,15 @@ in
                 "5018"."dom.popup_allowed_events".value = "click dblclick mousedown pointerdown"; # Limit events that can cause a pop-up
                 "5019"."browser.pagethumbnails.capturing_disabled".value = true; # Disable page thumbnail collection
 
-                "5017" = { # Disable Form Autofill
+                "5017" = {
+                  # Disable Form Autofill
                   "extensions.formautofill.addresses.enabled".value = false;
                   "extensions.formautofill.creditCards.enabled".value = false;
                 };
               };
 
-              "5500" = { # OPTIONAL HARDENING
+              "5500" = {
+                # OPTIONAL HARDENING
                 enable = true;
                 "5510"."network.http.referer.XOriginPolicy".value = 2; # Only send cross-origin referrers when hosts match
               };
@@ -103,60 +105,76 @@ in
 
                 # Search engine config for the home-manager option search
                 "Home Manager" = {
-                  definedAliases = [ "@hm" ];
+                  definedAliases = ["@hm"];
 
-                  urls = [{
-                    template = "https://home-manager-options.extranix.com";
+                  urls = [
+                    {
+                      template = "https://home-manager-options.extranix.com";
 
-                    params = [{
-                      name = "query";
-                      value = "{searchTerms}";
-                    }];
-                  }];
+                      params = [
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
                 };
 
                 # Search engine config for the NixOS option search
                 "NixOS Options" = {
-                  definedAliases = [ "@no" ];
+                  definedAliases = ["@no"];
                   icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
-                  urls = [{
-                    template = "https://search.nixos.org/options";
+                  urls = [
+                    {
+                      template = "https://search.nixos.org/options";
 
-                    params = [{
-                      name = "query";
-                      value = "{searchTerms}";
-                    }];
-                  }];
+                      params = [
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
                 };
 
                 # Search engine config for the NixOS package search
                 "Nix Packages" = {
-                  definedAliases = [ "@np" ];
+                  definedAliases = ["@np"];
                   icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
-                  urls = [{
-                    template = "https://search.nixos.org/packages";
+                  urls = [
+                    {
+                      template = "https://search.nixos.org/packages";
 
-                    params = [{
-                      name = "query";
-                      value = "{searchTerms}";
-                    }];
-                  }];
+                      params = [
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
                 };
 
                 # Search engine config for ProtonDB search
                 "ProtonDB" = {
-                  definedAliases = [ "@pr" ];
+                  definedAliases = ["@pr"];
 
-                  urls = [{
-                    template = "https://www.protondb.com/search";
+                  urls = [
+                    {
+                      template = "https://www.protondb.com/search";
 
-                    params = [{
-                      name = "q";
-                      value = "{searchTerms}";
-                    }];
-                  }];
+                      params = [
+                        {
+                          name = "q";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
                 };
               };
 
@@ -190,7 +208,7 @@ in
 
     # Firefox KDE settings
     (lib.mkIf (variables.desktop == "kde") {
-      programs.firefox.profiles.default.extensions = [ pkgs.nur.repos.rycee.firefox-addons.plasma-integration ];
+      programs.firefox.profiles.default.extensions = [pkgs.nur.repos.rycee.firefox-addons.plasma-integration];
     })
 
     # Firefox GNOME settings

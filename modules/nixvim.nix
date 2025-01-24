@@ -1,10 +1,12 @@
 # Nixvim Neovim configuration
-{ lib, config, pkgs, ... }:
-
-let
-  cfg = config.modules.nixvim;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.modules.nixvim;
+in {
   options.modules.nixvim.enable = lib.mkEnableOption "Nixvim Neovim config";
 
   config = lib.mkIf cfg.enable {
@@ -188,8 +190,8 @@ in
             };
 
             sources = [
-              { name = "async_path"; }
-              { name = "nvim_lsp_signature_help"; }
+              {name = "async_path";}
+              {name = "nvim_lsp_signature_help";}
 
               {
                 name = "buffer";
@@ -211,10 +213,12 @@ in
               completion.scrolloff = 1;
 
               # Give the suggestion windows borders
-              __raw = ''{
-                completion = cmp.config.window.bordered(),
-                documentation = cmp.config.window.bordered()
-              }'';
+              __raw = ''
+                {
+                  completion = cmp.config.window.bordered(),
+                  documentation = cmp.config.window.bordered()
+                }
+              '';
             };
 
             # Set a menu icon to show the suggestion source
@@ -340,4 +344,3 @@ in
     };
   };
 }
-

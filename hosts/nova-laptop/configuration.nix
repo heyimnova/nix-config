@@ -1,7 +1,9 @@
 # NixOS config for nova-laptop
-{ config, variables, ... }:
-
 {
+  config,
+  variables,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ../configuration.nix

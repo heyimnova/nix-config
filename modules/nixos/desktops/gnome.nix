@@ -1,6 +1,10 @@
 # GNOME NixOS config
-{ lib, pkgs, variables, ... }:
-
+{
+  lib,
+  pkgs,
+  variables,
+  ...
+}:
 lib.mkIf (variables.desktop == "gnome") {
   environment = {
     # Default packages I don't want
@@ -41,7 +45,7 @@ lib.mkIf (variables.desktop == "gnome") {
   };
 
   services = {
-    udev.packages = [ pkgs.gnome-settings-daemon ];
+    udev.packages = [pkgs.gnome-settings-daemon];
 
     xserver = {
       desktopManager.gnome.enable = true;

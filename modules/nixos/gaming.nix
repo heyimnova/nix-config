@@ -1,10 +1,11 @@
 # NixOS gaming config
-{ lib, config, ... }:
-
-let
-  cfg = config.modules.gaming;
-in
 {
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.modules.gaming;
+in {
   options.modules.gaming.enable = lib.mkEnableOption "gaming nixos options";
 
   config = lib.mkIf cfg.enable {

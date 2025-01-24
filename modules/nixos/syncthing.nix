@@ -1,15 +1,13 @@
 # Syncthing NixOS config
-{ lib
-, config
-, pkgs
-, variables
-, ...
-}:
-
-let
-  cfg = config.modules.syncthing;
-in
 {
+  lib,
+  config,
+  pkgs,
+  variables,
+  ...
+}: let
+  cfg = config.modules.syncthing;
+in {
   options.modules.syncthing = {
     enable = lib.mkEnableOption "Syncthing";
 
@@ -63,11 +61,11 @@ in
       }
 
       (lib.mkIf cfg.devices.coral {
-        services.syncthing.settings.folders."logseq".devices = [ "coral" ];
+        services.syncthing.settings.folders."logseq".devices = ["coral"];
       })
 
       (lib.mkIf cfg.devices.the-thinker {
-        services.syncthing.settings.folders."logseq".devices = [ "the-thinker" ];
+        services.syncthing.settings.folders."logseq".devices = ["the-thinker"];
       })
     ]))
 
@@ -81,13 +79,13 @@ in
       }
 
       (lib.mkIf cfg.devices.the-thinker {
-        services.syncthing.settings.folders."work".devices = [ "the-thinker" ];
+        services.syncthing.settings.folders."work".devices = ["the-thinker"];
       })
     ]))
 
     # Desktop specific
     (lib.mkIf (variables.desktop == "kde") {
-      environment.systemPackages = [ pkgs.syncthingtray-minimal ];
+      environment.systemPackages = [pkgs.syncthingtray-minimal];
     })
   ]);
 }

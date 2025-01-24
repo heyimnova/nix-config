@@ -1,12 +1,11 @@
 # Default home-manager configuration
-{ config
-, lib
-, pkgs
-, variables
-, ...
-}:
-
 {
+  config,
+  lib,
+  pkgs,
+  variables,
+  ...
+}: {
   shells.fish.enable = true;
 
   home = {

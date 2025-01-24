@@ -1,12 +1,14 @@
 # home-manager config for nova-laptop
-{ lib, pkgs, ... }:
-
 {
+  lib,
+  pkgs,
+  ...
+}: {
   # This file extends the default home-manager config
-  imports = [ ../../home/home.nix ];
+  imports = [../../home/home.nix];
 
   home = {
-    packages = [ pkgs.watchmate ];
+    packages = [pkgs.watchmate];
     stateVersion = lib.mkForce "23.05";
   };
 

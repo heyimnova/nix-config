@@ -1,10 +1,12 @@
 # home-manager nushell config
-{ lib, config, pkgs, ... }:
-
-let
-  cfg = config.shells.nushell;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.shells.nushell;
+in {
   options.shells.nushell.enable = lib.mkEnableOption "my nushell config";
 
   config = lib.mkIf cfg.enable {

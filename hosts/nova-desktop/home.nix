@@ -1,9 +1,11 @@
 # home-manager config for nova-desktop
-{ lib, pkgs, ... }:
-
 {
+  lib,
+  pkgs,
+  ...
+}: {
   # This file extends the default home-manager config
-  imports = [ ../../home/home.nix ];
+  imports = [../../home/home.nix];
 
   shells.nushell.enable = true;
 

@@ -1,10 +1,12 @@
 # home-manager fish config
-{ lib, config, pkgs, ... }:
-
-let
-  cfg = config.shells.fish;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.shells.fish;
+in {
   options.shells.fish.enable = lib.mkEnableOption "my fish shell config";
 
   config = lib.mkIf cfg.enable {

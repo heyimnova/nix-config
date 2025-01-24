@@ -1,7 +1,5 @@
 # Import all home-manager shell configurations
-{ config, ... }:
-
-{
+{config, ...}: {
   imports = [
     ./fish.nix
     ./nushell.nix
@@ -23,4 +21,3 @@
     };
   };
 }
-

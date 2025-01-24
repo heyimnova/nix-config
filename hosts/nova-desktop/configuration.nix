@@ -1,7 +1,10 @@
 # NixOS config for nova-desktop
-{ config, pkgs, variables, ... }:
-
 {
+  config,
+  pkgs,
+  variables,
+  ...
+}: {
   imports = [
     ./hardware.nix
     ../configuration.nix
@@ -18,7 +21,7 @@
   boot = {
     # Use xanmod kernel
     kernelPackages = pkgs.linuxPackages_xanmod_stable;
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = ["ntfs"];
 
     kernelParams = [
       # Use Nvidia framebuffer
@@ -46,12 +49,12 @@
   # Razer RGB config
   hardware.openrazer = {
     enable = true;
-    users = [ variables.user ];
+    users = [variables.user];
   };
 
   environment = {
-    systemPackages = [ pkgs.droidcam ];
-    gnome.excludePackages = [ pkgs.snapshot ];
+    systemPackages = [pkgs.droidcam];
+    gnome.excludePackages = [pkgs.snapshot];
   };
 
   services = {

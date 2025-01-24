@@ -1,7 +1,10 @@
 # Default home-manager desktop config
-{ lib, pkgs, variables, ... }:
-
 {
+  lib,
+  pkgs,
+  variables,
+  ...
+}: {
   imports = [
     ./gnome.nix
     ./kde.nix

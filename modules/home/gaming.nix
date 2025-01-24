@@ -1,15 +1,13 @@
 # home-manager gaming module
-{ lib
-, config
-, pkgs
-, inputs
-, ...
-}:
-
-let
-  cfg = config.modules.gaming;
-in
 {
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
+  cfg = config.modules.gaming;
+in {
   options.modules.gaming.enable = lib.mkEnableOption "gaming apps";
 
   config = lib.mkIf cfg.enable {

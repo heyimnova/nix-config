@@ -1,7 +1,10 @@
 # Hardware config for nova-laptop
-{ config, lib, modulesPath, ... }:
-
 {
+  config,
+  lib,
+  modulesPath,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -9,14 +12,14 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   networking.useDHCP = lib.mkDefault true;
-  swapDevices = [{ device = "/var/swap/swapfile"; }];
+  swapDevices = [{device = "/var/swap/swapfile";}];
 
   boot = {
-    extraModulePackages = [ ];
-    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [];
+    kernelModules = ["kvm-amd"];
 
     initrd = {
-      kernelModules = [ ];
+      kernelModules = [];
       luks.devices."cryptroot".device = "/dev/disk/by-label/CRYPTROOT";
 
       availableKernelModules = [

@@ -1,7 +1,10 @@
 # Hardware config for nova-desktop
-{ config, lib, modulesPath, ... }:
-
 {
+  config,
+  lib,
+  modulesPath,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -12,8 +15,8 @@
   zramSwap.enable = true;
 
   boot = {
-    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
-    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [config.boot.kernelPackages.v4l2loopback.out];
+    kernelModules = ["kvm-amd"];
 
     initrd = {
       availableKernelModules = [
@@ -128,12 +131,14 @@
     };
   };
 
-  swapDevices = [{
-    device = "/var/swap/swapfile";
+  swapDevices = [
+    {
+      device = "/var/swap/swapfile";
 
-    randomEncryption = {
-      enable = true;
-      allowDiscards = true;
-    };
-  }];
+      randomEncryption = {
+        enable = true;
+        allowDiscards = true;
+      };
+    }
+  ];
 }

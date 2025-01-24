@@ -1,15 +1,13 @@
-{ lib
-, config
-, pkgs
-, inputs
-, ...
-}:
-
-let
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   cfg = config.modules.spicetify;
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-in
-{
+in {
   options.modules.spicetify.enable = lib.mkEnableOption "my spicetify config";
 
   config = lib.mkIf cfg.enable {

@@ -1,12 +1,11 @@
 # Default NixOS desktop config
-{ lib
-, config
-, pkgs
-, variables
-, ...
-}:
-
 {
+  lib,
+  config,
+  pkgs,
+  variables,
+  ...
+}: {
   imports = [
     ./gnome.nix
     ./kde.nix
@@ -17,11 +16,11 @@
     networking.networkmanager.enable = true;
     # Make pipewire realtime-capable
     security.rtkit.enable = true;
-    system.fsPackages = [ pkgs.bindfs ];
+    system.fsPackages = [pkgs.bindfs];
 
     environment = {
       variables.TERMINAL = lib.getExe pkgs.ghostty;
-      systemPackages = [ pkgs.podman-compose ];
+      systemPackages = [pkgs.podman-compose];
     };
 
     # Fixes missing themes and icons in Flatpaks
@@ -29,12 +28,12 @@
       mkRoSymBind = path: {
         device = path;
         fsType = "fuse.bindfs";
-        options = [ "resolve-symlinks" "ro" "x-gvfs-hide" ];
+        options = ["resolve-symlinks" "ro" "x-gvfs-hide"];
       };
       aggregatedFonts = pkgs.buildEnv {
         name = "system-fonts";
         paths = config.fonts.packages;
-        pathsToLink = [ "/share/fonts" ];
+        pathsToLink = ["/share/fonts"];
       };
     in {
       "/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
@@ -43,7 +42,7 @@
 
     fonts.packages = with pkgs; [
       liberation_ttf
-      (nerdfonts.override { fonts = [ "Monofur" ]; })
+      (nerdfonts.override {fonts = ["Monofur"];})
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
@@ -81,7 +80,7 @@
 
       xserver = {
         enable = true;
-        excludePackages = [ pkgs.xterm ];
+        excludePackages = [pkgs.xterm];
       };
     };
 
