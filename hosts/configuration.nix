@@ -1,20 +1,20 @@
 # Default NixOS configuration
-{ lib
-, pkgs
-, inputs
-, variables
-, ...
-}:
-
 {
+  lib,
+  pkgs,
+  inputs,
+  variables,
+  ...
+}: {
   console.font = "Lat2-Terminus16";
   time.timeZone = "Europe/London";
   documentation.nixos.enable = false;
   modules.nixvim.enable = true;
+  modules.nvf.enable = false;
 
   boot = {
     # A better tcp congestion control algorithm
-    kernelModules = [ "tcp_bbr" ];
+    kernelModules = ["tcp_bbr"];
 
     # Network hardening from https://mdleom.com/blog/2020/03/04/caddy-nixos-part-2/
     kernel.sysctl = {
@@ -68,7 +68,7 @@
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_STATE_HOME = "$HOME/.local/state";
 
-      PATH = [ "${XDG_BIN_HOME}" ];
+      PATH = ["${XDG_BIN_HOME}"];
 
       # Recommendations from xdg-ninja
       ANDROID_HOME = "${XDG_DATA_HOME}/android";
@@ -131,8 +131,8 @@
 
     settings = {
       auto-optimise-store = true;
-      substituters = [ "https://nix-gaming.cachix.org" ];
-      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+      substituters = ["https://nix-gaming.cachix.org"];
+      trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
 
       experimental-features = [
         "flakes"
@@ -145,7 +145,7 @@
     config = {
       allowUnfree = true;
       # Logseq workaround
-      permittedInsecurePackages = [ "electron-27.3.11" ];
+      permittedInsecurePackages = ["electron-27.3.11"];
     };
 
     overlays = [
@@ -194,8 +194,10 @@
     users.root.hashedPassword = "!";
 
     defaultUserShell =
-      if variables.userShell == "fish" then pkgs.fish
-      else if variables.userShell == "nushell" then pkgs.nushell
+      if variables.userShell == "fish"
+      then pkgs.fish
+      else if variables.userShell == "nushell"
+      then pkgs.nushell
       else pkgs.bashInteractive;
 
     users.${variables.user} = {

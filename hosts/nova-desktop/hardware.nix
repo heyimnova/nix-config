@@ -9,7 +9,7 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   networking.useDHCP = lib.mkDefault true;
-  swapDevices = [{ device = "/var/swap/swapfile"; }];
+  zramSwap.enable = true;
 
   boot = {
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
@@ -127,4 +127,13 @@
       ];
     };
   };
+
+  swapDevices = [{
+    device = "/var/swap/swapfile";
+
+    randomEncryption = {
+      enable = true;
+      allowDiscards = true;
+    };
+  }];
 }

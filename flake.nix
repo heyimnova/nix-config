@@ -15,7 +15,8 @@
     stylix.url = "github:danth/stylix";
     stylix-stable.url = "github:danth/stylix/release-24.11";
 
-    arkenfox = { # Firefox enhancements
+    arkenfox = {
+      # Firefox enhancements
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
@@ -31,32 +32,44 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    lanzaboote = { # Secureboot
+    lanzaboote = {
+      # Secureboot
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-index-database = { # Quickly locate Nix packages
+    nix-index-database = {
+      # Quickly locate Nix packages
       url = "github:mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = { # Neovim management with Nix
+    nixvim = {
+      # Neovim management with Nix
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = { # Secrets management
+    nvf = {
+      # Neovim management with Nix
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      # Secrets management
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    spicetify-nix = { # Spotify theming
+    spicetify-nix = {
+      # Spotify theming
       url = "github:gerg-l/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    umu = { # Proton outside of Steam (used in Lutris)
+    umu = {
+      # Proton outside of Steam (used in Lutris)
       url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -72,25 +85,29 @@
       flake = false;
     };
 
-    firefox-gnome-theme = { # GNOME theme for Firefox
+    firefox-gnome-theme = {
+      # GNOME theme for Firefox
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, ... } @ inputs:
-  let
-    variables = { # Configurable variables
+  outputs = {
+    nixpkgs,
+    nixpkgs-stable,
+    ...
+  } @ inputs: let
+    variables = {
+      # Configurable variables
       user = "nova";
       userDescription = "Nova";
       userHome = "/home/nova";
       userShell = "fish";
       desktop = "gnome";
     };
-  in
-  {
-    nixosConfigurations = (
-      import ./hosts { inherit nixpkgs nixpkgs-stable inputs variables; }
-    );
+  in {
+    nixosConfigurations = import ./hosts {inherit nixpkgs nixpkgs-stable inputs variables;};
+
+    packages."x86_64-linux" = import ./packages.nix {inherit nixpkgs nixpkgs-stable inputs;};
   };
 }
