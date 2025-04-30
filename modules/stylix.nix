@@ -6,7 +6,7 @@
   ...
 }: let
   # I only want the proportional italics from Victor Mono
-  victor-mono-italics = (pkgs.nerdfonts.override {fonts = ["VictorMono"];}).overrideAttrs (finalAttrs: previousAttrs: {
+  victor-mono-italics = pkgs.nerd-fonts.victor-mono.overrideAttrs (finalAttrs: previousAttrs: {
     postFixup = ''
       find $out/share/fonts -type f -not -name "*Propo*Italic*" -delete
     '';
@@ -21,9 +21,9 @@ in
         polarity = "dark";
 
         cursor = {
-          package = pkgs.vimix-cursors;
-          name = "Vimix-white-cursors";
-          size = 16;
+          package = pkgs.bibata-cursors;
+          name = "Bibata-Modern-Ice";
+          size = 20;
         };
 
         fonts = {
@@ -34,10 +34,10 @@ in
             popups = 12;
           };
 
-          # GNOME document font (don't think it actually does anything)
+          # GNOME document font
           serif = {
-            package = victor-mono-italics;
-            name = "VictorMono Nerd Font Propo Italic";
+            package = pkgs.maple-mono.Normal-Variable;
+            name = "Maple Mono";
           };
 
           # GNOME interface font
@@ -47,7 +47,7 @@ in
           };
 
           monospace = {
-            package = pkgs.nerdfonts.override {fonts = ["Monofur"];};
+            package = pkgs.nerd-fonts.monofur;
             name = "Monofur Nerd Font Mono";
           };
         };
@@ -76,17 +76,17 @@ in
           };
 
           serif = {
-            package = pkgs.maple-mono-autohint;
+            package = pkgs.maple-mono.Normal-Variable;
             name = "Maple Mono";
           };
 
           sansSerif = {
-            package = pkgs.nerdfonts.override {fonts = ["CascadiaCode"];};
+            package = pkgs.nerd-fonts.caskaydia-cove;
             name = "Caskaydia Cove Nerd Font";
           };
 
           monospace = {
-            package = pkgs.nerdfonts.override {fonts = ["Monofur"];};
+            package = pkgs.nerd-fonts.monofur;
             name = "Monofur Nerd Font Mono";
           };
         };

@@ -152,6 +152,9 @@ in {
         # Tabs for open buffers
         bufferline.enable = true;
 
+        # Autoformat on save
+        conform-nvim.enable = true;
+
         # Notification window
         fidget.enable = true;
 
@@ -167,6 +170,9 @@ in {
 
         # Automatically close parentheses
         nvim-autopairs.enable = true;
+
+        # Automatically detect shiftwidth
+        sleuth.enable = true;
 
         # Icon pack
         web-devicons.enable = true;
@@ -310,6 +316,12 @@ in {
               options.desc = "Telescope Find Files";
             };
           };
+        };
+
+        # Comment highlighting
+        todo-comments.settings = {
+          enable = true;
+          signs = true;
         };
 
         # Highlighting

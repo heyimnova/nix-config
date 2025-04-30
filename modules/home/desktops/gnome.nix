@@ -10,6 +10,7 @@
   };
 in
   lib.mkIf (variables.desktop == "gnome") {
+    qt.enable = true;
     services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
 
     dconf.settings = {
@@ -128,15 +129,5 @@ in
           grand-theft-focus
           status-area-horizontal-spacing
         ]);
-    };
-
-    qt = {
-      enable = true;
-      # platformTheme = "gnome";
-      #
-      # style = {
-      #   name = "adwaita-dark";
-      #   package = pkgs.adwaita-qt6;
-      # };
     };
   }

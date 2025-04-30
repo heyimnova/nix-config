@@ -18,7 +18,7 @@ in {
 
         arkenfox = {
           enable = true;
-          version = "128.0";
+          version = "135.0";
         };
 
         profiles = {
@@ -79,7 +79,7 @@ in {
               };
             };
 
-            extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+            extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
               bitwarden
               mullvad
               multi-account-containers
@@ -90,17 +90,17 @@ in {
             ];
 
             search = {
-              default = "DuckDuckGo";
+              default = "ddg";
               # Fixes a home-manager switching error
               force = true;
 
               engines = {
                 # Hide the default engines I don't use
                 "Amazon.co.uk".metaData.hidden = true;
-                "Bing".metaData.hidden = true;
-                "eBay".metaData.hidden = true;
-                "Google".metaData.hidden = true;
-                "Wikipedia (en)".metaData.hidden = true;
+                "bing".metaData.hidden = true;
+                "ebay".metaData.hidden = true;
+                "google".metaData.hidden = true;
+                "wikipedia".metaData.hidden = true;
                 "Mullvad Leta".metaData.hidden = true;
 
                 # Search engine config for the home-manager option search
@@ -179,10 +179,10 @@ in {
               };
 
               order = [
-                "DuckDuckGo"
+                "ddg"
                 "ProtonDB"
                 "Nix Packages"
-                "Nix Options"
+                "NixOS Options"
                 "Home Manager"
               ];
             };
@@ -208,7 +208,7 @@ in {
 
     # Firefox KDE settings
     (lib.mkIf (variables.desktop == "kde") {
-      programs.firefox.profiles.default.extensions = [pkgs.nur.repos.rycee.firefox-addons.plasma-integration];
+      programs.firefox.profiles.default.extensions.packages = [pkgs.nur.repos.rycee.firefox-addons.plasma-integration];
     })
 
     # Firefox GNOME settings

@@ -12,6 +12,7 @@
   home = {
     packages = with pkgs; [
       polychromatic
+      remmina
       sbctl
     ];
 

@@ -30,7 +30,7 @@ let
     ];
   };
 in {
-  nova-desktop = nixpkgs-stable.lib.nixosSystem {
+  nova-desktop = nixpkgs.lib.nixosSystem {
     specialArgs = {
       # Pass inputs and variables as arguments
       inherit inputs variables;
@@ -42,10 +42,10 @@ in {
         ./nova-desktop/configuration.nix
 
         # Colorscheme management
-        inputs.stylix-stable.nixosModules.stylix
+        inputs.stylix.nixosModules.stylix
         ../modules/stylix.nix
 
-        inputs.home-manager-stable.nixosModules.home-manager
+        inputs.home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;

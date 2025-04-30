@@ -10,6 +10,6 @@ in {
   options.modules.virtualisation.enable = lib.mkEnableOption "virtualisation services";
 
   config = lib.mkIf cfg.enable {
-    home.packages = [pkgs.quickemu];
+    home.packages = [pkgs.quickgui];
   };
 }

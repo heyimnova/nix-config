@@ -68,12 +68,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    umu = {
-      # Proton outside of Steam (used in Lutris)
-      url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # EasyEffects profiles
     easyeffects-presets = {
       url = "github:jackhack96/easyeffects-presets";

@@ -42,25 +42,21 @@
 
     fonts.packages = with pkgs; [
       liberation_ttf
-      (nerdfonts.override {fonts = ["Monofur"];})
+      nerd-fonts.monofur
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
     ];
 
-    hardware = {
-      # Disable pulseaudio we are using pipewire
-      pulseaudio.enable = false;
-
-      # Enable hardware acceleration
-      graphics = {
-        enable = true;
-        enable32Bit = true;
-      };
+    # Enable hardware acceleration
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
     };
 
     services = {
-      printing.enable = true;
+      # Disable pulseaudio we are using pipewire
+      pulseaudio.enable = false;
 
       mullvad-vpn = {
         enable = true;
@@ -76,6 +72,11 @@
           enable = true;
           support32Bit = true;
         };
+      };
+
+      printing = {
+        enable = true;
+        drivers = [ pkgs.cnijfilter2 ];
       };
 
       xserver = {

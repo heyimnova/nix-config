@@ -16,9 +16,11 @@
     home.packages = with pkgs; [
       bitwarden
       bleachbit
+      caligula
       clamtk
       distrobox
-      logseq
+      # Logseq is broken at the moment
+      #logseq
       mullvad-browser
       protonmail-desktop
       qbittorrent

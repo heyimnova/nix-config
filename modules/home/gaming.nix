@@ -3,7 +3,6 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }: let
   cfg = config.modules.gaming;
@@ -18,6 +17,7 @@ in {
       prismlauncher
       protonup-qt
       r2modman
+      torzu
       vkbasalt
 
       (lutris.override {
@@ -29,9 +29,8 @@ in {
         ];
 
         extraPkgs = pkgs: [
+          umu-launcher
           wget
-
-          (inputs.umu.packages.${pkgs.system}.umu.override {version = "${inputs.umu.shortRev}";})
         ];
       })
     ];

@@ -60,7 +60,7 @@
     # These environment variables are set on user login
     sessionVariables = rec {
       # Used by nh
-      FLAKE = "$HOME/.config/flake";
+      NH_FLAKE = "$HOME/.config/flake";
 
       XDG_BIN_HOME = "$HOME/.local/bin";
       XDG_CACHE_HOME = "$HOME/.cache";
