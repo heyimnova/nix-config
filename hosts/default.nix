@@ -1,82 +1,90 @@
-{ inputs, flake-settings }:
-
+# Entry point for generating NixOS hosts
+{
+  nixpkgs,
+  nixpkgs-stable,
+  inputs,
+  variables,
+}:
+# Declare modules
 let
-  # Unpack inputs needed in this file
-  inherit (inputs) nixpkgs nixpkgs-unstable nix-gaming spicetify-nix stylix arkenfox home-manager home-manager-rolling lanzaboote nix-index-database nixvim sops-nix;
-
-  # Inputs to be passed to further configs
-  config-inputs = with inputs; { inherit nur spicetify-nix easyeffects-presets easyeffects-presets-loudness-equalizer firefox-gnome-theme flake-settings; };
-
   modules = {
     home-manager = [
-      ../modules/home-manager/alacritty.nix
-      ../modules/home-manager/apps.nix
-      ../modules/home-manager/easyeffects.nix
-      ../modules/home-manager/firefox.nix
-      ../modules/home-manager/gaming.nix
-      ../modules/home-manager/spicetify.nix
-      ../modules/home-manager/virtualisation.nix
+      ../modules/home
 
-      ../modules/home-manager/desktops
-      ../modules/home-manager/shells
-
-      arkenfox.hmModules.arkenfox
-      nix-index-database.hmModules.nix-index
-      spicetify-nix.homeManagerModules.default
+      inputs.arkenfox.hmModules.arkenfox
+      inputs.nix-index-database.homeModules.nix-index
+      inputs.spicetify-nix.homeManagerModules.default
     ];
 
     nixos = [
-      ../modules/nixos/gaming.nix
-      ../modules/nixos/syncthing.nix
-      ../modules/nixos/virtualisation.nix
-
+      ../modules/nixos
       ../modules/nixvim.nix
-      ../modules/stylix.nix
+      ../modules/nvf.nix
 
-      ../modules/nixos/desktops
-
-      stylix.nixosModules.stylix
-      lanzaboote.nixosModules.lanzaboote
-      nix-gaming.nixosModules.pipewireLowLatency
-      nixvim.nixosModules.nixvim
-      sops-nix.nixosModules.sops
+      inputs.lanzaboote.nixosModules.lanzaboote
+      inputs.nix-gaming.nixosModules.pipewireLowLatency
+      inputs.nix-gaming.nixosModules.platformOptimizations
+      inputs.nixvim.nixosModules.nixvim
+      inputs.nvf.nixosModules.default
+      inputs.sops-nix.nixosModules.sops
     ];
   };
-in
-{
-  nova-desktop = nixpkgs-unstable.lib.nixosSystem {
-    specialArgs = config-inputs;
+in {
+  nova-desktop = nixpkgs.lib.nixosSystem {
+    specialArgs = {
+      # Pass inputs and variables as arguments
+      inherit inputs variables;
+    };
 
-    modules = ([
-      ./nova-desktop/configuration.nix
+    # Import nova-desktop NixOS config with the modules declared earlier
+    modules =
+      [
+        ./nova-desktop/configuration.nix
 
-      home-manager-rolling.nixosModules.home-manager {
-        home-manager = {
-          backupFileExtension = "hmbak";
-          extraSpecialArgs = config-inputs;
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.${flake-settings.user}.imports = ([ ./nova-desktop/home.nix ] ++ modules.home-manager);
-        };
-      }
-    ] ++ modules.nixos);
+        # Colorscheme management
+        inputs.stylix.nixosModules.stylix
+        ../modules/stylix.nix
+
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            # Import nova-desktop home-manager config with the modules declared earlier
+            users.${variables.user}.imports = [./nova-desktop/home.nix] ++ modules.home-manager;
+
+            extraSpecialArgs = {
+              # Pass inputs and variables as arguments to home-manager configuration
+              inherit inputs variables;
+            };
+          };
+        }
+      ]
+      ++ modules.nixos;
   };
 
-  nova-laptop = nixpkgs.lib.nixosSystem {
-    specialArgs = config-inputs;
+  nova-laptop = nixpkgs-stable.lib.nixosSystem {
+    specialArgs = {
+      inherit inputs variables;
+    };
 
-    modules = ([
-      ./nova-laptop/configuration.nix
+    modules =
+      [
+        ./nova-laptop/configuration.nix
 
-      home-manager.nixosModules.home-manager {
-        home-manager = {
-          backupFileExtension = "hmbak";
-          extraSpecialArgs = config-inputs;
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.${flake-settings.user}.imports = ([ ./nova-laptop/home.nix ] ++ modules.home-manager);
-        };
-      }
-    ] ++ modules.nixos);
+        inputs.home-manager-stable.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${variables.user}.imports = [./nova-laptop/home.nix] ++ modules.home-manager;
+
+            extraSpecialArgs = {
+              inherit inputs variables;
+            };
+          };
+        }
+      ]
+      ++ modules.nixos;
   };
 }

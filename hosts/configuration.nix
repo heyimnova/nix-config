@@ -1,14 +1,20 @@
 # Default NixOS configuration
-{ pkgs, nur, flake-settings, ... }:
-
 {
+  lib,
+  pkgs,
+  inputs,
+  variables,
+  ...
+}: {
   console.font = "Lat2-Terminus16";
-  documentation.nixos.enable = false;
   time.timeZone = "Europe/London";
+  documentation.nixos.enable = false;
+  modules.nixvim.enable = false;
+  modules.nvf.enable = false;
 
   boot = {
     # A better tcp congestion control algorithm
-    kernelModules = [ "tcp_bbr" ];
+    kernelModules = ["tcp_bbr"];
 
     # Network hardening from https://mdleom.com/blog/2020/03/04/caddy-nixos-part-2/
     kernel.sysctl = {
@@ -54,7 +60,7 @@
     # These environment variables are set on user login
     sessionVariables = rec {
       # Used by nh
-      FLAKE = flake-settings.location;
+      NH_FLAKE = "$HOME/.config/flake";
 
       XDG_BIN_HOME = "$HOME/.local/bin";
       XDG_CACHE_HOME = "$HOME/.cache";
@@ -62,7 +68,7 @@
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_STATE_HOME = "$HOME/.local/state";
 
-      PATH = [ "${XDG_BIN_HOME}" ];
+      PATH = ["${XDG_BIN_HOME}"];
 
       # Recommendations from xdg-ninja
       ANDROID_HOME = "${XDG_DATA_HOME}/android";
@@ -99,8 +105,8 @@
     ];
 
     variables = {
-      EDITOR = "${pkgs.neovim}/bin/nvim";
-      VISUAL = "${pkgs.neovim}/bin/nvim";
+      EDITOR = lib.getExe pkgs.neovim;
+      VISUAL = lib.getExe pkgs.neovim;
     };
   };
 
@@ -119,14 +125,14 @@
   nix = {
     gc = {
       automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 3d";
+      dates = "weekly";
+      options = "--delete-older-than +2";
     };
 
     settings = {
       auto-optimise-store = true;
-      substituters = [ "https://nix-gaming.cachix.org" ];
-      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+      substituters = ["https://nix-gaming.cachix.org"];
+      trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
 
       experimental-features = [
         "flakes"
@@ -136,13 +142,20 @@
   };
 
   nixpkgs = {
-    config.allowUnfree = true;
-    config.permittedInsecurePackages = [ "electron-27.3.11" ];
-    overlays = [ nur.overlay ];
+    config = {
+      allowUnfree = true;
+      # Logseq workaround
+      permittedInsecurePackages = ["electron-27.3.11"];
+    };
+
+    overlays = [
+      inputs.nur.overlays.default
+    ];
   };
 
+  # Secrets management with Nix
   sops = {
-    age.keyFile = "/home/${flake-settings.user}/.config/sops/age/keys.txt";
+    age.keyFile = "/home/${variables.user}/.config/sops/age/keys.txt";
     defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
   };
@@ -160,6 +173,7 @@
     avahi = {
       enable = true;
       nssmdns4 = true;
+      openFirewall = true;
 
       publish = {
         addresses = true;
@@ -169,39 +183,10 @@
     };
   };
 
-  system.autoUpgrade = {
-    dates = "05:00";
-    enable = true;
-    # Assuming this repo is symlinked to (or in) /etc/nixos
-    flake = "/etc/nixos";
-    # Allow the service to catch up on updates if the system was powered down
-    persistent = true;
-
-    # Update all flake inputs so new packages are installed
-    flags = [
-      "--update-input"
-      "arkenfox"
-      "--update-input"
-      "home-manager"
-      "--update-input"
-      "home-manager-unstable"
-      "--update-input"
-      "lanzaboote"
-      "--update-input"
-      "nur"
-      "--update-input"
-      "stable"
-      "--update-input"
-      "unstable"
-      "--update-input"
-      "utils"
-    ];
-  };
-
-  systemd.extraConfig = ''
+  systemd.settings.Manager = {
     # Faster shutdowns
-    DefaultTimeoutStopSec=10s
-  '';
+    DefaultTimeoutStopSec = "10s";
+  };
 
   users = {
     mutableUsers = false;
@@ -209,12 +194,14 @@
     users.root.hashedPassword = "!";
 
     defaultUserShell =
-      if flake-settings.userShell == "fish" then pkgs.fish
-      else if flake-settings.userShell == "nushell" then pkgs.nushell
+      if variables.userShell == "fish"
+      then pkgs.fish
+      else if variables.userShell == "nushell"
+      then pkgs.nushell
       else pkgs.bashInteractive;
 
-    users.${flake-settings.user} = {
-      description = flake-settings.userDescription;
+    users.${variables.user} = {
+      description = variables.userDescription;
       isNormalUser = true;
       useDefaultShell = true;
     };

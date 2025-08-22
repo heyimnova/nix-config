@@ -1,39 +1,39 @@
 # Default NixOS desktop config
-{ lib, config, pkgs, ... }:
-
-let
-  cfg = config.desktops;
-in
 {
+  lib,
+  config,
+  pkgs,
+  variables,
+  ...
+}: {
   imports = [
     ./gnome.nix
     ./kde.nix
   ];
 
-  options.desktops = {
-    gnome.enable = lib.mkEnableOption "GNOME desktop and config";
-    kde.enable = lib.mkEnableOption "KDE desktop and config";
-  };
-
-  config = lib.mkIf (cfg.gnome.enable || cfg.kde.enable) {
-    environment.systemPackages = [ pkgs.podman-compose ];
-    hardware.pulseaudio.enable = false;
+  # Only run if a desktop is set
+  config = lib.mkIf (variables.desktop != "") {
     networking.networkmanager.enable = true;
     # Make pipewire realtime-capable
     security.rtkit.enable = true;
-    system.fsPackages = [ pkgs.bindfs ];
+    system.fsPackages = [pkgs.bindfs];
+
+    environment = {
+      variables.TERMINAL = lib.getExe pkgs.ghostty;
+      systemPackages = [pkgs.podman-compose];
+    };
 
     # Fixes missing themes and icons in Flatpaks
     fileSystems = let
       mkRoSymBind = path: {
         device = path;
         fsType = "fuse.bindfs";
-        options = [ "resolve-symlinks" "ro" "x-gvfs-hide" ];
+        options = ["resolve-symlinks" "ro" "x-gvfs-hide"];
       };
       aggregatedFonts = pkgs.buildEnv {
         name = "system-fonts";
         paths = config.fonts.packages;
-        pathsToLink = [ "/share/fonts" ];
+        pathsToLink = ["/share/fonts"];
       };
     in {
       "/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
@@ -42,13 +42,22 @@ in
 
     fonts.packages = with pkgs; [
       liberation_ttf
-      (nerdfonts.override { fonts = [ "Monofur" ]; })
+      nerd-fonts.monofur
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
     ];
 
+    # Enable hardware acceleration
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
     services = {
+      # Disable pulseaudio we are using pipewire
+      pulseaudio.enable = false;
+
       mullvad-vpn = {
         enable = true;
         package = pkgs.mullvad-vpn;
@@ -67,12 +76,12 @@ in
 
       printing = {
         enable = true;
-        drivers = [ pkgs.canon-cups-ufr2 ];
+        drivers = [ pkgs.cnijfilter2 ];
       };
 
       xserver = {
         enable = true;
-        excludePackages = [ pkgs.xterm ];
+        excludePackages = [pkgs.xterm];
       };
     };
 
@@ -80,11 +89,11 @@ in
       waydroid.enable = lib.mkDefault true;
 
       podman = {
+        enable = true;
         # Allows containers started with podman-compose to talk to each other
         defaultNetwork.settings.dns_enabled = true;
         # Creates "docker" alias for Podman
         dockerCompat = true;
-        enable = true;
       };
     };
   };

@@ -1,16 +1,19 @@
 # NixOS config for nova-laptop
-{ config, pkgs, flake-settings, ... }:
-
 {
+  config,
+  variables,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ../configuration.nix
   ];
 
-  console.keyMap = "uk";
-  desktops.gnome.enable = true;
-  i18n.defaultLocale = "en_GB.UTF-8";
   networking.hostName = "nova-laptop";
+  # Localization
+  console.keyMap = "uk";
+  i18n.defaultLocale = "en_GB.UTF-8";
+  # Make sure password file is loaded at boot
   sops.secrets."passwords/nova-laptop".neededForUsers = true;
   system.stateVersion = "23.05";
 
@@ -33,12 +36,14 @@
     };
   };
 
+  # More localization
   services.xserver.xkb = {
     layout = "gb";
     variant = "";
   };
 
-  users.users.${flake-settings.user} = {
+  # Create the user with the predefined password
+  users.users.${variables.user} = {
     hashedPasswordFile = config.sops.secrets."passwords/nova-laptop".path;
 
     extraGroups = [

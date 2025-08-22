@@ -1,17 +1,19 @@
 # GNOME NixOS config
-{ lib, config, pkgs, ... }:
-
-lib.mkIf config.desktops.gnome.enable {
+{
+  lib,
+  pkgs,
+  variables,
+  ...
+}:
+lib.mkIf (variables.desktop == "gnome") {
   environment = {
-    variables.TERMINAL = "${pkgs.blackbox-terminal}/bin/blackbox";
-
+    # Default packages I don't want
     gnome.excludePackages = with pkgs; [
       baobab
       epiphany
       geary
       gnome-clocks
       gnome-connections
-      gnome-console
       gnome-contacts
       gnome-music
       gnome-photos
@@ -22,13 +24,12 @@ lib.mkIf config.desktops.gnome.enable {
     ];
 
     systemPackages = with pkgs; [
-      blackbox-terminal
       clapper
       gnome-tweaks
 
       (writeShellScriptBin "xdg-terminal-exec" ''
-        # Use blackbox for gtk-launch
-        exec ${blackbox-terminal}/bin/blackbox -c "$*"
+        # Use ghostty for gtk-launch
+        exec ${lib.getExe pkgs.ghostty} -e "$*"
       '')
     ];
   };
@@ -43,11 +44,8 @@ lib.mkIf config.desktops.gnome.enable {
   };
 
   services = {
-    udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
-
-    xserver = {
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
-    };
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
+    udev.packages = [pkgs.gnome-settings-daemon];
   };
 }

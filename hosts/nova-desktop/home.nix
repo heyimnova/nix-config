@@ -1,32 +1,38 @@
 # home-manager config for nova-desktop
-{ lib, pkgs, ... }:
-
 {
-  imports = [ ../../home-manager/home.nix ];
+  lib,
+  pkgs,
+  ...
+}: {
+  # This file extends the default home-manager config
+  imports = [../../home/home.nix];
 
-  desktops.gnome.enable = true;
-  firefox.enable = true;
-  gaming.enable = true;
   shells.nushell.enable = true;
-  virtualisation.enable = true;
-
-  apps = {
-    productivity = true;
-    social = true;
-  };
 
   home = {
     packages = with pkgs; [
       polychromatic
+      remmina
       sbctl
     ];
 
     stateVersion = lib.mkForce "22.11";
   };
 
-  modules.easyeffects = {
-    enable = true;
-    presets.enable = true;
-    presets-loudness-equalizer.enable = true;
+  modules = {
+    firefox.enable = true;
+    gaming.enable = true;
+    virtualisation.enable = true;
+
+    apps = {
+      productivity = true;
+      social = true;
+    };
+
+    easyeffects = {
+      enable = true;
+      presets.enable = true;
+      presets-loudness-equalizer.enable = true;
+    };
   };
 }
