@@ -11,14 +11,16 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      bottles
       gamescope
       heroic
       prismlauncher
-      protonup-qt
+      protonplus
       r2modman
-      torzu
       vkbasalt
+
+      (bottles.override {
+        removeWarningPopup = true;
+      })
 
       (lutris.override {
         extraLibraries = pkgs: [

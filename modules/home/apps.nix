@@ -15,9 +15,12 @@ in {
   config = lib.mkMerge [
     (lib.mkIf cfg.productivity {
       home.packages = with pkgs; [
-        gimp
+        clapgrep
+        devtoolbox
+        gimp3
         gitnuro
         godot_4
+        handbrake
         onlyoffice-bin
       ];
     })

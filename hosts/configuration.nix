@@ -9,7 +9,7 @@
   console.font = "Lat2-Terminus16";
   time.timeZone = "Europe/London";
   documentation.nixos.enable = false;
-  modules.nixvim.enable = true;
+  modules.nixvim.enable = false;
   modules.nvf.enable = false;
 
   boot = {
@@ -125,8 +125,8 @@
   nix = {
     gc = {
       automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 3d";
+      dates = "weekly";
+      options = "--delete-older-than +2";
     };
 
     settings = {
@@ -183,10 +183,10 @@
     };
   };
 
-  systemd.extraConfig = ''
+  systemd.settings.Manager = {
     # Faster shutdowns
-    DefaultTimeoutStopSec=10s
-  '';
+    DefaultTimeoutStopSec = "10s";
+  };
 
   users = {
     mutableUsers = false;

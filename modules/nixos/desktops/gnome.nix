@@ -14,7 +14,6 @@ lib.mkIf (variables.desktop == "gnome") {
       geary
       gnome-clocks
       gnome-connections
-      gnome-console
       gnome-contacts
       gnome-music
       gnome-photos
@@ -45,11 +44,8 @@ lib.mkIf (variables.desktop == "gnome") {
   };
 
   services = {
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
     udev.packages = [pkgs.gnome-settings-daemon];
-
-    xserver = {
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
-    };
   };
 }

@@ -11,7 +11,7 @@
 in
   lib.mkIf (variables.desktop == "gnome") {
     qt.enable = true;
-    services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
+    services.gpg-agent.pinentry.package = pkgs.pinentry-gnome3;
 
     dconf.settings = {
       "io/github/seadve/Mousai" = {
@@ -64,6 +64,7 @@ in
           "AlphabeticalAppGrid@stuarthayhurst"
           "user-theme@gnome-shell-extensions.gcampax.github.com"
           "system-monitor@gnome-shell-extensions.gcampax.github.com"
+          "hotedge@jonathan.jdoda.ca"
         ];
 
         favorite-apps = [
@@ -72,7 +73,7 @@ in
           "spotify.desktop"
           "mullvad-browser.desktop"
           "firefox.desktop"
-          "signal-desktop.desktop"
+          "signal.desktop"
           "vesktop.desktop"
           "revolt-desktop.desktop"
           "freetube.desktop"
@@ -127,6 +128,7 @@ in
           caffeine
           clipboard-indicator
           grand-theft-focus
+          hot-edge
           status-area-horizontal-spacing
         ]);
     };

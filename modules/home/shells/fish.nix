@@ -34,7 +34,7 @@ in {
         la = "${lib.getExe pkgs.eza} --icons --group-directories-first -la";
         ls = "${lib.getExe pkgs.eza} --icons --group-directories-first";
         # Recommendation from xdg-ninja
-        wget = "${lib.getExe pkgs.wget} --hsts-file='$XDG_DATA_HOME/wget-hsts'";
+        #wget = "${lib.getExe pkgs.wget} --hsts-file='$XDG_DATA_HOME/wget-hsts'";
       };
     };
   };

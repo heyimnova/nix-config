@@ -12,7 +12,7 @@ let
       ../modules/home
 
       inputs.arkenfox.hmModules.arkenfox
-      inputs.nix-index-database.hmModules.nix-index
+      inputs.nix-index-database.homeModules.nix-index
       inputs.spicetify-nix.homeManagerModules.default
     ];
 

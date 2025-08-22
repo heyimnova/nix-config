@@ -6,7 +6,7 @@
   ...
 }:
 lib.mkIf (variables.desktop == "kde") {
-  services.gpg-agent.pinentryPackage = pkgs.pinentry-qt;
+  services.gpg-agent.pinentry.package = pkgs.pinentry-qt;
   stylix.targets.kde.enable = false;
 
   home = {

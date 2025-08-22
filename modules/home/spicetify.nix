@@ -22,7 +22,6 @@ in {
         addToQueueTop
         keyboardShortcut
         playlistIntersection
-        savePlaylists
         volumePercentage
       ];
     };
