@@ -204,6 +204,10 @@ in {
           };
         };
       };
+
+      stylix.targets.firefox = {
+        profileNames = ["default"];
+      };
     }
 
     # Firefox KDE settings
@@ -213,32 +217,7 @@ in {
 
     # Firefox GNOME settings
     (lib.mkIf (variables.desktop == "gnome") {
-      programs.firefox.profiles.default = {
-        settings = {
-          # Disable private window dark theme
-          "browser.theme.dark-private-windows" = false;
-          # Set UI density to normal
-          "browser.uidensity" = 0;
-          # Hide single tab
-          "gnomeTheme.hideSingleTab" = true;
-          # Hide extensions menu
-          "gnomeTheme.hideUnifiedExtensions" = true;
-          # Allow recoloring of icons
-          "svg.context-properties.content.enabled" = true;
-          # Enable customChrome.css
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-          # Enable rounded window corners
-          "widget.gtk.rounded-bottom-corners.enabled" = true;
-        };
-
-        userChrome = ''
-          @import "${inputs.firefox-gnome-theme}/userChrome.css";
-        '';
-
-        userContent = ''
-          @import "${inputs.firefox-gnome-theme}/userContent.css";
-        '';
-      };
+      stylix.targets.firefox.firefoxGnomeTheme.enable = true;
     })
   ]);
 }

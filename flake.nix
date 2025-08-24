@@ -78,12 +78,6 @@
       url = "github:digitalone1/easyeffects-presets";
       flake = false;
     };
-
-    firefox-gnome-theme = {
-      # GNOME theme for Firefox
-      url = "github:rafaelmardojai/firefox-gnome-theme";
-      flake = false;
-    };
   };
 
   outputs = {
