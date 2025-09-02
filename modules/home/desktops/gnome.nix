@@ -28,6 +28,8 @@ in
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
         clock-show-weekday = true;
+        # Replace hot corners with hot edge extension
+        enable-hot-corners = false;
         # Disable middle-click paste (it is very annoying)
         gtk-enable-primary-paste = false;
       };

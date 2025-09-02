@@ -47,8 +47,8 @@ in
           };
 
           monospace = {
-            package = pkgs.nerd-fonts.monofur;
-            name = "Monofur Nerd Font Mono";
+            package = pkgs.nerd-fonts.fantasque-sans-mono;
+            name = "FantasqueSansM Nerd Font Mono";
           };
         };
       };
@@ -86,8 +86,8 @@ in
           };
 
           monospace = {
-            package = pkgs.nerd-fonts.monofur;
-            name = "Monofur Nerd Font Mono";
+            package = pkgs.nerd-fonts.fantasque-sans-mono;
+            name = "FantasqueSansM Nerd Font Mono";
           };
         };
       };

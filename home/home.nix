@@ -15,15 +15,21 @@
     stateVersion = lib.mkDefault "24.11";
 
     packages = with pkgs; [
-      ghostty
       tealdeer
       topgrade
     ];
   };
 
   programs = {
+    # GitHub cli tool
+    gh.enable = true;
     home-manager.enable = true;
     nix-index.enable = true;
+
+    ghostty = {
+      enable = true;
+      enableFishIntegration = true;
+    };
 
     git = {
       enable = true;
