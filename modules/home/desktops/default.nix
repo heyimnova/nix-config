@@ -24,7 +24,7 @@
       mullvad-browser
       protonmail-desktop
       qbittorrent
-      thunderbird
+      thunderbird-bin
       tor-browser-bundle-bin
     ];
   };

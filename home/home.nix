@@ -21,6 +21,7 @@
   };
 
   programs = {
+    btop.enable = true;
     # GitHub cli tool
     gh.enable = true;
     home-manager.enable = true;

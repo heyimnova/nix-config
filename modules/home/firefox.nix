@@ -15,10 +15,11 @@ in {
     {
       programs.firefox = {
         enable = true;
+        package = pkgs.firefox-bin;
 
         arkenfox = {
           enable = true;
-          version = "135.0";
+          version = "140.0";
         };
 
         profiles = {
@@ -60,10 +61,7 @@ in {
                 # OPTIONAL OPSEC
                 enable = true;
                 "5003"."signon.rememberSignons".value = false; # Disable saving passwords
-                "5005"."security.nocertdb".value = true; # Disable intermediate certificate caching
-                "5008"."browser.sessionstore.resume_from_crash".value = false; # Disable resuming session from crash
-                "5018"."dom.popup_allowed_events".value = "click dblclick mousedown pointerdown"; # Limit events that can cause a pop-up
-                "5019"."browser.pagethumbnails.capturing_disabled".value = true; # Disable page thumbnail collection
+                "5005"."security.nocertdb".value = true; # Make credentials session-only
 
                 "5017" = {
                   # Disable Form Autofill

@@ -20,7 +20,6 @@ in {
         gimp3
         gitnuro
         godot_4
-        handbrake
         onlyoffice-bin
       ];
     })
