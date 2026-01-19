@@ -10,7 +10,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     # Low latency pipewire from nix-gaming
-    services.pipewire.lowLatency.enable = true;
+    services.pipewire.lowLatency.enable = false;
 
     programs = {
       gamemode.enable = true;

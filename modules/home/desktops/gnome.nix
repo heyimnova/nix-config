@@ -11,8 +11,6 @@
 in
   lib.mkIf (variables.desktop == "gnome") {
     services.gpg-agent.pinentry.package = pkgs.pinentry-gnome3;
-    # Disable stylix qt management at the home-manager level
-    stylix.targets.qt.enable = false;
 
     dconf.settings = {
       "io/github/seadve/Mousai" = {
@@ -86,9 +84,7 @@ in
           "steam.desktop"
           "com.heroicgameslauncher.hgl.desktop"
           "net.lutris.Lutris.desktop"
-          "com.usebottles.bottles.desktop"
           "org.prismlauncher.PrismLauncher.desktop"
-          "logseq.desktop"
           "bitwarden.desktop"
         ];
       };
@@ -134,12 +130,5 @@ in
           hot-edge
           status-area-horizontal-spacing
         ]);
-    };
-
-    # Do qt theming on GNOME manually until stylix can
-    qt = {
-      enable = true;
-      platformTheme.name = lib.mkForce "adwaita";
-      style.name = lib.mkForce "adwaita-dark";
     };
   }

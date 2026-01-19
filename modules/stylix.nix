@@ -19,6 +19,7 @@ in
         enable = true;
         image = ../config/wallpapers/anders-jilden.jpg;
         polarity = "dark";
+        #targets.qt.enable = false;
 
         cursor = {
           package = pkgs.bibata-cursors;

@@ -30,13 +30,29 @@
     ghostty = {
       enable = true;
       enableFishIntegration = true;
+      systemd.enable = true;
+
+      settings = {
+        quit-after-last-window-closed = false;
+
+        shell-integration-features = [
+          "sudo"
+          "ssh-env"
+        ];
+      };
     };
 
     git = {
       enable = true;
-      userName = "heyimnova";
-      userEmail = "git@heyimnova.dev";
-      extraConfig.init.defaultBranch = "main";
+
+      settings = {
+        init.defaultBranch = "main";
+
+        user = {
+          name = "heyimnova";
+          email = "git@heyimnova.dev";
+        };
+      };
 
       signing = {
         key = "DEB0E15C6D2A5A7C";

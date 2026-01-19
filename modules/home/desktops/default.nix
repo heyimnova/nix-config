@@ -14,7 +14,7 @@
     modules.spicetify.enable = true;
 
     home.packages = with pkgs; [
-      bitwarden
+      bitwarden-desktop
       bleachbit
       caligula
       clamtk
@@ -25,7 +25,7 @@
       protonmail-desktop
       qbittorrent
       thunderbird-bin
-      tor-browser-bundle-bin
+      tor-browser
     ];
   };
 }

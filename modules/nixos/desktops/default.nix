@@ -24,28 +24,28 @@
     };
 
     # Fixes missing themes and icons in Flatpaks
-    fileSystems = let
-      mkRoSymBind = path: {
-        device = path;
-        fsType = "fuse.bindfs";
-        options = ["resolve-symlinks" "ro" "x-gvfs-hide"];
-      };
-      aggregatedFonts = pkgs.buildEnv {
-        name = "system-fonts";
-        paths = config.fonts.packages;
-        pathsToLink = ["/share/fonts"];
-      };
-    in {
-      "/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
-      "/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
-    };
+    #    fileSystems = let
+    #      mkRoSymBind = path: {
+    #        device = path;
+    #        fsType = "fuse.bindfs";
+    #        options = ["resolve-symlinks" "ro" "x-gvfs-hide"];
+    #      };
+    #      aggregatedFonts = pkgs.buildEnv {
+    #        name = "system-fonts";
+    #        paths = config.fonts.packages;
+    #        pathsToLink = ["/share/fonts"];
+    #      };
+    #    in {
+    #      "/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
+    #      "/usr/share/icons" = mkRoSymBind "/run/current-system/sw/share/icons";
+    #    };
 
     fonts.packages = with pkgs; [
       liberation_ttf
       nerd-fonts.monofur
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
     ];
 
     # Enable hardware acceleration
@@ -76,7 +76,7 @@
 
       printing = {
         enable = true;
-        drivers = [pkgs.cnijfilter2];
+        #drivers = [pkgs.cnijfilter2];
       };
 
       xserver = {

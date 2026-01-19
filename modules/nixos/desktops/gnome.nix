@@ -24,7 +24,6 @@ lib.mkIf (variables.desktop == "gnome") {
     ];
 
     systemPackages = with pkgs; [
-      clapper
       gnome-tweaks
 
       (writeShellScriptBin "xdg-terminal-exec" ''

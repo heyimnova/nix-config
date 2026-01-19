@@ -20,17 +20,18 @@ in {
         gimp3
         gitnuro
         godot_4
-        onlyoffice-bin
+        onlyoffice-desktopeditors
       ];
     })
 
     (lib.mkIf cfg.social {
+      programs.vesktop.enable = true;
+
       home.packages = with pkgs; [
         fluent-reader
         freetube
         revolt-desktop
         signal-desktop
-        vesktop
       ];
     })
   ];

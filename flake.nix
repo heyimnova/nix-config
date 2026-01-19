@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/release-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-25.11";
 
     # Used for pipewire low latency
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -13,7 +13,7 @@
 
     # Automatic for colorscheme management
     stylix.url = "github:danth/stylix";
-    stylix-stable.url = "github:danth/stylix/release-24.11";
+    stylix-stable.url = "github:danth/stylix/release-25.11";
 
     arkenfox = {
       # Firefox enhancements
@@ -28,7 +28,7 @@
     };
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 

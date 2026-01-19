@@ -59,7 +59,7 @@
 
   services = {
     ollama = {
-      enable = true;
+      enable = false;
       # Make ollama accessible over the network
       host = "0.0.0.0";
       openFirewall = true;
