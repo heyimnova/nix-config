@@ -6,7 +6,7 @@
   variables,
   ...
 }: {
-  console.font = "Lat2-Terminus16";
+  console.font = "${pkgs.kbd}/share/consolefonts/Lat2-Terminus16.psfu.gz";
   time.timeZone = "Europe/London";
   documentation.nixos.enable = false;
   modules.nixvim.enable = false;
@@ -144,12 +144,20 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      # Logseq workaround
-      permittedInsecurePackages = ["electron-27.3.11"];
+      permittedInsecurePackages = [
+        "electron-38.8.4"
+      ];
     };
 
     overlays = [
       inputs.nur.overlays.default
+
+      # openldap fix for lutris and bottles
+      (_: prev: {
+        openldap = prev.openldap.overrideAttrs {
+          doCheck = false;
+        };
+      })
     ];
   };
 

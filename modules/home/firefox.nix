@@ -16,10 +16,13 @@ in {
       programs.firefox = {
         enable = true;
         package = pkgs.firefox-bin;
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
 
         arkenfox = {
           enable = true;
-          version = "140.0";
+          version = "140.1";
+          # Disable version mismatch warning
+          disableWarning = true;
         };
 
         profiles = {

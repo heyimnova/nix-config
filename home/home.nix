@@ -30,7 +30,7 @@
     ghostty = {
       enable = true;
       enableFishIntegration = true;
-      systemd.enable = true;
+      systemd.enable = false;
 
       settings = {
         quit-after-last-window-closed = false;
@@ -56,6 +56,7 @@
 
       signing = {
         key = "DEB0E15C6D2A5A7C";
+        format = "openpgp";
         signByDefault = true;
       };
     };

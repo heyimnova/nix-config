@@ -19,7 +19,6 @@ in {
       colorScheme = "rose-pine";
 
       enabledExtensions = with spicePkgs.extensions; [
-        addToQueueTop
         keyboardShortcut
         playlistIntersection
         volumePercentage

@@ -14,13 +14,22 @@ in {
 
   config = lib.mkMerge [
     (lib.mkIf cfg.productivity {
+      programs.zed-editor = {
+        enable = true;
+
+        extraPackages = with pkgs; [
+          # Nix support
+          alejandra
+          nil
+          nixd
+        ];
+      };
+
       home.packages = with pkgs; [
         clapgrep
-        devtoolbox
         gimp3
         gitnuro
         godot_4
-        onlyoffice-desktopeditors
       ];
     })
 
@@ -30,8 +39,8 @@ in {
       home.packages = with pkgs; [
         fluent-reader
         freetube
-        revolt-desktop
         signal-desktop
+        stoat-desktop
       ];
     })
   ];

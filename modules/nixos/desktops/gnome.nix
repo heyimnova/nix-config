@@ -17,6 +17,7 @@ lib.mkIf (variables.desktop == "gnome") {
       gnome-contacts
       gnome-music
       gnome-photos
+      gnome-software
       gnome-tour
       orca
       totem

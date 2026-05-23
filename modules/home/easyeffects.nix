@@ -55,11 +55,5 @@ in {
         };
       };
     }
-
-    # Add EasyEffects GNOME extension on GNOME
-    (lib.mkIf (variables.desktop == "gnome") {
-      home.packages = [pkgs.gnomeExtensions.easyeffects-preset-selector];
-      dconf.settings."org/gnome/shell".enabled-extensions = ["eepresetselector@ulville.github.io"];
-    })
   ]);
 }

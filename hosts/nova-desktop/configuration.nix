@@ -58,6 +58,8 @@
   };
 
   services = {
+    flatpak.enable = true;
+
     ollama = {
       enable = false;
       # Make ollama accessible over the network

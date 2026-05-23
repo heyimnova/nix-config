@@ -11,6 +11,7 @@
 
   home = {
     packages = with pkgs; [
+      bazaar
       polychromatic
       remmina
       sbctl
@@ -30,7 +31,7 @@
     };
 
     easyeffects = {
-      enable = true;
+      enable = false;
       presets.enable = true;
       presets-loudness-equalizer.enable = true;
     };
